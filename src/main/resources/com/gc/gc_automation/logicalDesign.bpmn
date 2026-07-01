@@ -61,6 +61,16 @@
   <bpmn2:itemDefinition id="__CFE0A004-1111-4111-8111-CFE0A0040004_dataMap.resourcesInputXItem" structureRef="java.util.List"/>
   <bpmn2:itemDefinition id="__CFE0A004-1111-4111-8111-CFE0A0040004_httpStatusCodeOutputXItem" structureRef="Integer"/>
   <bpmn2:itemDefinition id="__CFE0A004-1111-4111-8111-CFE0A0040004_messageOutputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_serviceComponentLogicalConnectivityCrossIdItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_serviceComponentLogicalConnectivityResourcesItem" structureRef="java.util.List"/>
+  <bpmn2:itemDefinition id="__ADEA0004-1111-4111-8111-ADEA00040004_apiUrlInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__ADEA0004-1111-4111-8111-ADEA00040004_routeMap.domainInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__ADEA0004-1111-4111-8111-ADEA00040004_routeMap.sourceInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__ADEA0004-1111-4111-8111-ADEA00040004_dataMap.serviceComponentCrossIdInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__ADEA0004-1111-4111-8111-ADEA00040004_dataMap.projectNameInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__ADEA0004-1111-4111-8111-ADEA00040004_dataMap.resourcesInputXItem" structureRef="java.util.List"/>
+  <bpmn2:itemDefinition id="__ADEA0004-1111-4111-8111-ADEA00040004_httpStatusCodeOutputXItem" structureRef="Integer"/>
+  <bpmn2:itemDefinition id="__ADEA0004-1111-4111-8111-ADEA00040004_messageOutputXItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__3547B21E-9DE0-40A9-A049-2AC84F6E8551_apiUrlInputXItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__3547B21E-9DE0-40A9-A049-2AC84F6E8551_routeMap.domainInputXItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__3547B21E-9DE0-40A9-A049-2AC84F6E8551_routeMap.operationInputXItem" structureRef="String"/>
@@ -199,6 +209,8 @@
     <bpmn2:property id="servicePhysicalAccessComponents" itemSubjectRef="_servicePhysicalAccessComponentsItem" name="servicePhysicalAccessComponents"/>
     <bpmn2:property id="serviceComponentCpeCrossId" itemSubjectRef="_serviceComponentCpeCrossIdItem" name="serviceComponentCpeCrossId"/>
     <bpmn2:property id="serviceComponentCpeResources" itemSubjectRef="_serviceComponentCpeResourcesItem" name="serviceComponentCpeResources"/>
+    <bpmn2:property id="serviceComponentLogicalConnectivityCrossId" itemSubjectRef="_serviceComponentLogicalConnectivityCrossIdItem" name="serviceComponentLogicalConnectivityCrossId"/>
+    <bpmn2:property id="serviceComponentLogicalConnectivityResources" itemSubjectRef="_serviceComponentLogicalConnectivityResourcesItem" name="serviceComponentLogicalConnectivityResources"/>
     <bpmn2:property id="resultList" itemSubjectRef="_resultListItem" name="resultList"/>
     <bpmn2:property id="httpStatusCode" itemSubjectRef="_httpStatusCodeItem" name="httpStatusCode"/>
     <bpmn2:property id="message" itemSubjectRef="_messageItem" name="message"/>
@@ -253,8 +265,8 @@ return result;]]></bpmn2:conditionExpression>
     <bpmn2:sequenceFlow id="_FA595EC6-4BFE-4576-8E69-CB4051CC0049" sourceRef="_BB5FD692-C3C5-4F05-BF8B-A96430A90365" targetRef="_9E0D848F-1EAE-47F0-8C0A-6A091C2C8323"/>
     <bpmn2:sequenceFlow id="_CA51701F-D7D0-4B25-B7FA-1A3DC9EBE40E" sourceRef="_E2812E7A-4105-4653-943B-558566F43714" targetRef="_3EAA8729-B3A0-4CEE-8B2F-2AEB9B552696"/>
     <bpmn2:sequenceFlow id="_983F4382-0A31-42C7-BC95-54DFA4C24D22" sourceRef="_95FC3D56-3626-495B-97C9-D7522B6A02D9" targetRef="_D432352C-2E7B-4480-88C0-3EE568631963"/>
-    <bpmn2:sequenceFlow id="_E12C3C7F-99A7-4B1C-8B53-644F8C167340" sourceRef="_7654757A-B56D-4F87-896D-629750ECB1C0" targetRef="_95FC3D56-3626-495B-97C9-D7522B6A02D9"/>
-    <bpmn2:sequenceFlow id="_CFE0C003-1111-4111-8111-CFE0C0030003" sourceRef="_CFE0A002-1111-4111-8111-CFE0A0020002" targetRef="_66392450-7920-4F66-8D5D-DF9BF4B94F2C"/>
+    <bpmn2:sequenceFlow id="_E12C3C7F-99A7-4B1C-8B53-644F8C167340" sourceRef="_7654757A-B56D-4F87-896D-629750ECB1C0" targetRef="_ADEA0004-1111-4111-8111-ADEA00040004"/>
+    <bpmn2:sequenceFlow id="_CFE0C003-1111-4111-8111-CFE0C0030003" sourceRef="_CFE0A002-1111-4111-8111-CFE0A0020002" targetRef="_ADEA0001-1111-4111-8111-ADEA00010001"/>
     <bpmn2:sequenceFlow id="_CFE0C002-1111-4111-8111-CFE0C0020002" name="Not found" sourceRef="_CFE0A002-1111-4111-8111-CFE0A0020002" targetRef="_CFE0A003-1111-4111-8111-CFE0A0030003">
       <bpmn2:extensionElements>
         <drools:metaData name="elementname">
@@ -487,6 +499,7 @@ System.out.println("==========================================================")
         <bpmn2:source>_VSxrKmlfEfGgkJmREj_c5g</bpmn2:source>
         <bpmn2:source>_VSxrKWlfEfGgkJmREj_c5g</bpmn2:source>
         <bpmn2:source>_VSxrJ2lfEfGgkJmREj_c5g</bpmn2:source>
+        <bpmn2:source>_ADEA0003LINK-1111-4111-8111-ADEA0003LINK</bpmn2:source>
       </bpmn2:linkEventDefinition>
     </bpmn2:intermediateCatchEvent>
     <bpmn2:intermediateThrowEvent id="_D432352C-2E7B-4480-88C0-3EE568631963" name="Completed">
@@ -962,7 +975,7 @@ System.out.println("customerSidePlaceCrossId=" + kcontext.getVariable("customerS
           <drools:metaValue><![CDATA[Upsert]]></drools:metaValue>
         </drools:metaData>
       </bpmn2:extensionElements>
-      <bpmn2:incoming>_CFE0C003-1111-4111-8111-CFE0C0030003</bpmn2:incoming>
+      <bpmn2:incoming>_ADEC0003-1111-4111-8111-ADEC00030003</bpmn2:incoming>
       <bpmn2:linkEventDefinition id="_VSyScmlfEfGgkJmREj_c5g" name="Upsert">
         <bpmn2:target>_VSySc2lfEfGgkJmREj_c5g</bpmn2:target>
       </bpmn2:linkEventDefinition>
@@ -1865,7 +1878,7 @@ providers.add(opticalPath);
 kcontext.setVariable("ethLinkProviders", providers);]]></drools:script>
         </drools:onEntry-script>
       </bpmn2:extensionElements>
-      <bpmn2:incoming>_E12C3C7F-99A7-4B1C-8B53-644F8C167340</bpmn2:incoming>
+      <bpmn2:incoming>_ADEC0004-1111-4111-8111-ADEC00040004</bpmn2:incoming>
       <bpmn2:outgoing>_983F4382-0A31-42C7-BC95-54DFA4C24D22</bpmn2:outgoing>
       <bpmn2:ioSpecification id="_VSy51WlfEfGgkJmREj_c5g">
         <bpmn2:dataInput id="_95FC3D56-3626-495B-97C9-D7522B6A02D9_apiUrlInputX" drools:dtype="String" itemSubjectRef="__95FC3D56-3626-495B-97C9-D7522B6A02D9_apiUrlInputXItem" name="apiUrl"/>
@@ -2251,6 +2264,159 @@ System.out.println("serviceComponentCpeCrossId=" + serviceComponentCpeCrossId + 
         <bpmn2:targetRef>message</bpmn2:targetRef>
       </bpmn2:dataOutputAssociation>
     </bpmn2:task>
+    <bpmn2:sequenceFlow id="_ADEC0001-1111-4111-8111-ADEC00010001" sourceRef="_ADEA0001-1111-4111-8111-ADEA00010001" targetRef="_ADEA0002-1111-4111-8111-ADEA00020002"/>
+    <bpmn2:sequenceFlow id="_ADEC0002-1111-4111-8111-ADEC00020002" name="Not found" sourceRef="_ADEA0002-1111-4111-8111-ADEA00020002" targetRef="_ADEA0003-1111-4111-8111-ADEA00030003">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Not found]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_ADEC0002COND-1111-4111-8111-ADEC0002COND" language="http://www.java.com/java"><![CDATA[boolean result = errorMessage != null;
+System.out.println("VALIDATION: find serviceComponentLogicalConnectivityCrossId failed=" + result + ", errorMessage=" + errorMessage);
+return result;]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_ADEC0003-1111-4111-8111-ADEC00030003" sourceRef="_ADEA0002-1111-4111-8111-ADEA00020002" targetRef="_66392450-7920-4F66-8D5D-DF9BF4B94F2C"/>
+    <bpmn2:sequenceFlow id="_ADEC0004-1111-4111-8111-ADEC00040004" sourceRef="_ADEA0004-1111-4111-8111-ADEA00040004" targetRef="_95FC3D56-3626-495B-97C9-D7522B6A02D9"/>
+    <bpmn2:scriptTask id="_ADEA0001-1111-4111-8111-ADEA00010001" name="find
+serviceComponentLogicalConnectivityCrossId" scriptFormat="http://www.java.com/java">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[find
+serviceComponentLogicalConnectivityCrossId]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_CFE0C003-1111-4111-8111-CFE0C0030003</bpmn2:incoming>
+      <bpmn2:outgoing>_ADEC0001-1111-4111-8111-ADEC00010001</bpmn2:outgoing>
+      <bpmn2:script><![CDATA[System.out.println("================================================");
+System.out.println("logicalDesign - find serviceComponentLogicalConnectivityCrossId");
+System.out.println("================================================");
+
+java.util.List<?> components = (java.util.List<?>) kcontext.getVariable("serviceAccessComponents");
+boolean found = false;
+if (components != null) {
+    for (Object item : components) {
+        java.util.Map<String, Object> sc = (java.util.Map<String, Object>) item;
+        if ("LOGICAL_CONNECTIVITY".equals(sc.get("componentTypeName"))) {
+            kcontext.setVariable("serviceComponentLogicalConnectivityCrossId", (String) sc.get("crossId"));
+            found = true;
+        }
+    }
+}
+if (!found) {
+    kcontext.setVariable("errorMessage", "Unable to find service component LOGICAL_CONNECTIVITY at the given service");
+}
+System.out.println("serviceComponentLogicalConnectivityCrossId=" + kcontext.getVariable("serviceComponentLogicalConnectivityCrossId"));]]></bpmn2:script>
+    </bpmn2:scriptTask>
+    <bpmn2:exclusiveGateway id="_ADEA0002-1111-4111-8111-ADEA00020002" drools:dg="_ADEC0003-1111-4111-8111-ADEC00030003" gatewayDirection="Diverging" default="_ADEC0003-1111-4111-8111-ADEC00030003">
+      <bpmn2:incoming>_ADEC0001-1111-4111-8111-ADEC00010001</bpmn2:incoming>
+      <bpmn2:outgoing>_ADEC0002-1111-4111-8111-ADEC00020002</bpmn2:outgoing>
+      <bpmn2:outgoing>_ADEC0003-1111-4111-8111-ADEC00030003</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:intermediateThrowEvent id="_ADEA0003-1111-4111-8111-ADEA00030003" name="Failed">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Failed]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_ADEC0002-1111-4111-8111-ADEC00020002</bpmn2:incoming>
+      <bpmn2:linkEventDefinition id="_ADEA0003LINK-1111-4111-8111-ADEA0003LINK" name="Failed">
+        <bpmn2:target>_VSxrKGlfEfGgkJmREj_c5g</bpmn2:target>
+      </bpmn2:linkEventDefinition>
+    </bpmn2:intermediateThrowEvent>
+    <bpmn2:task id="_ADEA0004-1111-4111-8111-ADEA00040004" drools:taskName="SdcApiCall" name="REST_API_CALL:
+cross/addEthLinkToServiceComponent">
+      <bpmn2:documentation id="_ADEA0004DOC-1111-4111-8111-ADEA0004DOC1"><![CDATA[Add the created ETH link (ethLinkCrossId) as the primary resource of the LOGICAL_CONNECTIVITY service component via CROSS API. (CREATE_OR_UPDATE)]]></bpmn2:documentation>
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[REST_API_CALL:
+cross/addEthLinkToServiceComponent]]></drools:metaValue>
+        </drools:metaData>
+        <drools:onEntry-script scriptFormat="http://www.java.com/java">
+          <drools:script><![CDATA[System.out.println("================================================");
+System.out.println("logicalDesign - REST_API_CALL: cross/addEthLinkToServiceComponent");
+System.out.println("================================================");
+
+java.util.List serviceComponentLogicalConnectivityResourcesList = new java.util.ArrayList();
+java.util.Map resource = new java.util.HashMap();
+resource.put("crossId", ethLinkCrossId);
+resource.put("primary", true);
+serviceComponentLogicalConnectivityResourcesList.add(resource);
+kcontext.setVariable("serviceComponentLogicalConnectivityResources", serviceComponentLogicalConnectivityResourcesList);
+System.out.println("serviceComponentLogicalConnectivityCrossId=" + serviceComponentLogicalConnectivityCrossId + ", serviceComponentLogicalConnectivityResources=" + serviceComponentLogicalConnectivityResourcesList);]]></drools:script>
+        </drools:onEntry-script>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_E12C3C7F-99A7-4B1C-8B53-644F8C167340</bpmn2:incoming>
+      <bpmn2:outgoing>_ADEC0004-1111-4111-8111-ADEC00040004</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="_ADEA0004IO-1111-4111-8111-ADEA0004IOSP">
+        <bpmn2:dataInput id="_ADEA0004-1111-4111-8111-ADEA00040004_apiUrlInputX" drools:dtype="String" itemSubjectRef="__ADEA0004-1111-4111-8111-ADEA00040004_apiUrlInputXItem" name="apiUrl"/>
+        <bpmn2:dataInput id="_ADEA0004-1111-4111-8111-ADEA00040004_routeMap.domainInputX" drools:dtype="String" itemSubjectRef="__ADEA0004-1111-4111-8111-ADEA00040004_routeMap.domainInputXItem" name="routeMap.domain"/>
+        <bpmn2:dataInput id="_ADEA0004-1111-4111-8111-ADEA00040004_routeMap.sourceInputX" drools:dtype="String" itemSubjectRef="__ADEA0004-1111-4111-8111-ADEA00040004_routeMap.sourceInputXItem" name="routeMap.source"/>
+        <bpmn2:dataInput id="_ADEA0004-1111-4111-8111-ADEA00040004_dataMap.serviceComponentCrossIdInputX" drools:dtype="String" itemSubjectRef="__ADEA0004-1111-4111-8111-ADEA00040004_dataMap.serviceComponentCrossIdInputXItem" name="dataMap.serviceComponentCrossId"/>
+        <bpmn2:dataInput id="_ADEA0004-1111-4111-8111-ADEA00040004_dataMap.projectNameInputX" drools:dtype="String" itemSubjectRef="__ADEA0004-1111-4111-8111-ADEA00040004_dataMap.projectNameInputXItem" name="dataMap.projectName"/>
+        <bpmn2:dataInput id="_ADEA0004-1111-4111-8111-ADEA00040004_dataMap.resourcesInputX" drools:dtype="java.util.List" itemSubjectRef="__ADEA0004-1111-4111-8111-ADEA00040004_dataMap.resourcesInputXItem" name="dataMap.resources"/>
+        <bpmn2:dataInput id="_ADEA0004-1111-4111-8111-ADEA00040004_TaskNameInputX" drools:dtype="Object" name="TaskName"/>
+        <bpmn2:dataOutput id="_ADEA0004-1111-4111-8111-ADEA00040004_httpStatusCodeOutputX" drools:dtype="Integer" itemSubjectRef="__ADEA0004-1111-4111-8111-ADEA00040004_httpStatusCodeOutputXItem" name="httpStatusCode"/>
+        <bpmn2:dataOutput id="_ADEA0004-1111-4111-8111-ADEA00040004_messageOutputX" drools:dtype="String" itemSubjectRef="__ADEA0004-1111-4111-8111-ADEA00040004_messageOutputXItem" name="message"/>
+        <bpmn2:inputSet id="_ADEA0004INSET-1111-4111-8111-ADEA0004INSE">
+          <bpmn2:dataInputRefs>_ADEA0004-1111-4111-8111-ADEA00040004_apiUrlInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_ADEA0004-1111-4111-8111-ADEA00040004_routeMap.domainInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_ADEA0004-1111-4111-8111-ADEA00040004_routeMap.sourceInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_ADEA0004-1111-4111-8111-ADEA00040004_dataMap.serviceComponentCrossIdInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_ADEA0004-1111-4111-8111-ADEA00040004_dataMap.projectNameInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_ADEA0004-1111-4111-8111-ADEA00040004_dataMap.resourcesInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_ADEA0004-1111-4111-8111-ADEA00040004_TaskNameInputX</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet id="_ADEA0004OUTSET-1111-4111-8111-ADEA0004OUTS">
+          <bpmn2:dataOutputRefs>_ADEA0004-1111-4111-8111-ADEA00040004_httpStatusCodeOutputX</bpmn2:dataOutputRefs>
+          <bpmn2:dataOutputRefs>_ADEA0004-1111-4111-8111-ADEA00040004_messageOutputX</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation id="_ADEA0004A01-1111-4111-8111-ADEA0004A001">
+        <bpmn2:sourceRef>_apiCallUrl</bpmn2:sourceRef>
+        <bpmn2:targetRef>_ADEA0004-1111-4111-8111-ADEA00040004_apiUrlInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_ADEA0004A02-1111-4111-8111-ADEA0004A002">
+        <bpmn2:targetRef>_ADEA0004-1111-4111-8111-ADEA00040004_routeMap.domainInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_ADEA0004G02-1111-4111-8111-ADEA0004G002">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_ADEA0004F02-1111-4111-8111-ADEA0004F002"><![CDATA[REST_API_CALL]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_ADEA0004T02-1111-4111-8111-ADEA0004T002">_ADEA0004-1111-4111-8111-ADEA00040004_routeMap.domainInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_ADEA0004A03-1111-4111-8111-ADEA0004A003">
+        <bpmn2:targetRef>_ADEA0004-1111-4111-8111-ADEA00040004_routeMap.sourceInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_ADEA0004G03-1111-4111-8111-ADEA0004G003">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_ADEA0004F03-1111-4111-8111-ADEA0004F003"><![CDATA[cross/updateServiceComponent]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_ADEA0004T03-1111-4111-8111-ADEA0004T003">_ADEA0004-1111-4111-8111-ADEA00040004_routeMap.sourceInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_ADEA0004A04-1111-4111-8111-ADEA0004A004">
+        <bpmn2:sourceRef>serviceComponentLogicalConnectivityCrossId</bpmn2:sourceRef>
+        <bpmn2:targetRef>_ADEA0004-1111-4111-8111-ADEA00040004_dataMap.serviceComponentCrossIdInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_ADEA0004A05-1111-4111-8111-ADEA0004A005">
+        <bpmn2:sourceRef>crossProjectName</bpmn2:sourceRef>
+        <bpmn2:targetRef>_ADEA0004-1111-4111-8111-ADEA00040004_dataMap.projectNameInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_ADEA0004A06-1111-4111-8111-ADEA0004A006">
+        <bpmn2:sourceRef>serviceComponentLogicalConnectivityResources</bpmn2:sourceRef>
+        <bpmn2:targetRef>_ADEA0004-1111-4111-8111-ADEA00040004_dataMap.resourcesInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_ADEA0004A07-1111-4111-8111-ADEA0004A007">
+        <bpmn2:targetRef>_ADEA0004-1111-4111-8111-ADEA00040004_TaskNameInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_ADEA0004G07-1111-4111-8111-ADEA0004G007">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_ADEA0004F07-1111-4111-8111-ADEA0004F007"><![CDATA[SdcApiCall]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_ADEA0004T07-1111-4111-8111-ADEA0004T007">_ADEA0004-1111-4111-8111-ADEA00040004_TaskNameInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation id="_ADEA0004O01-1111-4111-8111-ADEA0004O001">
+        <bpmn2:sourceRef>_ADEA0004-1111-4111-8111-ADEA00040004_httpStatusCodeOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>httpStatusCode</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="_ADEA0004O02-1111-4111-8111-ADEA0004O002">
+        <bpmn2:sourceRef>_ADEA0004-1111-4111-8111-ADEA00040004_messageOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>message</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
     <bpmn2:endEvent id="_1053123B-306B-45C9-BE5F-7E74949C127F">
       <bpmn2:incoming>_CF706D49-2C04-47B1-A011-543AFB3AECD5</bpmn2:incoming>
     </bpmn2:endEvent>
@@ -2591,12 +2757,40 @@ System.out.println("================================================");]]></droo
         <di:waypoint xsi:type="dc:Point" x="3134.0" y="198.0"/>
         <di:waypoint xsi:type="dc:Point" x="3022.0" y="198.0"/>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="edge_shape__CFE0A002-1111-4111-8111-CFE0A0020002_to_shape__66392450-7920-4F66-8D5D-DF9BF4B94F2C" bpmnElement="_CFE0C003-1111-4111-8111-CFE0C0030003">
+      <bpmndi:BPMNEdge id="edge_shape__CFE0A002-1111-4111-8111-CFE0A0020002_to_shape__ADEA0001-1111-4111-8111-ADEA00010001" bpmnElement="_CFE0C003-1111-4111-8111-CFE0C0030003">
         <di:waypoint xsi:type="dc:Point" x="3134.0" y="198.0"/>
+        <di:waypoint xsi:type="dc:Point" x="3134.0" y="440.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__7654757A-B56D-4F87-896D-629750ECB1C0_to_shape__ADEA0004-1111-4111-8111-ADEA00040004" bpmnElement="_E12C3C7F-99A7-4B1C-8B53-644F8C167340">
+        <di:waypoint xsi:type="dc:Point" x="1607.0" y="554.0"/>
+        <di:waypoint xsi:type="dc:Point" x="1607.0" y="620.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="shape__ADEA0001-1111-4111-8111-ADEA00010001" bpmnElement="_ADEA0001-1111-4111-8111-ADEA00010001">
+        <dc:Bounds height="102.0" width="154.0" x="3057.0" y="440.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__ADEA0002-1111-4111-8111-ADEA00020002" bpmnElement="_ADEA0002-1111-4111-8111-ADEA00020002">
+        <dc:Bounds height="56.0" width="56.0" x="3106.0" y="580.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__ADEA0003-1111-4111-8111-ADEA00030003" bpmnElement="_ADEA0003-1111-4111-8111-ADEA00030003">
+        <dc:Bounds height="56.0" width="56.0" x="2994.0" y="580.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__ADEA0004-1111-4111-8111-ADEA00040004" bpmnElement="_ADEA0004-1111-4111-8111-ADEA00040004">
+        <dc:Bounds height="102.0" width="154.0" x="1530.0" y="620.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_shape__ADEA0001-1111-4111-8111-ADEA00010001_to_shape__ADEA0002-1111-4111-8111-ADEA00020002" bpmnElement="_ADEC0001-1111-4111-8111-ADEC00010001">
+        <di:waypoint xsi:type="dc:Point" x="3134.0" y="542.0"/>
+        <di:waypoint xsi:type="dc:Point" x="3134.0" y="580.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__ADEA0002-1111-4111-8111-ADEA00020002_to_shape__ADEA0003-1111-4111-8111-ADEA00030003" bpmnElement="_ADEC0002-1111-4111-8111-ADEC00020002">
+        <di:waypoint xsi:type="dc:Point" x="3134.0" y="608.0"/>
+        <di:waypoint xsi:type="dc:Point" x="3022.0" y="608.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__ADEA0002-1111-4111-8111-ADEA00020002_to_shape__66392450-7920-4F66-8D5D-DF9BF4B94F2C" bpmnElement="_ADEC0003-1111-4111-8111-ADEC00030003">
+        <di:waypoint xsi:type="dc:Point" x="3134.0" y="608.0"/>
         <di:waypoint xsi:type="dc:Point" x="3298.0" y="324.0"/>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="edge_shape__7654757A-B56D-4F87-896D-629750ECB1C0_to_shape__95FC3D56-3626-495B-97C9-D7522B6A02D9" bpmnElement="_E12C3C7F-99A7-4B1C-8B53-644F8C167340">
-        <di:waypoint xsi:type="dc:Point" x="1607.0" y="503.0"/>
+      <bpmndi:BPMNEdge id="edge_shape__ADEA0004-1111-4111-8111-ADEA00040004_to_shape__95FC3D56-3626-495B-97C9-D7522B6A02D9" bpmnElement="_ADEC0004-1111-4111-8111-ADEC00040004">
+        <di:waypoint xsi:type="dc:Point" x="1607.0" y="722.0"/>
         <di:waypoint xsi:type="dc:Point" x="1825.0" y="503.0"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_shape__95FC3D56-3626-495B-97C9-D7522B6A02D9_to_shape__D432352C-2E7B-4480-88C0-3EE568631963" bpmnElement="_983F4382-0A31-42C7-BC95-54DFA4C24D22">
