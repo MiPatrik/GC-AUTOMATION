@@ -119,10 +119,10 @@ start
 └────────────────────┘
   │
   ▼
-┌────────────────────────────────┐  3E  create Optical Path
-│ 9. cross/createOpticalPath     │  from buildingCrossId to edgeLocalityCrossId
+┌────────────────────────────────┐  3E  create Optical Circuit
+│ 9. cross/createOpticalCircuit     │  from buildingCrossId to edgeLocalityCrossId
 └────────────────────────────────┘  status = Designed
-  │                                  → opticalPathCrossId, opticalPathPrmId
+  │                                  → opticalCircuitCrossId, opticalCircuitPrmId
   ▼
 ┌────────────────────────────────┐  3F  create service from service template
 │ 10. cross/createService        │  template = productId, id = serviceId
@@ -132,7 +132,7 @@ start
   ▼
 ┌────────────────────────────────────────┐  3G.1  attach OP + locality to service
 │ 11. cross/                             │  (updates service components)
-│    addOpticalPathAndLocalityToService  │
+│    addOpticalCircuitAndLocalityToService  │
 └────────────────────────────────────────┘
   │
   ▼
@@ -177,8 +177,8 @@ Assembled in the COMPLETED script task from the process variables:
   "version":            "<version>",
   "status":             "COMPLETED",
   "serviceCrossId":     "<serviceCrossId>",
-  "OpticalPathCrossId": "<opticalPathCrossId>",
-  "OpticalPathPrmId":   "<opticalPathPrmId>",
+  "opticalCircuitCrossId": "<opticalCircuitCrossId>",
+  "opticalCircuitPrmId":   "<opticalCircuitPrmId>",
   "localityCrossId":    "<localityCrossId>",
   "localitySmwId":      "<localitySmwId>",
   "projectCrossId":     "<projectCrossId>",
@@ -222,8 +222,8 @@ exactly the shape defined in the `EdgeEquipment` schema in
 | `edgeTransceiverCrossId` | `String` | T7 | |
 | `edgeLocalityCrossId` | `String` | T8 | Parent locality of edge equipment |
 | `edgeEquipment` | `Map` | T7 | Response sub-object (see above) |
-| `opticalPathCrossId` | `String` | T9 | |
-| `opticalPathPrmId` | `String` | T9 | Smallworld PRM reference |
+| `opticalCircuitCrossId` | `String` | T9 | |
+| `opticalCircuitPrmId` | `String` | T9 | Smallworld PRM reference |
 | `serviceCrossId` | `String` | T10 | |
 | `response` | `Map` | COMPLETED / FAILED script | Returned to ODIN |
 
@@ -272,9 +272,9 @@ same name inside the FAILED script.
    | `cross/createLocality` | POST CROSS `/v1/node/` with LOCALITY discriminator on the address | `localityCrossId`, `localitySmwId` |
    | `cross/findEdgeEquipmentCage` | Find free cage/pluggable on edge equipment; must also return the full EdgeEquipment descriptor | `cageCrossId` OR `edgeTransceiverCrossId`, `edgeEquipment` Map |
    | `cross/blockCage` | Mark cage or transceiver blocked and return parent locality cross id | `edgeLocalityCrossId` |
-   | `cross/createOpticalPath` | POST CROSS `/v1/link/` (OpticalPath type) between building and edge locality | `opticalPathCrossId`, `opticalPathPrmId` |
+   | `cross/createOpticalCircuit` | POST CROSS `/v1/link/` (OpticalCircuit type) between building and edge locality | `opticalCircuitCrossId`, `opticalCircuitPrmId` |
    | `cross/createService` | POST CROSS `/v1/service/createFromServiceTemplate/` using `productId` as template | `serviceCrossId`; template expected to create the three components PRODUCT1, ACCESS, PHYSICAL_ACCESS |
-   | `cross/addOpticalPathAndLocalityToService` | Attach OP + locality to the service-template components | — |
+   | `cross/addOpticalCircuitAndLocalityToService` | Attach OP + locality to the service-template components | — |
    | `cross/addCageToServiceComponent` | Attach cage/transceiver to PHYSICAL_ACCESS | — |
 
 3. **Automaton `processes` array.** Add an entry so Automaton is
@@ -336,10 +336,9 @@ something — flag any that don't match your intent.
   responses, we'd add more gateways + condition expressions after the
   respective tasks.
 
-- **Response variable naming** — the OpenAPI schema uses mixed case
-  (`OpticalPathCrossId`, `CageCrossId`); the BPMN output keys preserve
-  that exactly so the response validates. Internal process variables
-  use lowercase (`opticalPathCrossId`). The mapping is done in the
+- **Response variable naming** — the response keys match the lowercase
+  internal process variable names (`opticalCircuitCrossId`,
+  `cageCrossId`) directly; the response Map is assembled in the
   COMPLETED script task.
 
 ## Quick test after the Automaton side is wired up

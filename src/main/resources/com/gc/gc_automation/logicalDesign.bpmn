@@ -13,7 +13,7 @@
   <bpmn2:itemDefinition id="_networkSideCageCrossIdItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_networkSidePlaceCrossIdItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_networkSidePatchCordCrossIdItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="_opticalPathCrossIdItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_opticalCircuitCrossIdItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_projectCrossIdItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_ethLinkCrossIdItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_ethLinkProvidersItem" structureRef="java.util.List"/>
@@ -200,7 +200,7 @@
     <bpmn2:property id="networkSideCageCrossId" itemSubjectRef="_networkSideCageCrossIdItem" name="networkSideCageCrossId"/>
     <bpmn2:property id="networkSidePlaceCrossId" itemSubjectRef="_networkSidePlaceCrossIdItem" name="networkSidePlaceCrossId"/>
     <bpmn2:property id="networkSidePatchCordCrossId" itemSubjectRef="_networkSidePatchCordCrossIdItem" name="networkSidePatchCordCrossId"/>
-    <bpmn2:property id="opticalPathCrossId" itemSubjectRef="_opticalPathCrossIdItem" name="opticalPathCrossId"/>
+    <bpmn2:property id="opticalCircuitCrossId" itemSubjectRef="_opticalCircuitCrossIdItem" name="opticalCircuitCrossId"/>
     <bpmn2:property id="projectCrossId" itemSubjectRef="_projectCrossIdItem" name="projectCrossId"/>
     <bpmn2:property id="ethLinkCrossId" itemSubjectRef="_ethLinkCrossIdItem" name="ethLinkCrossId"/>
     <bpmn2:property id="ethLinkProviders" itemSubjectRef="_ethLinkProvidersItem" name="ethLinkProviders"/>
@@ -244,7 +244,7 @@
         </drools:metaData>
       </bpmn2:extensionElements>
       <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_HEZscXWKEfGwm_kRKeU4IQ" language="http://www.java.com/java"><![CDATA[boolean result = errorMessage != null;
-System.out.println("VALIDATION: find opticalPath failed=" + result + ", errorMessage=" + errorMessage);
+System.out.println("VALIDATION: find opticalCircuit failed=" + result + ", errorMessage=" + errorMessage);
 return result;]]></bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="_7F252FB6-BC09-4AB5-93D6-91A7470A4EFF" sourceRef="_2A00FC8E-90BE-48A0-B4E2-E5756F80558B" targetRef="_78E174E7-37C2-4B24-B54F-CE73773879F3"/>
@@ -576,17 +576,17 @@ System.out.println("serviceComponentCpeCrossId=" + kcontext.getVariable("service
       <bpmn2:incoming>_CB7A4434-C745-4187-9AED-56F790F696A0</bpmn2:incoming>
     </bpmn2:endEvent>
     <bpmn2:scriptTask id="_2A00FC8E-90BE-48A0-B4E2-E5756F80558B" name="find
-opticalPath" scriptFormat="http://www.java.com/java">
+opticalCircuit" scriptFormat="http://www.java.com/java">
       <bpmn2:extensionElements>
         <drools:metaData name="elementname">
           <drools:metaValue><![CDATA[find
-opticalPath]]></drools:metaValue>
+opticalCircuit]]></drools:metaValue>
         </drools:metaData>
       </bpmn2:extensionElements>
       <bpmn2:incoming>_D14C0DC9-A7C9-447A-8288-0BA3A032C723</bpmn2:incoming>
       <bpmn2:outgoing>_7F252FB6-BC09-4AB5-93D6-91A7470A4EFF</bpmn2:outgoing>
       <bpmn2:script><![CDATA[System.out.println("================================================");
-System.out.println("logicalDesign - find opticalPath");
+System.out.println("logicalDesign - find opticalCircuit");
 System.out.println("================================================");
 
 java.util.List<?> components = (java.util.List<?>) kcontext.getVariable("servicePhysicalAccessComponents");
@@ -611,7 +611,7 @@ if (components != null) {
                 }
             }
             java.util.Map<String, Object> resourceRef = (java.util.Map<String, Object>) resource.get("resourceRef");
-            kcontext.setVariable("opticalPathCrossId", (String) resourceRef.get("id"));
+            kcontext.setVariable("opticalCircuitCrossId", (String) resourceRef.get("id"));
             found = true;
         }
     }
@@ -619,7 +619,7 @@ if (components != null) {
 if (!found) {
     kcontext.setVariable("errorMessage", "Unable to find service component PHYSICAL_CONNECTIVITY at the given service");
 }
-System.out.println("opticalPathCrossId=" + kcontext.getVariable("opticalPathCrossId"));]]></bpmn2:script>
+System.out.println("opticalCircuitCrossId=" + kcontext.getVariable("opticalCircuitCrossId"));]]></bpmn2:script>
     </bpmn2:scriptTask>
     <bpmn2:task id="_0934EE00-F028-403A-947F-2A9F3EB58B85" drools:taskName="SdcApiCall" name="REST_API_CALL:
 cross/findService">
@@ -1949,7 +1949,7 @@ map.put("customerEquipment", edgeEquipmentMap);
 map.put("ethLinkCrossId", kcontext.getVariable("ethLinkCrossId"));
 map.put("ethLinkName", kcontext.getVariable("ethLinkName"));
 //map.put("networkSidePlaceCrossId", kcontext.getVariable("networkSidePlaceCrossId"));
-//map.put("opticalCircuitCrossId", kcontext.getVariable("opticalPathCrossId"));
+//map.put("opticalCircuitCrossId", kcontext.getVariable("opticalCircuitCrossId"));
 
 kcontext.setVariable("response", map);]]></bpmn2:script>
     </bpmn2:scriptTask>
@@ -1966,7 +1966,7 @@ kcontext.setVariable("response", map);]]></bpmn2:script>
     </bpmn2:intermediateCatchEvent>
     <bpmn2:task id="_95FC3D56-3626-495B-97C9-D7522B6A02D9" drools:taskName="SdcApiCall" name="REST_API_CALL:
 cross/updateEthLinkProviders">
-      <bpmn2:documentation id="_HEcv0XWKEfGwm_kRKeU4IQ"><![CDATA[Set the optical path as the provider of ethLinkCrossId. The patch cords are not providers at logical-design time; their fibers are wired in later, at commitProject. (CREATE_OR_UPDATE)]]></bpmn2:documentation>
+      <bpmn2:documentation id="_HEcv0XWKEfGwm_kRKeU4IQ"><![CDATA[Set the optical circuit as the provider of ethLinkCrossId. The patch cords are not providers at logical-design time; their fibers are wired in later, at commitProject. (CREATE_OR_UPDATE)]]></bpmn2:documentation>
       <bpmn2:extensionElements>
         <drools:metaData name="elementname">
           <drools:metaValue><![CDATA[REST_API_CALL:
@@ -1979,13 +1979,13 @@ System.out.println("=========================================================");
 
 java.util.List<Object> providers = new java.util.ArrayList<>();
 
-java.util.Map<String, Object> opticalPath = new java.util.HashMap<>();
-opticalPath.put("providerCrossId", kcontext.getVariable("opticalPathCrossId"));
-opticalPath.put("consumptionType", "MAIN");
-opticalPath.put("reversed", false);
-opticalPath.put("orderNumber", 1);
-opticalPath.put("fibrilNumber", 1);
-providers.add(opticalPath);
+java.util.Map<String, Object> opticalCircuit = new java.util.HashMap<>();
+opticalCircuit.put("providerCrossId", kcontext.getVariable("opticalCircuitCrossId"));
+opticalCircuit.put("consumptionType", "MAIN");
+opticalCircuit.put("reversed", false);
+opticalCircuit.put("orderNumber", 1);
+opticalCircuit.put("fibrilNumber", 1);
+providers.add(opticalCircuit);
 
 kcontext.setVariable("ethLinkProviders", providers);]]></drools:script>
         </drools:onEntry-script>

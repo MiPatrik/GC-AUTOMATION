@@ -13,8 +13,8 @@
   <bpmn2:itemDefinition id="_localityCrossIdItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_localitySmwIdItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_cageCrossIdItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="_opticalPathCrossIdItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="_opticalPathPrmIdItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_opticalCircuitCrossIdItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_opticalCircuitPrmIdItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_serviceCrossIdItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_httpStatusCodeItem" structureRef="Integer"/>
   <bpmn2:itemDefinition id="_messageItem" structureRef="String"/>
@@ -68,8 +68,8 @@
     <bpmn2:property id="localityCrossId" itemSubjectRef="_localityCrossIdItem" name="localityCrossId"/>
     <bpmn2:property id="localitySmwId" itemSubjectRef="_localitySmwIdItem" name="localitySmwId"/>
     <bpmn2:property id="cageCrossId" itemSubjectRef="_cageCrossIdItem" name="cageCrossId"/>
-    <bpmn2:property id="opticalPathCrossId" itemSubjectRef="_opticalPathCrossIdItem" name="opticalPathCrossId"/>
-    <bpmn2:property id="opticalPathPrmId" itemSubjectRef="_opticalPathPrmIdItem" name="opticalPathPrmId"/>
+    <bpmn2:property id="opticalCircuitCrossId" itemSubjectRef="_opticalCircuitCrossIdItem" name="opticalCircuitCrossId"/>
+    <bpmn2:property id="opticalCircuitPrmId" itemSubjectRef="_opticalCircuitPrmIdItem" name="opticalCircuitPrmId"/>
     <bpmn2:property id="serviceCrossId" itemSubjectRef="_serviceCrossIdItem" name="serviceCrossId"/>
     <bpmn2:property id="httpStatusCode" itemSubjectRef="_httpStatusCodeItem" name="httpStatusCode">
       <bpmn2:extensionElements>
@@ -319,8 +319,8 @@ map.put("id", kcontext.getVariable("_order"));
 map.put("version", kcontext.getVariable("version"));
 map.put("status", "COMPLETED");
 map.put("serviceCrossId", kcontext.getVariable("serviceCrossId"));
-map.put("OpticalPathCrossId", kcontext.getVariable("opticalPathCrossId"));
-map.put("OpticalPathPrmId", kcontext.getVariable("opticalPathPrmId"));
+map.put("OpticalCircuitCrossId", kcontext.getVariable("opticalCircuitCrossId"));
+map.put("OpticalCircuitPrmId", kcontext.getVariable("opticalCircuitPrmId"));
 map.put("localityCrossId", kcontext.getVariable("localityCrossId"));
 map.put("localitySmwId", kcontext.getVariable("localitySmwId"));
 map.put("projectCrossId", kcontext.getVariable("projectCrossId"));
