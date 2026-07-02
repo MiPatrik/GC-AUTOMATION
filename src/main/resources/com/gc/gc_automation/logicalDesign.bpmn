@@ -784,7 +784,7 @@ System.out.println("============================================================
       <bpmn2:dataInputAssociation id="_HEa6k3WKEfGwm_kRKeU4IQ">
         <bpmn2:targetRef>_1A720794-B2DB-4426-B3AD-E2C1386506D0_dataMap.nameInputX</bpmn2:targetRef>
         <bpmn2:assignment id="_HEa6lHWKEfGwm_kRKeU4IQ">
-          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_HEa6lXWKEfGwm_kRKeU4IQ"><![CDATA[TODO: MER/MAS:CAGE -> MER/MAS:PLACE link name]]></bpmn2:from>
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_HEa6lXWKEfGwm_kRKeU4IQ"><![CDATA[TODO___MER_MAS_CAGE_TO_MER_MAS_PLACE_LINK_NAME]]></bpmn2:from>
           <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_HEa6lnWKEfGwm_kRKeU4IQ">_1A720794-B2DB-4426-B3AD-E2C1386506D0_dataMap.nameInputX</bpmn2:to>
         </bpmn2:assignment>
       </bpmn2:dataInputAssociation>
@@ -1264,7 +1264,7 @@ System.out.println("============================================================
       <bpmn2:dataInputAssociation id="_HEbhzHWKEfGwm_kRKeU4IQ">
         <bpmn2:targetRef>_50B72174-6EED-4D72-A34B-246826D1C8A5_dataMap.nameInputX</bpmn2:targetRef>
         <bpmn2:assignment id="_HEbhzXWKEfGwm_kRKeU4IQ">
-          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_HEbhznWKEfGwm_kRKeU4IQ"><![CDATA[TODO: PLACE -> CPE:CAGE link name]]></bpmn2:from>
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_HEbhznWKEfGwm_kRKeU4IQ"><![CDATA[TODO___PLACE_TO_CPE_CAGE_LINK_NAME]]></bpmn2:from>
           <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_HEbhz3WKEfGwm_kRKeU4IQ">_50B72174-6EED-4D72-A34B-246826D1C8A5_dataMap.nameInputX</bpmn2:to>
         </bpmn2:assignment>
       </bpmn2:dataInputAssociation>
@@ -1543,7 +1543,7 @@ System.out.println("================================================");]]></droo
       <bpmn2:dataInputAssociation id="_HEcIuHWKEfGwm_kRKeU4IQ">
         <bpmn2:targetRef>_7654757A-B56D-4F87-896D-629750ECB1C0_dataMap.nameInputX</bpmn2:targetRef>
         <bpmn2:assignment id="_HEcIuXWKEfGwm_kRKeU4IQ">
-          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_HEcIunWKEfGwm_kRKeU4IQ"><![CDATA[TODO: MER/MAS:CAGE -> CPE:CAGE link name]]></bpmn2:from>
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_HEcIunWKEfGwm_kRKeU4IQ"><![CDATA[TODO___MER_MAS_CAGE_TO_CPE_CAGE_LINK_NAME]]></bpmn2:from>
           <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_HEcIu3WKEfGwm_kRKeU4IQ">_7654757A-B56D-4F87-896D-629750ECB1C0_dataMap.nameInputX</bpmn2:to>
         </bpmn2:assignment>
       </bpmn2:dataInputAssociation>
