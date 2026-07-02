@@ -1966,7 +1966,7 @@ kcontext.setVariable("response", map);]]></bpmn2:script>
     </bpmn2:intermediateCatchEvent>
     <bpmn2:task id="_95FC3D56-3626-495B-97C9-D7522B6A02D9" drools:taskName="SdcApiCall" name="REST_API_CALL:
 cross/updateEthLinkProviders">
-      <bpmn2:documentation id="_HEcv0XWKEfGwm_kRKeU4IQ"><![CDATA[Set networkSidePatchCord, opticalPath and customerSidePatchCord as providers of ethLinkCrossId. (CREATE_OR_UPDATE)]]></bpmn2:documentation>
+      <bpmn2:documentation id="_HEcv0XWKEfGwm_kRKeU4IQ"><![CDATA[Set the optical path as the provider of ethLinkCrossId. The patch cords are not providers at logical-design time; their fibers are wired in later, at commitProject. (CREATE_OR_UPDATE)]]></bpmn2:documentation>
       <bpmn2:extensionElements>
         <drools:metaData name="elementname">
           <drools:metaValue><![CDATA[REST_API_CALL:
