@@ -29,16 +29,15 @@
     <bpmn2:property id="serviceCrossId" itemSubjectRef="_serviceCrossIdItem" name="serviceCrossId"/>
     <bpmn2:property id="caughtException" itemSubjectRef="_caughtExceptionItem" name="caughtException"/>
     <bpmn2:property id="operation" itemSubjectRef="_operationItem" name="operation"/>
-    <bpmn2:sequenceFlow id="_834AE8EE-534D-4BEE-8927-63DD74E35C8A" sourceRef="_3877D746-1FF0-473F-BF96-C7C53DBD9511" targetRef="_DC003037-9064-4D4E-B331-64081ECACBBE">
-      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_xPf8gXn5EfGAQ_jyCiJD3w" language="http://www.java.com/java"><![CDATA[kcontext.setVariable("errorMessage", "Unsupported operation '" + operation + "' - only 'COMMIT' is supported");]]></bpmn2:conditionExpression>
-    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_834AE8EE-534D-4BEE-8927-63DD74E35C8A" sourceRef="_3877D746-1FF0-473F-BF96-C7C53DBD9511" targetRef="_CJ7A0001-0000-4000-8000-000000000001"/>
+    <bpmn2:sequenceFlow id="_CJ7A0002-0000-4000-8000-000000000002" sourceRef="_CJ7A0001-0000-4000-8000-000000000001" targetRef="_DC003037-9064-4D4E-B331-64081ECACBBE"/>
     <bpmn2:sequenceFlow id="_16B14240-DF64-403F-81DA-5A2AB6916012" sourceRef="_0C4B3FBF-E317-4861-82D4-D32F1C772445" targetRef="_3877D746-1FF0-473F-BF96-C7C53DBD9511"/>
     <bpmn2:sequenceFlow id="_SF00001-FFFF-FFFF-FFFF-FFFFFFFFFFFF" sourceRef="_A8BB9DBD-1042-4D58-A632-2B701E74E4B3" targetRef="_0C4B3FBF-E317-4861-82D4-D32F1C772445"/>
     <bpmn2:sequenceFlow id="_4FD9F378-15C2-4FCC-AF9C-2854E65E7FDE" sourceRef="_166BA0DD-5834-4F0D-8C3D-78D21BF133EC" targetRef="_C0F94E2B-F15B-4CD0-8D13-3DA476C68148"/>
     <bpmn2:sequenceFlow id="_SF00020-FFFF-FFFF-FFFF-FFFFFFFFFFFF" sourceRef="_C0F94E2B-F15B-4CD0-8D13-3DA476C68148" targetRef="_7C787087-3291-4B58-BC2A-8554F2999859"/>
     <bpmn2:sequenceFlow id="_SF00024-FFFF-FFFF-FFFF-FFFFFFFFFFFF" sourceRef="_6F88B71A-AC30-43DE-8AC3-03F5B206AA80" targetRef="_CD9E8F48-82BC-449C-BA39-C7DF59E0D2CF"/>
     <bpmn2:sequenceFlow id="_B6289D55-037A-4B21-8BDA-90FC41D1CEEE" sourceRef="_3877D746-1FF0-473F-BF96-C7C53DBD9511" targetRef="_6DF56BBA-D8CB-4D82-B7E7-0759F6EC5F5E">
-      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_xPf8gnn5EfGAQ_jyCiJD3w" language="http://www.java.com/java"><![CDATA[return operation == null && operation.equalsIgnoreCase("COMMIT");]]></bpmn2:conditionExpression>
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_xPf8gnn5EfGAQ_jyCiJD3w" language="http://www.java.com/java"><![CDATA[return operation != null && operation.equalsIgnoreCase("COMMIT");]]></bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="_DEB40758-53C4-4C20-B298-87EE8C1EA3F0" sourceRef="_70E1A2DB-C2BE-4081-BF9B-A801C71D14B5" targetRef="_45D0CE54-4DF8-48BB-A2CC-7ED5C4E2D775"/>
     <bpmn2:sequenceFlow id="_D90381CE-4355-444C-9FD5-70A36D96BF9F" sourceRef="_6DF56BBA-D8CB-4D82-B7E7-0759F6EC5F5E" targetRef="_355CFC46-348C-4BC7-A6BB-83674E743A82"/>
@@ -48,13 +47,25 @@
       <bpmn2:outgoing>_B6289D55-037A-4B21-8BDA-90FC41D1CEEE</bpmn2:outgoing>
       <bpmn2:outgoing>_834AE8EE-534D-4BEE-8927-63DD74E35C8A</bpmn2:outgoing>
     </bpmn2:inclusiveGateway>
+    <bpmn2:scriptTask id="_CJ7A0001-0000-4000-8000-000000000001" name="Unsupported
+operation" scriptFormat="http://www.java.com/java">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Unsupported
+operation]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_834AE8EE-534D-4BEE-8927-63DD74E35C8A</bpmn2:incoming>
+      <bpmn2:outgoing>_CJ7A0002-0000-4000-8000-000000000002</bpmn2:outgoing>
+      <bpmn2:script><![CDATA[kcontext.setVariable("errorMessage", "Unsupported operation '" + operation + "' - supported operations: COMMIT");]]></bpmn2:script>
+    </bpmn2:scriptTask>
     <bpmn2:intermediateThrowEvent id="_DC003037-9064-4D4E-B331-64081ECACBBE" name="Failed">
       <bpmn2:extensionElements>
         <drools:metaData name="elementname">
           <drools:metaValue><![CDATA[Failed]]></drools:metaValue>
         </drools:metaData>
       </bpmn2:extensionElements>
-      <bpmn2:incoming>_834AE8EE-534D-4BEE-8927-63DD74E35C8A</bpmn2:incoming>
+      <bpmn2:incoming>_CJ7A0002-0000-4000-8000-000000000002</bpmn2:incoming>
       <bpmn2:linkEventDefinition id="_xPf8g3n5EfGAQ_jyCiJD3w" name="Failed">
         <bpmn2:target>_xPf8hHn5EfGAQ_jyCiJD3w</bpmn2:target>
       </bpmn2:linkEventDefinition>
@@ -352,8 +363,11 @@ kcontext.setVariable("response", map);]]></bpmn2:script>
       <bpmndi:BPMNShape id="shape__A8BB9DBD-1042-4D58-A632-2B701E74E4B3" bpmnElement="_A8BB9DBD-1042-4D58-A632-2B701E74E4B3">
         <dc:Bounds height="56.0" width="56.0" x="302.0" y="348.0"/>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CJ7A0001-0000-4000-8000-000000000001" bpmnElement="_CJ7A0001-0000-4000-8000-000000000001">
+        <dc:Bounds height="102.0" width="154.0" x="606.0" y="458.0"/>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="shape__DC003037-9064-4D4E-B331-64081ECACBBE" bpmnElement="_DC003037-9064-4D4E-B331-64081ECACBBE">
-        <dc:Bounds height="56.0" width="56.0" x="655.0" y="458.0"/>
+        <dc:Bounds height="56.0" width="56.0" x="655.0" y="620.0"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="shape__3877D746-1FF0-473F-BF96-C7C53DBD9511" bpmnElement="_3877D746-1FF0-473F-BF96-C7C53DBD9511">
         <dc:Bounds height="56.0" width="56.0" x="655.0" y="348.0"/>
@@ -397,9 +411,13 @@ kcontext.setVariable("response", map);]]></bpmn2:script>
         <di:waypoint xsi:type="dc:Point" x="506.0" y="376.0"/>
         <di:waypoint xsi:type="dc:Point" x="683.0" y="376.0"/>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="edge_shape__3877D746-1FF0-473F-BF96-C7C53DBD9511_to_shape__DC003037-9064-4D4E-B331-64081ECACBBE" bpmnElement="_834AE8EE-534D-4BEE-8927-63DD74E35C8A">
+      <bpmndi:BPMNEdge id="edge_shape__3877D746-1FF0-473F-BF96-C7C53DBD9511_to_shape__CJ7A0001-0000-4000-8000-000000000001" bpmnElement="_834AE8EE-534D-4BEE-8927-63DD74E35C8A">
         <di:waypoint xsi:type="dc:Point" x="683.0" y="376.0"/>
-        <di:waypoint xsi:type="dc:Point" x="683.0" y="486.0"/>
+        <di:waypoint xsi:type="dc:Point" x="683.0" y="509.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__CJ7A0001-0000-4000-8000-000000000001_to_shape__DC003037-9064-4D4E-B331-64081ECACBBE" bpmnElement="_CJ7A0002-0000-4000-8000-000000000002">
+        <di:waypoint xsi:type="dc:Point" x="683.0" y="509.0"/>
+        <di:waypoint xsi:type="dc:Point" x="683.0" y="648.0"/>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
