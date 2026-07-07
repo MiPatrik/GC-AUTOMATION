@@ -4,6 +4,14 @@
   <bpmn2:itemDefinition id="__orderItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_versionItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_crossProjectNameItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_projectCrossIdItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__D2857D83-E930-475A-8E23-CDE506DE89AC_apiUrlInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__D2857D83-E930-475A-8E23-CDE506DE89AC_routeMap.domainInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__D2857D83-E930-475A-8E23-CDE506DE89AC_routeMap.sourceInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__D2857D83-E930-475A-8E23-CDE506DE89AC_dataMap.crossProjectNameInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__D2857D83-E930-475A-8E23-CDE506DE89AC_httpStatusCodeOutputXItem" structureRef="Integer"/>
+  <bpmn2:itemDefinition id="__D2857D83-E930-475A-8E23-CDE506DE89AC_messageOutputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__D2857D83-E930-475A-8E23-CDE506DE89AC_crossIdOutputXItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_serviceCrossIdItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_smwRoomIdItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_countryItem" structureRef="String"/>
@@ -80,6 +88,7 @@
     <bpmn2:property id="_order" itemSubjectRef="__orderItem" name="_order"/>
     <bpmn2:property id="version" itemSubjectRef="_versionItem" name="version"/>
     <bpmn2:property id="crossProjectName" itemSubjectRef="_crossProjectNameItem" name="crossProjectName"/>
+    <bpmn2:property id="projectCrossId" itemSubjectRef="_projectCrossIdItem" name="projectCrossId"/>
     <bpmn2:property id="serviceCrossId" itemSubjectRef="_serviceCrossIdItem" name="serviceCrossId"/>
     <bpmn2:property id="smwRoomId" itemSubjectRef="_smwRoomIdItem" name="smwRoomId"/>
     <bpmn2:property id="country" itemSubjectRef="_countryItem" name="country"/>
@@ -161,7 +170,14 @@ return result;]]></bpmn2:conditionExpression>
         </drools:metaData>
       </bpmn2:extensionElements>
     </bpmn2:sequenceFlow>
-    <bpmn2:sequenceFlow id="flow_tmf_findservice" sourceRef="_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A" targetRef="_D25B668F-EE31-469E-9F12-F75D54EC088E"/>
+    <bpmn2:sequenceFlow id="flow_tmf_findservice" sourceRef="_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A" targetRef="_D2857D83-E930-475A-8E23-CDE506DE89AC"/>
+    <bpmn2:sequenceFlow id="flow_findproject_gwproj" sourceRef="_D2857D83-E930-475A-8E23-CDE506DE89AC" targetRef="_15D8FF59-A0BA-45F4-9497-86260710E350"/>
+    <bpmn2:sequenceFlow id="flow_gwproj_fail" name="Not found" sourceRef="_15D8FF59-A0BA-45F4-9497-86260710E350" targetRef="_3E6D1139-5660-46A0-A8C3-C14D156A0A46">
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_UCRFP002" language="http://www.java.com/java"><![CDATA[boolean result = errorMessage != null;
+System.out.println("VALIDATION: find project failed=" + result + ", errorMessage=" + errorMessage);
+return result;]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="flow_gwproj_findsvc" sourceRef="_15D8FF59-A0BA-45F4-9497-86260710E350" targetRef="_D25B668F-EE31-469E-9F12-F75D54EC088E"/>
     <bpmn2:sequenceFlow id="flow_start_tmf" sourceRef="_C10F678B-1D88-4E6F-BB83-EF2E45529103" targetRef="_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A"/>
     <bpmn2:sequenceFlow id="flow_gw2_upsert" sourceRef="_B3621A74-EE43-47B3-81BD-697E1F6D9B24" targetRef="_D95EE22A-59AD-49BB-B800-70B428BEFE43"/>
     <bpmn2:sequenceFlow id="flow_update_completed" sourceRef="_2219AC2D-7D00-49DA-B3D2-86FFADE5B45C" targetRef="_AB09F9D9-AC47-4B6B-9DBE-8F12CEB69D65"/>
@@ -184,7 +200,7 @@ System.out.println("================================================");]]></droo
           <drools:script><![CDATA[System.out.println("Data Outputs: httpStatusCode=" + httpStatusCode + ", message=" + message + ", serviceComponents=" + serviceComponents);]]></drools:script>
         </drools:onExit-script>
       </bpmn2:extensionElements>
-      <bpmn2:incoming>flow_tmf_findservice</bpmn2:incoming>
+      <bpmn2:incoming>flow_gwproj_findsvc</bpmn2:incoming>
       <bpmn2:outgoing>flow_findservice_findsacc</bpmn2:outgoing>
       <bpmn2:ioSpecification id="_i3nZcWm9EfGwm_kRKeU4IQ">
         <bpmn2:dataInput id="_D25B668F-EE31-469E-9F12-F75D54EC088E_apiUrlInputX" drools:dtype="String" itemSubjectRef="__D25B668F-EE31-469E-9F12-F75D54EC088E_apiUrlInputXItem" name="apiUrl"/>
@@ -484,6 +500,7 @@ System.out.println("================================================");]]></droo
         <bpmn2:source>_i3nZtGm9EfGwm_kRKeU4IQ</bpmn2:source>
         <bpmn2:source>_i3nZtWm9EfGwm_kRKeU4IQ</bpmn2:source>
         <bpmn2:source>_i3nZmmm9EfGwm_kRKeU4IQ</bpmn2:source>
+        <bpmn2:source>_UCRFP001</bpmn2:source>
       </bpmn2:linkEventDefinition>
     </bpmn2:intermediateCatchEvent>
     <bpmn2:intermediateThrowEvent id="_ADD1A003-3333-4333-8333-ADD1A0030003" name="Failed">
@@ -920,6 +937,109 @@ if ( "DE".equalsIgnoreCase(country) ) {
         <bpmn2:targetRef>country</bpmn2:targetRef>
       </bpmn2:dataOutputAssociation>
     </bpmn2:task>
+    <bpmn2:task id="_D2857D83-E930-475A-8E23-CDE506DE89AC" drools:taskName="SdcApiCall" name="REST_API_CALL:&#10;cross/findProject">
+      <bpmn2:documentation id="_UCRFP003"><![CDATA[Retrieve project crossProjectName via CROSS API; fail fast when it does not exist. (FIND)]]></bpmn2:documentation>
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[REST_API_CALL:
+cross/findProject]]></drools:metaValue>
+        </drools:metaData>
+        <drools:onEntry-script scriptFormat="http://www.java.com/java">
+          <drools:script><![CDATA[System.out.println("=====================================================");
+System.out.println("updateCustomerRoom - REST_API_CALL: cross/findProject");
+System.out.println("=====================================================");]]></drools:script>
+        </drools:onEntry-script>
+        <drools:onExit-script scriptFormat="http://www.java.com/java">
+          <drools:script><![CDATA[System.out.println("Data Outputs: projectCrossId=" + projectCrossId);
+// an empty search result is HTTP 200 with items=[], so the handler does not throw - fail fast here
+// instead of carrying a null projectCrossId to cross/updateCpeParent.
+if (projectCrossId == null || projectCrossId.isEmpty()) {
+    kcontext.setVariable("errorMessage", "CROSS project '" + crossProjectName + "' not found");
+}]]></drools:script>
+        </drools:onExit-script>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>flow_tmf_findservice</bpmn2:incoming>
+      <bpmn2:outgoing>flow_findproject_gwproj</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="_UCRFP004">
+        <bpmn2:dataInput id="_D2857D83-E930-475A-8E23-CDE506DE89AC_apiUrlInputX" drools:dtype="String" itemSubjectRef="__D2857D83-E930-475A-8E23-CDE506DE89AC_apiUrlInputXItem" name="apiUrl"/>
+        <bpmn2:dataInput id="_D2857D83-E930-475A-8E23-CDE506DE89AC_routeMap.domainInputX" drools:dtype="String" itemSubjectRef="__D2857D83-E930-475A-8E23-CDE506DE89AC_routeMap.domainInputXItem" name="routeMap.domain"/>
+        <bpmn2:dataInput id="_D2857D83-E930-475A-8E23-CDE506DE89AC_routeMap.sourceInputX" drools:dtype="String" itemSubjectRef="__D2857D83-E930-475A-8E23-CDE506DE89AC_routeMap.sourceInputXItem" name="routeMap.source"/>
+        <bpmn2:dataInput id="_D2857D83-E930-475A-8E23-CDE506DE89AC_dataMap.crossProjectNameInputX" drools:dtype="String" itemSubjectRef="__D2857D83-E930-475A-8E23-CDE506DE89AC_dataMap.crossProjectNameInputXItem" name="dataMap.crossProjectName"/>
+        <bpmn2:dataInput id="_D2857D83-E930-475A-8E23-CDE506DE89AC_TaskNameInputX" drools:dtype="Object" name="TaskName"/>
+        <bpmn2:dataOutput id="_D2857D83-E930-475A-8E23-CDE506DE89AC_httpStatusCodeOutputX" drools:dtype="Integer" itemSubjectRef="__D2857D83-E930-475A-8E23-CDE506DE89AC_httpStatusCodeOutputXItem" name="httpStatusCode"/>
+        <bpmn2:dataOutput id="_D2857D83-E930-475A-8E23-CDE506DE89AC_messageOutputX" drools:dtype="String" itemSubjectRef="__D2857D83-E930-475A-8E23-CDE506DE89AC_messageOutputXItem" name="message"/>
+        <bpmn2:dataOutput id="_D2857D83-E930-475A-8E23-CDE506DE89AC_crossIdOutputX" drools:dtype="String" itemSubjectRef="__D2857D83-E930-475A-8E23-CDE506DE89AC_crossIdOutputXItem" name="crossId"/>
+        <bpmn2:inputSet id="_UCRFP005">
+          <bpmn2:dataInputRefs>_D2857D83-E930-475A-8E23-CDE506DE89AC_apiUrlInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_D2857D83-E930-475A-8E23-CDE506DE89AC_routeMap.domainInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_D2857D83-E930-475A-8E23-CDE506DE89AC_routeMap.sourceInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_D2857D83-E930-475A-8E23-CDE506DE89AC_dataMap.crossProjectNameInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_D2857D83-E930-475A-8E23-CDE506DE89AC_TaskNameInputX</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet id="_UCRFP006">
+          <bpmn2:dataOutputRefs>_D2857D83-E930-475A-8E23-CDE506DE89AC_httpStatusCodeOutputX</bpmn2:dataOutputRefs>
+          <bpmn2:dataOutputRefs>_D2857D83-E930-475A-8E23-CDE506DE89AC_messageOutputX</bpmn2:dataOutputRefs>
+          <bpmn2:dataOutputRefs>_D2857D83-E930-475A-8E23-CDE506DE89AC_crossIdOutputX</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation id="_UCRFP007">
+        <bpmn2:sourceRef>_apiCallUrl</bpmn2:sourceRef>
+        <bpmn2:targetRef>_D2857D83-E930-475A-8E23-CDE506DE89AC_apiUrlInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_UCRFP008">
+        <bpmn2:targetRef>_D2857D83-E930-475A-8E23-CDE506DE89AC_routeMap.domainInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_UCRFP009">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_UCRFP00A"><![CDATA[REST_API_CALL]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_UCRFP00B">_D2857D83-E930-475A-8E23-CDE506DE89AC_routeMap.domainInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_UCRFP00C">
+        <bpmn2:targetRef>_D2857D83-E930-475A-8E23-CDE506DE89AC_routeMap.sourceInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_UCRFP00D">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_UCRFP00E"><![CDATA[cross/findProject]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_UCRFP00F">_D2857D83-E930-475A-8E23-CDE506DE89AC_routeMap.sourceInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_UCRFP010">
+        <bpmn2:sourceRef>crossProjectName</bpmn2:sourceRef>
+        <bpmn2:targetRef>_D2857D83-E930-475A-8E23-CDE506DE89AC_dataMap.crossProjectNameInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_UCRFP011">
+        <bpmn2:targetRef>_D2857D83-E930-475A-8E23-CDE506DE89AC_TaskNameInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_UCRFP012">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_UCRFP013"><![CDATA[SdcApiCall]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_UCRFP014">_D2857D83-E930-475A-8E23-CDE506DE89AC_TaskNameInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation id="_UCRFP015">
+        <bpmn2:sourceRef>_D2857D83-E930-475A-8E23-CDE506DE89AC_httpStatusCodeOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>httpStatusCode</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="_UCRFP016">
+        <bpmn2:sourceRef>_D2857D83-E930-475A-8E23-CDE506DE89AC_messageOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>message</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="_UCRFP017">
+        <bpmn2:sourceRef>_D2857D83-E930-475A-8E23-CDE506DE89AC_crossIdOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>projectCrossId</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:exclusiveGateway id="_15D8FF59-A0BA-45F4-9497-86260710E350" drools:dg="flow_gwproj_findsvc" gatewayDirection="Diverging" default="flow_gwproj_findsvc">
+      <bpmn2:incoming>flow_findproject_gwproj</bpmn2:incoming>
+      <bpmn2:outgoing>flow_gwproj_fail</bpmn2:outgoing>
+      <bpmn2:outgoing>flow_gwproj_findsvc</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:intermediateThrowEvent id="_3E6D1139-5660-46A0-A8C3-C14D156A0A46" name="Failed">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Failed]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>flow_gwproj_fail</bpmn2:incoming>
+      <bpmn2:linkEventDefinition id="_UCRFP001" name="Failed">
+        <bpmn2:target>_i3nZm2m9EfGwm_kRKeU4IQ</bpmn2:target>
+      </bpmn2:linkEventDefinition>
+    </bpmn2:intermediateThrowEvent>
     <bpmn2:intermediateCatchEvent id="_8158F9DD-358E-46F1-BC82-CE4928B23162" name="Upsert">
       <bpmn2:extensionElements>
         <drools:metaData name="elementname">
@@ -1060,6 +1180,15 @@ kcontext.setVariable("parentCrossIds", parentCrossIdsList);]]></drools:script>
       <bpmndi:BPMNShape id="shape__A5BE9CA5-73C3-402B-B50E-31739BB0CA5A" bpmnElement="_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A">
         <dc:Bounds height="102.0" width="154.0" x="533.0" y="177.0"/>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__D2857D83-E930-475A-8E23-CDE506DE89AC" bpmnElement="_D2857D83-E930-475A-8E23-CDE506DE89AC">
+        <dc:Bounds height="102.0" width="154.0" x="533.0" y="330.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__15D8FF59-A0BA-45F4-9497-86260710E350" bpmnElement="_15D8FF59-A0BA-45F4-9497-86260710E350">
+        <dc:Bounds height="56.0" width="56.0" x="736.0" y="353.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__3E6D1139-5660-46A0-A8C3-C14D156A0A46" bpmnElement="_3E6D1139-5660-46A0-A8C3-C14D156A0A46">
+        <dc:Bounds height="56.0" width="56.0" x="736.0" y="460.0"/>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="shape__ADD1A002-3333-4333-8333-ADD1A0020002" bpmnElement="_ADD1A002-3333-4333-8333-ADD1A0020002">
         <dc:Bounds height="56.0" width="56.0" x="1045.0" y="87.0"/>
       </bpmndi:BPMNShape>
@@ -1146,9 +1275,21 @@ kcontext.setVariable("parentCrossIds", parentCrossIdsList);]]></drools:script>
         <di:waypoint xsi:type="dc:Point" x="434.0" y="228.0"/>
         <di:waypoint xsi:type="dc:Point" x="610.0" y="228.0"/>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="edge_shape__A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_to_shape__D25B668F-EE31-469E-9F12-F75D54EC088E" bpmnElement="flow_tmf_findservice">
+      <bpmndi:BPMNEdge id="edge_shape__A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_to_shape__D2857D83-E930-475A-8E23-CDE506DE89AC" bpmnElement="flow_tmf_findservice">
         <di:waypoint xsi:type="dc:Point" x="610.0" y="228.0"/>
-        <di:waypoint xsi:type="dc:Point" x="841.0" y="228.0"/>
+        <di:waypoint xsi:type="dc:Point" x="610.0" y="381.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__D2857D83-E930-475A-8E23-CDE506DE89AC_to_shape__15D8FF59-A0BA-45F4-9497-86260710E350" bpmnElement="flow_findproject_gwproj">
+        <di:waypoint xsi:type="dc:Point" x="610.0" y="381.0"/>
+        <di:waypoint xsi:type="dc:Point" x="764.0" y="381.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__15D8FF59-A0BA-45F4-9497-86260710E350_to_shape__3E6D1139-5660-46A0-A8C3-C14D156A0A46" bpmnElement="flow_gwproj_fail">
+        <di:waypoint xsi:type="dc:Point" x="764.0" y="381.0"/>
+        <di:waypoint xsi:type="dc:Point" x="764.0" y="488.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__15D8FF59-A0BA-45F4-9497-86260710E350_to_shape__D25B668F-EE31-469E-9F12-F75D54EC088E" bpmnElement="flow_gwproj_findsvc">
+        <di:waypoint xsi:type="dc:Point" x="764.0" y="381.0"/>
+        <di:waypoint xsi:type="dc:Point" x="841.0" y="279.0"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_shape__ADD1A001-3333-4333-8333-ADD1A0010001_to_shape__ADD1A002-3333-4333-8333-ADD1A0020002" bpmnElement="flow_findsacc_gwsacc">
         <di:waypoint xsi:type="dc:Point" x="1072.0" y="177.0"/>
