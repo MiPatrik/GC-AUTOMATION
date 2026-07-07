@@ -254,7 +254,13 @@ System.out.println("VALIDATION: TMF_STORE get data (operation check) failed=" + 
 return result;]]></bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="_8ED4BE5A-3DC1-56D8-B2DF-76E168336E7E" sourceRef="_02F3ED36-EDA9-587C-828D-72FB2A83E608" targetRef="_A9CE3FDE-4291-5667-9A10-2A924172F2C8"/>
-    <bpmn2:sequenceFlow id="_874B4DB3-893A-5E55-A515-34D94BC5CE6C" sourceRef="_A9CE3FDE-4291-5667-9A10-2A924172F2C8" targetRef="_44B27552-82E6-5633-83FB-77A522D3103B"/>
+    <bpmn2:sequenceFlow id="_874B4DB3-893A-5E55-A515-34D94BC5CE6C" sourceRef="_A9CE3FDE-4291-5667-9A10-2A924172F2C8" targetRef="_EFC6448F-493F-4708-96D0-B8193564B7F4"/>
+    <bpmn2:sequenceFlow id="_7E8D287B-E01B-4012-97B2-998149204713" name="Not found" sourceRef="_EFC6448F-493F-4708-96D0-B8193564B7F4" targetRef="_8F3B443F-261C-4C8F-A511-13023ACC5A1D">
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_CPFP001" language="http://www.java.com/java"><![CDATA[boolean result = errorMessage != null;
+System.out.println("VALIDATION: find project failed=" + result + ", errorMessage=" + errorMessage);
+return result;]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_0E6DA92A-46CF-435A-A19B-C33FDC6900C9" sourceRef="_EFC6448F-493F-4708-96D0-B8193564B7F4" targetRef="_44B27552-82E6-5633-83FB-77A522D3103B"/>
     <bpmn2:sequenceFlow id="_55C9BA7E-6F5D-572E-A1B4-5F86F84FA31B" sourceRef="_44B27552-82E6-5633-83FB-77A522D3103B" targetRef="_E966A3EB-CA17-597B-8B77-0E6AF4ED560A"/>
     <bpmn2:sequenceFlow id="_E610AD1F-C637-5DF2-9B33-C1D053416B28" name="Not found" sourceRef="_E966A3EB-CA17-597B-8B77-0E6AF4ED560A" targetRef="_3240509E-9AEC-575C-8B18-9A8161314C85">
       <bpmn2:extensionElements>
@@ -658,7 +664,12 @@ System.out.println("closeProject_commit - REST_API_CALL: cross/findProject");
 System.out.println("===================================================");]]></drools:script>
         </drools:onEntry-script>
         <drools:onExit-script scriptFormat="http://www.java.com/java">
-          <drools:script><![CDATA[System.out.println("Data Outputs: projectCrossId=" + projectCrossId);]]></drools:script>
+          <drools:script><![CDATA[System.out.println("Data Outputs: projectCrossId=" + projectCrossId);
+// an empty search result is HTTP 200 with items=[], so the handler does not throw - fail fast here
+// instead of carrying a null projectCrossId all the way to cross/commitProject.
+if (projectCrossId == null || projectCrossId.isEmpty()) {
+    kcontext.setVariable("errorMessage", "CROSS project '" + crossProjectName + "' not found");
+}]]></drools:script>
         </drools:onExit-script>
       </bpmn2:extensionElements>
       <bpmn2:incoming>_8ED4BE5A-3DC1-56D8-B2DF-76E168336E7E</bpmn2:incoming>
@@ -727,6 +738,22 @@ System.out.println("===================================================");]]></d
         <bpmn2:targetRef>projectCrossId</bpmn2:targetRef>
       </bpmn2:dataOutputAssociation>
     </bpmn2:task>
+    <bpmn2:exclusiveGateway id="_EFC6448F-493F-4708-96D0-B8193564B7F4" drools:dg="_0E6DA92A-46CF-435A-A19B-C33FDC6900C9" gatewayDirection="Diverging" default="_0E6DA92A-46CF-435A-A19B-C33FDC6900C9">
+      <bpmn2:incoming>_874B4DB3-893A-5E55-A515-34D94BC5CE6C</bpmn2:incoming>
+      <bpmn2:outgoing>_7E8D287B-E01B-4012-97B2-998149204713</bpmn2:outgoing>
+      <bpmn2:outgoing>_0E6DA92A-46CF-435A-A19B-C33FDC6900C9</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:intermediateThrowEvent id="_8F3B443F-261C-4C8F-A511-13023ACC5A1D" name="Failed">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Failed]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_7E8D287B-E01B-4012-97B2-998149204713</bpmn2:incoming>
+      <bpmn2:linkEventDefinition id="_CPFP002" name="Failed">
+        <bpmn2:target>_CP000001</bpmn2:target>
+      </bpmn2:linkEventDefinition>
+    </bpmn2:intermediateThrowEvent>
     <bpmn2:task id="_44B27552-82E6-5633-83FB-77A522D3103B" drools:taskName="SdcApiCall" name="REST_API_CALL:&#10;cross/findService">
       <bpmn2:documentation id="_CP000079"><![CDATA[Retrieve service serviceCrossId via CROSS API; check it is still DESIGNED (pre-commit). (FIND)]]></bpmn2:documentation>
       <bpmn2:extensionElements>
@@ -748,7 +775,7 @@ if (serviceStatus != null && !"DESIGNED".equalsIgnoreCase(serviceStatus)) {
 }]]></drools:script>
         </drools:onExit-script>
       </bpmn2:extensionElements>
-      <bpmn2:incoming>_874B4DB3-893A-5E55-A515-34D94BC5CE6C</bpmn2:incoming>
+      <bpmn2:incoming>_0E6DA92A-46CF-435A-A19B-C33FDC6900C9</bpmn2:incoming>
       <bpmn2:outgoing>_55C9BA7E-6F5D-572E-A1B4-5F86F84FA31B</bpmn2:outgoing>
       <bpmn2:ioSpecification id="_CP00007A">
         <bpmn2:dataInput id="_44B27552-82E6-5633-83FB-77A522D3103B_apiUrlInputX" drools:dtype="String" itemSubjectRef="__44B27552-82E6-5633-83FB-77A522D3103B_apiUrlInputXItem" name="apiUrl"/>
@@ -2803,6 +2830,7 @@ kcontext.setVariable("response", map);]]></bpmn2:script>
         <bpmn2:source>_CP00000E</bpmn2:source>
         <bpmn2:source>_CP000010</bpmn2:source>
         <bpmn2:source>_CP000011</bpmn2:source>
+        <bpmn2:source>_CPFP002</bpmn2:source>
       </bpmn2:linkEventDefinition>
     </bpmn2:intermediateCatchEvent>
     <bpmn2:scriptTask id="_F4A10B4A-94C8-59CE-9950-1D7FD3602FA3" name="Create result:&#10;FAILED" scriptFormat="http://www.java.com/java">
@@ -2849,6 +2877,12 @@ kcontext.setVariable("response", map);]]></bpmn2:script>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="shape__A9CE3FDE-4291-5667-9A10-2A924172F2C8" bpmnElement="_A9CE3FDE-4291-5667-9A10-2A924172F2C8">
         <dc:Bounds height="102.0" width="154.0" x="843.0" y="80.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__EFC6448F-493F-4708-96D0-B8193564B7F4" bpmnElement="_EFC6448F-493F-4708-96D0-B8193564B7F4">
+        <dc:Bounds height="56.0" width="56.0" x="1000.0" y="103.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__8F3B443F-261C-4C8F-A511-13023ACC5A1D" bpmnElement="_8F3B443F-261C-4C8F-A511-13023ACC5A1D">
+        <dc:Bounds height="56.0" width="56.0" x="1000.0" y="233.0"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="shape__44B27552-82E6-5633-83FB-77A522D3103B" bpmnElement="_44B27552-82E6-5633-83FB-77A522D3103B">
         <dc:Bounds height="102.0" width="154.0" x="1083.0" y="80.0"/>
@@ -3031,8 +3065,16 @@ kcontext.setVariable("response", map);]]></bpmn2:script>
         <di:waypoint xsi:type="dc:Point" x="680.0" y="131.0"/>
         <di:waypoint xsi:type="dc:Point" x="920.0" y="131.0"/>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="edge_shape__A9CE3FDE-4291-5667-9A10-2A924172F2C8_to_shape__44B27552-82E6-5633-83FB-77A522D3103B" bpmnElement="_874B4DB3-893A-5E55-A515-34D94BC5CE6C">
+      <bpmndi:BPMNEdge id="edge_shape__A9CE3FDE-4291-5667-9A10-2A924172F2C8_to_shape__EFC6448F-493F-4708-96D0-B8193564B7F4" bpmnElement="_874B4DB3-893A-5E55-A515-34D94BC5CE6C">
         <di:waypoint xsi:type="dc:Point" x="920.0" y="131.0"/>
+        <di:waypoint xsi:type="dc:Point" x="1028.0" y="131.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__EFC6448F-493F-4708-96D0-B8193564B7F4_to_shape__8F3B443F-261C-4C8F-A511-13023ACC5A1D" bpmnElement="_7E8D287B-E01B-4012-97B2-998149204713">
+        <di:waypoint xsi:type="dc:Point" x="1028.0" y="131.0"/>
+        <di:waypoint xsi:type="dc:Point" x="1028.0" y="261.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__EFC6448F-493F-4708-96D0-B8193564B7F4_to_shape__44B27552-82E6-5633-83FB-77A522D3103B" bpmnElement="_0E6DA92A-46CF-435A-A19B-C33FDC6900C9">
+        <di:waypoint xsi:type="dc:Point" x="1028.0" y="131.0"/>
         <di:waypoint xsi:type="dc:Point" x="1160.0" y="131.0"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_shape__44B27552-82E6-5633-83FB-77A522D3103B_to_shape__E966A3EB-CA17-597B-8B77-0E6AF4ED560A" bpmnElement="_55C9BA7E-6F5D-572E-A1B4-5F86F84FA31B">

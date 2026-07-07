@@ -255,13 +255,19 @@ return result;]]></bpmn2:conditionExpression>
     <bpmn2:sequenceFlow id="_D106C51E-B3C0-4BD7-A0A8-57B62EEDCAE4" sourceRef="_B6428571-C915-460C-9B88-EED174B9B507" targetRef="_E3FF4E65-7DF5-4539-AA76-D274FD7B1429"/>
     <bpmn2:sequenceFlow id="_BE9DA49B-9ABB-4615-BC92-66CB4B924FCE" sourceRef="_0C0EFC6D-9912-48CD-8280-FD685B0D4070" targetRef="_B6428571-C915-460C-9B88-EED174B9B507"/>
     <bpmn2:sequenceFlow id="_81A29174-9DF5-4829-9B75-D43A90E1A069" sourceRef="_3EAA8729-B3A0-4CEE-8B2F-2AEB9B552696" targetRef="_BB5FD692-C3C5-4F05-BF8B-A96430A90365"/>
-    <bpmn2:sequenceFlow id="_533F9645-3C16-41CB-8F05-7312587FD9DE" sourceRef="_48B89653-215B-48DE-8602-5F4FC94D02BC" targetRef="_0934EE00-F028-403A-947F-2A9F3EB58B85">
+    <bpmn2:sequenceFlow id="_533F9645-3C16-41CB-8F05-7312587FD9DE" sourceRef="_48B89653-215B-48DE-8602-5F4FC94D02BC" targetRef="_04A7122F-F5FB-49DD-8D07-21C49AE7A98E">
       <bpmn2:extensionElements>
         <drools:metaData name="isAutoConnection.target">
           <drools:metaValue><![CDATA[true]]></drools:metaValue>
         </drools:metaData>
       </bpmn2:extensionElements>
     </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_428C66A7-2747-477B-AE91-A5A55DCFDBDF" name="Not found" sourceRef="_04A7122F-F5FB-49DD-8D07-21C49AE7A98E" targetRef="_3C2AE485-9926-4208-A1DB-38567A84BB34">
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_LDFP0002" language="http://www.java.com/java"><![CDATA[boolean result = errorMessage != null;
+System.out.println("VALIDATION: find project failed=" + result + ", errorMessage=" + errorMessage);
+return result;]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_F58DD0D7-A36E-40B2-8868-2C3046B71762" sourceRef="_04A7122F-F5FB-49DD-8D07-21C49AE7A98E" targetRef="_0934EE00-F028-403A-947F-2A9F3EB58B85"/>
     <bpmn2:sequenceFlow id="_72D757B7-00B7-4F9D-B990-0D8DA7481646" sourceRef="_9CF2DA31-ACC3-4785-B24A-8E3BD791E42F" targetRef="_C3372D74-0B79-4A7B-86D2-276BD56E6511"/>
     <bpmn2:sequenceFlow id="_CB7A4434-C745-4187-9AED-56F790F696A0" sourceRef="_9E0D848F-1EAE-47F0-8C0A-6A091C2C8323" targetRef="_BEB20B95-0808-435E-99AC-35123DF7B7BD"/>
     <bpmn2:sequenceFlow id="_FA595EC6-4BFE-4576-8E69-CB4051CC0049" sourceRef="_BB5FD692-C3C5-4F05-BF8B-A96430A90365" targetRef="_9E0D848F-1EAE-47F0-8C0A-6A091C2C8323"/>
@@ -513,6 +519,7 @@ System.out.println("==========================================================")
         <bpmn2:source>_HEaTg3WKEfGwm_kRKeU4IQ</bpmn2:source>
         <bpmn2:source>_HEaTgnWKEfGwm_kRKeU4IQ</bpmn2:source>
         <bpmn2:source>_HEaTgHWKEfGwm_kRKeU4IQ</bpmn2:source>
+        <bpmn2:source>_LDFP0001</bpmn2:source>
       </bpmn2:linkEventDefinition>
     </bpmn2:intermediateCatchEvent>
     <bpmn2:intermediateThrowEvent id="_D432352C-2E7B-4480-88C0-3EE568631963" name="Completed">
@@ -635,7 +642,7 @@ System.out.println("logicalDesign - REST_API_CALL: cross/findService");
 System.out.println("================================================");]]></drools:script>
         </drools:onEntry-script>
       </bpmn2:extensionElements>
-      <bpmn2:incoming>_533F9645-3C16-41CB-8F05-7312587FD9DE</bpmn2:incoming>
+      <bpmn2:incoming>_F58DD0D7-A36E-40B2-8868-2C3046B71762</bpmn2:incoming>
       <bpmn2:outgoing>_DE23C89D-0718-4411-8D12-1197CD7D8962</bpmn2:outgoing>
       <bpmn2:ioSpecification id="_HEaToHWKEfGwm_kRKeU4IQ">
         <bpmn2:dataInput id="_0934EE00-F028-403A-947F-2A9F3EB58B85_apiUrlInputX" drools:dtype="String" itemSubjectRef="__0934EE00-F028-403A-947F-2A9F3EB58B85_apiUrlInputXItem" name="apiUrl"/>
@@ -1808,6 +1815,14 @@ cross/findProject]]></drools:metaValue>
 System.out.println("logicalDesign - REST_API_CALL: cross/findProject");
 System.out.println("================================================");]]></drools:script>
         </drools:onEntry-script>
+        <drools:onExit-script scriptFormat="http://www.java.com/java">
+          <drools:script><![CDATA[System.out.println("Data Outputs: projectCrossId=" + projectCrossId);
+// an empty search result is HTTP 200 with items=[], so the handler does not throw - fail fast here
+// instead of carrying a null projectCrossId through the rest of the flow.
+if (projectCrossId == null || projectCrossId.isEmpty()) {
+    kcontext.setVariable("errorMessage", "CROSS project '" + crossProjectName + "' not found");
+}]]></drools:script>
+        </drools:onExit-script>
       </bpmn2:extensionElements>
       <bpmn2:incoming>_6D70824E-8561-4B38-93E5-94E7246D029B</bpmn2:incoming>
       <bpmn2:outgoing>_533F9645-3C16-41CB-8F05-7312587FD9DE</bpmn2:outgoing>
@@ -1875,6 +1890,22 @@ System.out.println("================================================");]]></droo
         <bpmn2:targetRef>projectCrossId</bpmn2:targetRef>
       </bpmn2:dataOutputAssociation>
     </bpmn2:task>
+    <bpmn2:exclusiveGateway id="_04A7122F-F5FB-49DD-8D07-21C49AE7A98E" drools:dg="_F58DD0D7-A36E-40B2-8868-2C3046B71762" gatewayDirection="Diverging" default="_F58DD0D7-A36E-40B2-8868-2C3046B71762">
+      <bpmn2:incoming>_533F9645-3C16-41CB-8F05-7312587FD9DE</bpmn2:incoming>
+      <bpmn2:outgoing>_428C66A7-2747-477B-AE91-A5A55DCFDBDF</bpmn2:outgoing>
+      <bpmn2:outgoing>_F58DD0D7-A36E-40B2-8868-2C3046B71762</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:intermediateThrowEvent id="_3C2AE485-9926-4208-A1DB-38567A84BB34" name="Failed">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Failed]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_428C66A7-2747-477B-AE91-A5A55DCFDBDF</bpmn2:incoming>
+      <bpmn2:linkEventDefinition id="_LDFP0001" name="Failed">
+        <bpmn2:target>_HEaTgXWKEfGwm_kRKeU4IQ</bpmn2:target>
+      </bpmn2:linkEventDefinition>
+    </bpmn2:intermediateThrowEvent>
     <bpmn2:scriptTask id="_C3372D74-0B79-4A7B-86D2-276BD56E6511" name="Create result:
 FAILED" scriptFormat="http://www.java.com/java">
       <bpmn2:extensionElements>
@@ -2609,6 +2640,12 @@ System.out.println("================================================");]]></droo
       <bpmndi:BPMNShape id="shape__48B89653-215B-48DE-8602-5F4FC94D02BC" bpmnElement="_48B89653-215B-48DE-8602-5F4FC94D02BC">
         <dc:Bounds height="102.0" width="154.0" x="875.0" y="273.0"/>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__04A7122F-F5FB-49DD-8D07-21C49AE7A98E" bpmnElement="_04A7122F-F5FB-49DD-8D07-21C49AE7A98E">
+        <dc:Bounds height="56.0" width="56.0" x="1033.0" y="296.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__3C2AE485-9926-4208-A1DB-38567A84BB34" bpmnElement="_3C2AE485-9926-4208-A1DB-38567A84BB34">
+        <dc:Bounds height="56.0" width="56.0" x="1033.0" y="426.0"/>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="shape__3EAA8729-B3A0-4CEE-8B2F-2AEB9B552696" bpmnElement="_3EAA8729-B3A0-4CEE-8B2F-2AEB9B552696">
         <dc:Bounds height="102.0" width="154.0" x="437.0" y="636.0"/>
       </bpmndi:BPMNShape>
@@ -2805,8 +2842,16 @@ System.out.println("================================================");]]></droo
         <di:waypoint xsi:type="dc:Point" x="348.0" y="853.0"/>
         <di:waypoint xsi:type="dc:Point" x="517.0" y="853.0"/>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="edge_shape__48B89653-215B-48DE-8602-5F4FC94D02BC_to_shape__0934EE00-F028-403A-947F-2A9F3EB58B85" bpmnElement="_533F9645-3C16-41CB-8F05-7312587FD9DE">
+      <bpmndi:BPMNEdge id="edge_shape__48B89653-215B-48DE-8602-5F4FC94D02BC_to_shape__04A7122F-F5FB-49DD-8D07-21C49AE7A98E" bpmnElement="_533F9645-3C16-41CB-8F05-7312587FD9DE">
         <di:waypoint xsi:type="dc:Point" x="952.0" y="324.0"/>
+        <di:waypoint xsi:type="dc:Point" x="1033.0" y="324.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__04A7122F-F5FB-49DD-8D07-21C49AE7A98E_to_shape__3C2AE485-9926-4208-A1DB-38567A84BB34" bpmnElement="_428C66A7-2747-477B-AE91-A5A55DCFDBDF">
+        <di:waypoint xsi:type="dc:Point" x="1061.0" y="324.0"/>
+        <di:waypoint xsi:type="dc:Point" x="1061.0" y="454.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__04A7122F-F5FB-49DD-8D07-21C49AE7A98E_to_shape__0934EE00-F028-403A-947F-2A9F3EB58B85" bpmnElement="_F58DD0D7-A36E-40B2-8868-2C3046B71762">
+        <di:waypoint xsi:type="dc:Point" x="1061.0" y="324.0"/>
         <di:waypoint xsi:type="dc:Point" x="1093.0" y="324.0"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_shape__3EAA8729-B3A0-4CEE-8B2F-2AEB9B552696_to_shape__BB5FD692-C3C5-4F05-BF8B-A96430A90365" bpmnElement="_81A29174-9DF5-4829-9B75-D43A90E1A069">
