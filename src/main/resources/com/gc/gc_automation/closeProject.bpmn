@@ -3,32 +3,8 @@
   <bpmn2:itemDefinition id="__apiCallUrlItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__orderItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_versionItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="_globalReferenceIdItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="_edgeEquipmentCrossIdItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="_serviceIdItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="_crossProjectNameItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="_productIdItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="_projectCrossIdItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="_addressCrossIdItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="_localityCrossIdItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="_localitySmwIdItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="_cageCrossIdItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="_opticalCircuitCrossIdItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="_opticalCircuitPrmIdItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_serviceCrossIdItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="_httpStatusCodeItem" structureRef="Integer"/>
-  <bpmn2:itemDefinition id="_messageItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="_resultListItem" structureRef="java.util.List"/>
-  <bpmn2:itemDefinition id="_placeCrossIdItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="_transceiverCrossIdItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="_reservedStatusDiscriminatorItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="_cageStatusesItem" structureRef="java.util.List"/>
-  <bpmn2:itemDefinition id="_serviceComponentsItem" structureRef="java.util.List"/>
-  <bpmn2:itemDefinition id="_serviceComponentAccessCrossIdItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="_accessServiceCrossIdItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="_resourcesItem" structureRef="java.util.List"/>
   <bpmn2:itemDefinition id="_caughtExceptionItem" structureRef="java.lang.Exception"/>
-  <bpmn2:itemDefinition id="_edgeEquipmentNameItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_operationItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__6DF56BBA-D8CB-4D82-B7E7-0759F6EC5F5E__orderInputXItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__6DF56BBA-D8CB-4D82-B7E7-0759F6EC5F5E_serviceCrossIdOutputXItem" structureRef="String"/>
@@ -39,6 +15,7 @@
   <bpmn2:itemDefinition id="__0C4B3FBF-E317-4861-82D4-D32F1C772445_dataMap.idInputXItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__0C4B3FBF-E317-4861-82D4-D32F1C772445_dataMap.jsonata.versionInputXItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__0C4B3FBF-E317-4861-82D4-D32F1C772445_dataMap.jsonata.operationInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__0C4B3FBF-E317-4861-82D4-D32F1C772445_versionOutputXItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__0C4B3FBF-E317-4861-82D4-D32F1C772445_operationOutputXItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__70E1A2DB-C2BE-4081-BF9B-A801C71D14B5_errorOutputXItem" structureRef="java.lang.Exception"/>
   <bpmn2:error id="_6F7A0969-5EB3-4753-B97A-7DC814BDA330"/>
@@ -49,44 +26,8 @@
     <bpmn2:property id="_apiCallUrl" itemSubjectRef="__apiCallUrlItem" name="_apiCallUrl"/>
     <bpmn2:property id="_order" itemSubjectRef="__orderItem" name="_order"/>
     <bpmn2:property id="version" itemSubjectRef="_versionItem" name="version"/>
-    <bpmn2:property id="globalReferenceId" itemSubjectRef="_globalReferenceIdItem" name="globalReferenceId"/>
-    <bpmn2:property id="edgeEquipmentCrossId" itemSubjectRef="_edgeEquipmentCrossIdItem" name="edgeEquipmentCrossId"/>
-    <bpmn2:property id="serviceId" itemSubjectRef="_serviceIdItem" name="serviceId"/>
-    <bpmn2:property id="crossProjectName" itemSubjectRef="_crossProjectNameItem" name="crossProjectName"/>
-    <bpmn2:property id="productId" itemSubjectRef="_productIdItem" name="productId"/>
-    <bpmn2:property id="projectCrossId" itemSubjectRef="_projectCrossIdItem" name="projectCrossId"/>
-    <bpmn2:property id="addressCrossId" itemSubjectRef="_addressCrossIdItem" name="addressCrossId"/>
-    <bpmn2:property id="localityCrossId" itemSubjectRef="_localityCrossIdItem" name="localityCrossId"/>
-    <bpmn2:property id="localitySmwId" itemSubjectRef="_localitySmwIdItem" name="localitySmwId"/>
-    <bpmn2:property id="cageCrossId" itemSubjectRef="_cageCrossIdItem" name="cageCrossId"/>
-    <bpmn2:property id="opticalCircuitCrossId" itemSubjectRef="_opticalCircuitCrossIdItem" name="opticalCircuitCrossId"/>
-    <bpmn2:property id="opticalCircuitPrmId" itemSubjectRef="_opticalCircuitPrmIdItem" name="opticalCircuitPrmId"/>
     <bpmn2:property id="serviceCrossId" itemSubjectRef="_serviceCrossIdItem" name="serviceCrossId"/>
-    <bpmn2:property id="httpStatusCode" itemSubjectRef="_httpStatusCodeItem" name="httpStatusCode">
-      <bpmn2:extensionElements>
-        <drools:metaData name="customTags">
-          <drools:metaValue><![CDATA[cross_api]]></drools:metaValue>
-        </drools:metaData>
-      </bpmn2:extensionElements>
-    </bpmn2:property>
-    <bpmn2:property id="message" itemSubjectRef="_messageItem" name="message">
-      <bpmn2:extensionElements>
-        <drools:metaData name="customTags">
-          <drools:metaValue><![CDATA[cross_api]]></drools:metaValue>
-        </drools:metaData>
-      </bpmn2:extensionElements>
-    </bpmn2:property>
-    <bpmn2:property id="resultList" itemSubjectRef="_resultListItem" name="resultList"/>
-    <bpmn2:property id="placeCrossId" itemSubjectRef="_placeCrossIdItem" name="placeCrossId"/>
-    <bpmn2:property id="transceiverCrossId" itemSubjectRef="_transceiverCrossIdItem" name="transceiverCrossId"/>
-    <bpmn2:property id="reservedStatusDiscriminator" itemSubjectRef="_reservedStatusDiscriminatorItem" name="reservedStatusDiscriminator"/>
-    <bpmn2:property id="cageStatuses" itemSubjectRef="_cageStatusesItem" name="cageStatuses"/>
-    <bpmn2:property id="serviceComponents" itemSubjectRef="_serviceComponentsItem" name="serviceComponents"/>
-    <bpmn2:property id="serviceComponentAccessCrossId" itemSubjectRef="_serviceComponentAccessCrossIdItem" name="serviceComponentAccessCrossId"/>
-    <bpmn2:property id="accessServiceCrossId" itemSubjectRef="_accessServiceCrossIdItem" name="accessServiceCrossId"/>
-    <bpmn2:property id="resources" itemSubjectRef="_resourcesItem" name="resources"/>
     <bpmn2:property id="caughtException" itemSubjectRef="_caughtExceptionItem" name="caughtException"/>
-    <bpmn2:property id="edgeEquipmentName" itemSubjectRef="_edgeEquipmentNameItem" name="edgeEquipmentName"/>
     <bpmn2:property id="operation" itemSubjectRef="_operationItem" name="operation"/>
     <bpmn2:sequenceFlow id="_834AE8EE-534D-4BEE-8927-63DD74E35C8A" sourceRef="_3877D746-1FF0-473F-BF96-C7C53DBD9511" targetRef="_DC003037-9064-4D4E-B331-64081ECACBBE"/>
     <bpmn2:sequenceFlow id="_16B14240-DF64-403F-81DA-5A2AB6916012" sourceRef="_0C4B3FBF-E317-4861-82D4-D32F1C772445" targetRef="_3877D746-1FF0-473F-BF96-C7C53DBD9511"/>
@@ -95,7 +36,11 @@
     <bpmn2:sequenceFlow id="_SF00020-FFFF-FFFF-FFFF-FFFFFFFFFFFF" sourceRef="_C0F94E2B-F15B-4CD0-8D13-3DA476C68148" targetRef="_7C787087-3291-4B58-BC2A-8554F2999859"/>
     <bpmn2:sequenceFlow id="_SF00024-FFFF-FFFF-FFFF-FFFFFFFFFFFF" sourceRef="_6F88B71A-AC30-43DE-8AC3-03F5B206AA80" targetRef="_CD9E8F48-82BC-449C-BA39-C7DF59E0D2CF"/>
     <bpmn2:sequenceFlow id="_B6289D55-037A-4B21-8BDA-90FC41D1CEEE" sourceRef="_3877D746-1FF0-473F-BF96-C7C53DBD9511" targetRef="_6DF56BBA-D8CB-4D82-B7E7-0759F6EC5F5E">
-      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_kjNM4Xn1EfGAQ_jyCiJD3w" language="http://www.java.com/java"><![CDATA[return operation != null && operation.equalsIgnoreCase("COMMIT");]]></bpmn2:conditionExpression>
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_kjNM4Xn1EfGAQ_jyCiJD3w" language="http://www.java.com/java"><![CDATA[if (operation == null || !operation.equalsIgnoreCase("COMMIT")) {
+    kcontext.setVariable("errorMessage", "Unsupported operation '" + operation + "' - only 'COMMIT' is supported");
+    return false;
+}
+return true;]]></bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="_DEB40758-53C4-4C20-B298-87EE8C1EA3F0" sourceRef="_70E1A2DB-C2BE-4081-BF9B-A801C71D14B5" targetRef="_45D0CE54-4DF8-48BB-A2CC-7ED5C4E2D775"/>
     <bpmn2:sequenceFlow id="_D90381CE-4355-444C-9FD5-70A36D96BF9F" sourceRef="_6DF56BBA-D8CB-4D82-B7E7-0759F6EC5F5E" targetRef="_355CFC46-348C-4BC7-A6BB-83674E743A82"/>
@@ -150,6 +95,7 @@ System.out.println("==============================================");]]></drools
         <bpmn2:dataInput id="_0C4B3FBF-E317-4861-82D4-D32F1C772445_dataMap.jsonata.versionInputX" drools:dtype="String" itemSubjectRef="__0C4B3FBF-E317-4861-82D4-D32F1C772445_dataMap.jsonata.versionInputXItem" name="dataMap.jsonata.version"/>
         <bpmn2:dataInput id="_0C4B3FBF-E317-4861-82D4-D32F1C772445_dataMap.jsonata.operationInputX" drools:dtype="String" itemSubjectRef="__0C4B3FBF-E317-4861-82D4-D32F1C772445_dataMap.jsonata.operationInputXItem" name="dataMap.jsonata.operation"/>
         <bpmn2:dataInput id="_0C4B3FBF-E317-4861-82D4-D32F1C772445_TaskNameInputX" drools:dtype="Object" name="TaskName"/>
+        <bpmn2:dataOutput id="_0C4B3FBF-E317-4861-82D4-D32F1C772445_versionOutputX" drools:dtype="String" itemSubjectRef="__0C4B3FBF-E317-4861-82D4-D32F1C772445_versionOutputXItem" name="version"/>
         <bpmn2:dataOutput id="_0C4B3FBF-E317-4861-82D4-D32F1C772445_operationOutputX" drools:dtype="String" itemSubjectRef="__0C4B3FBF-E317-4861-82D4-D32F1C772445_operationOutputXItem" name="operation"/>
         <bpmn2:inputSet id="_kjNM5nn1EfGAQ_jyCiJD3w">
           <bpmn2:dataInputRefs>_0C4B3FBF-E317-4861-82D4-D32F1C772445_apiUrlInputX</bpmn2:dataInputRefs>
@@ -162,6 +108,7 @@ System.out.println("==============================================");]]></drools
           <bpmn2:dataInputRefs>_0C4B3FBF-E317-4861-82D4-D32F1C772445_TaskNameInputX</bpmn2:dataInputRefs>
         </bpmn2:inputSet>
         <bpmn2:outputSet id="_kjNM53n1EfGAQ_jyCiJD3w">
+          <bpmn2:dataOutputRefs>_0C4B3FBF-E317-4861-82D4-D32F1C772445_versionOutputX</bpmn2:dataOutputRefs>
           <bpmn2:dataOutputRefs>_0C4B3FBF-E317-4861-82D4-D32F1C772445_operationOutputX</bpmn2:dataOutputRefs>
         </bpmn2:outputSet>
       </bpmn2:ioSpecification>
@@ -215,6 +162,10 @@ System.out.println("==============================================");]]></drools
           <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_kjNNAXn1EfGAQ_jyCiJD3w">_0C4B3FBF-E317-4861-82D4-D32F1C772445_TaskNameInputX</bpmn2:to>
         </bpmn2:assignment>
       </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation id="_CJ0000A1-0000-0000-0000-000000000001">
+        <bpmn2:sourceRef>_0C4B3FBF-E317-4861-82D4-D32F1C772445_versionOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>version</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
       <bpmn2:dataOutputAssociation id="_kjNNAnn1EfGAQ_jyCiJD3w">
         <bpmn2:sourceRef>_0C4B3FBF-E317-4861-82D4-D32F1C772445_operationOutputX</bpmn2:sourceRef>
         <bpmn2:targetRef>operation</bpmn2:targetRef>
