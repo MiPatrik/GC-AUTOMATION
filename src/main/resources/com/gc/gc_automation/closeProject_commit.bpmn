@@ -201,7 +201,7 @@
   <bpmn2:itemDefinition id="__AAD14A91-6FDB-5115-A808-95EC0FA4B601_dataMap.crossIdInputXItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__AAD14A91-6FDB-5115-A808-95EC0FA4B601_httpStatusCodeOutputXItem" structureRef="Integer"/>
   <bpmn2:itemDefinition id="__AAD14A91-6FDB-5115-A808-95EC0FA4B601_messageOutputXItem" structureRef="String"/>
-  <bpmn2:process id="GC-AUTOMATION.closeProject" drools:packageName="com.gc.gc_automation" drools:version="1.0" drools:adHoc="false" name="closeProject" isExecutable="true" processType="Public">
+  <bpmn2:process id="GC-AUTOMATION.closeProject_commit" drools:packageName="com.gc.gc_automation" drools:version="1.0" drools:adHoc="false" name="closeProject_commit" isExecutable="true" processType="Public">
     <bpmn2:extensionElements>
       <drools:global identifier="_apiCallUrl" type="String"/>
     </bpmn2:extensionElements>
@@ -426,7 +426,7 @@ get data]]></drools:metaValue>
         </drools:metaData>
         <drools:onEntry-script scriptFormat="http://www.java.com/java">
           <drools:script><![CDATA[System.out.println("==================================================");
-System.out.println("closeProject - Get data from TMF_STORE");
+System.out.println("closeProject_commit - Get data from TMF_STORE");
 System.out.println("==================================================");]]></drools:script>
         </drools:onEntry-script>
         <drools:onExit-script scriptFormat="http://www.java.com/java">
@@ -654,7 +654,7 @@ cross/findProject]]></drools:metaValue>
         </drools:metaData>
         <drools:onEntry-script scriptFormat="http://www.java.com/java">
           <drools:script><![CDATA[System.out.println("===================================================");
-System.out.println("closeProject - REST_API_CALL: cross/findProject");
+System.out.println("closeProject_commit - REST_API_CALL: cross/findProject");
 System.out.println("===================================================");]]></drools:script>
         </drools:onEntry-script>
         <drools:onExit-script scriptFormat="http://www.java.com/java">
@@ -736,7 +736,7 @@ cross/findService]]></drools:metaValue>
         </drools:metaData>
         <drools:onEntry-script scriptFormat="http://www.java.com/java">
           <drools:script><![CDATA[System.out.println("===================================================");
-System.out.println("closeProject - REST_API_CALL: cross/findService");
+System.out.println("closeProject_commit - REST_API_CALL: cross/findService");
 System.out.println("===================================================");]]></drools:script>
         </drools:onEntry-script>
         <drools:onExit-script scriptFormat="http://www.java.com/java">
@@ -846,7 +846,7 @@ serviceAccessCrossId]]></drools:metaValue>
       <bpmn2:incoming>_22C9C241-B725-54F2-86F4-01969A8EFB23</bpmn2:incoming>
       <bpmn2:outgoing>_DDF89322-E043-50B4-9931-6A161D98E8F7</bpmn2:outgoing>
       <bpmn2:script><![CDATA[System.out.println("==================================================");
-System.out.println("closeProject - find serviceAccessCrossId");
+System.out.println("closeProject_commit - find serviceAccessCrossId");
 System.out.println("==================================================");
 
 java.util.List<?> components = (java.util.List<?>) kcontext.getVariable("serviceComponents");
@@ -906,7 +906,7 @@ cross/findService/SC_ACCESS]]></drools:metaValue>
         </drools:metaData>
         <drools:onEntry-script scriptFormat="http://www.java.com/java">
           <drools:script><![CDATA[System.out.println("=============================================================");
-System.out.println("closeProject - REST_API_CALL: cross/findService/SC_ACCESS");
+System.out.println("closeProject_commit - REST_API_CALL: cross/findService/SC_ACCESS");
 System.out.println("=============================================================");]]></drools:script>
         </drools:onEntry-script>
       </bpmn2:extensionElements>
@@ -986,7 +986,7 @@ servicePhysicalAccessCrossId]]></drools:metaValue>
       <bpmn2:incoming>_02F02C27-E88E-5154-BB8F-40F017782C88</bpmn2:incoming>
       <bpmn2:outgoing>_AA9004F2-7FD0-50DA-859B-DC49D38ED0AF</bpmn2:outgoing>
       <bpmn2:script><![CDATA[System.out.println("====================================================");
-System.out.println("closeProject - find servicePhysicalAccessCrossId");
+System.out.println("closeProject_commit - find servicePhysicalAccessCrossId");
 System.out.println("====================================================");
 
 java.util.List<?> components = (java.util.List<?>) kcontext.getVariable("serviceAccessComponents");
@@ -1046,7 +1046,7 @@ cross/findService/SC_PHYSICAL_ACCESS]]></drools:metaValue>
         </drools:metaData>
         <drools:onEntry-script scriptFormat="http://www.java.com/java">
           <drools:script><![CDATA[System.out.println("======================================================================");
-System.out.println("closeProject - REST_API_CALL: cross/findService/SC_PHYSICAL_ACCESS");
+System.out.println("closeProject_commit - REST_API_CALL: cross/findService/SC_PHYSICAL_ACCESS");
 System.out.println("======================================================================");]]></drools:script>
         </drools:onEntry-script>
       </bpmn2:extensionElements>
@@ -1126,7 +1126,7 @@ cpeCrossId]]></drools:metaValue>
       <bpmn2:incoming>_D68A8811-5D85-50D4-BCD7-C71A43BA1F7B</bpmn2:incoming>
       <bpmn2:outgoing>_F8587C77-E4E8-5A19-B08F-92AB85974B8A</bpmn2:outgoing>
       <bpmn2:script><![CDATA[System.out.println("==================================================");
-System.out.println("closeProject - find cpeCrossId");
+System.out.println("closeProject_commit - find cpeCrossId");
 System.out.println("==================================================");
 
 java.util.List<?> components = (java.util.List<?>) kcontext.getVariable("servicePhysicalAccessComponents");
@@ -1187,7 +1187,7 @@ opticalCircuitCrossId]]></drools:metaValue>
       <bpmn2:incoming>_1D8D6AA1-D84E-5287-9601-9461BC62EF03</bpmn2:incoming>
       <bpmn2:outgoing>_74821121-ACA8-5373-A870-3FA27AE9943F</bpmn2:outgoing>
       <bpmn2:script><![CDATA[System.out.println("==================================================");
-System.out.println("closeProject - find opticalCircuitCrossId");
+System.out.println("closeProject_commit - find opticalCircuitCrossId");
 System.out.println("==================================================");
 
 java.util.List<?> components = (java.util.List<?>) kcontext.getVariable("servicePhysicalAccessComponents");
@@ -1248,7 +1248,7 @@ ethLinkCrossId]]></drools:metaValue>
       <bpmn2:incoming>_D171A4A2-23FF-5CA6-9C6B-E39D3D221628</bpmn2:incoming>
       <bpmn2:outgoing>_F8BD2D2A-2A75-5854-B7DB-1AC01037006B</bpmn2:outgoing>
       <bpmn2:script><![CDATA[System.out.println("==================================================");
-System.out.println("closeProject - find ethLinkCrossId");
+System.out.println("closeProject_commit - find ethLinkCrossId");
 System.out.println("==================================================");
 
 java.util.List<?> components = (java.util.List<?>) kcontext.getVariable("serviceAccessComponents");
@@ -1308,7 +1308,7 @@ cross/findLinkEnds (ETH link)]]></drools:metaValue>
         </drools:metaData>
         <drools:onEntry-script scriptFormat="http://www.java.com/java">
           <drools:script><![CDATA[System.out.println("===============================================================");
-System.out.println("closeProject - REST_API_CALL: cross/findLinkEnds (ETH link)");
+System.out.println("closeProject_commit - REST_API_CALL: cross/findLinkEnds (ETH link)");
 System.out.println("===============================================================");
 
 kcontext.setVariable("networkSideCageCrossId", null);
@@ -1419,7 +1419,7 @@ cross/findLinkByEndNode
         </drools:metaData>
         <drools:onEntry-script scriptFormat="http://www.java.com/java">
           <drools:script><![CDATA[System.out.println("===========================================================================================");
-System.out.println("closeProject - REST_API_CALL: cross/executeQuery/findLinkByEndNode (network patch cord)");
+System.out.println("closeProject_commit - REST_API_CALL: cross/executeQuery/findLinkByEndNode (network patch cord)");
 System.out.println("===========================================================================================");
 
 kcontext.setVariable("networkSidePatchCordCrossId", null);]]></drools:script>
@@ -1520,7 +1520,7 @@ cross/findLinkByEndNode
         </drools:metaData>
         <drools:onEntry-script scriptFormat="http://www.java.com/java">
           <drools:script><![CDATA[System.out.println("============================================================================================");
-System.out.println("closeProject - REST_API_CALL: cross/executeQuery/findLinkByEndNode (customer patch cord)");
+System.out.println("closeProject_commit - REST_API_CALL: cross/executeQuery/findLinkByEndNode (customer patch cord)");
 System.out.println("============================================================================================");
 
 kcontext.setVariable("customerSidePatchCordCrossId", null);]]></drools:script>
@@ -1621,7 +1621,7 @@ cross/findLinkEnds
         </drools:metaData>
         <drools:onEntry-script scriptFormat="http://www.java.com/java">
           <drools:script><![CDATA[System.out.println("======================================================================");
-System.out.println("closeProject - REST_API_CALL: cross/findLinkEnds (optical circuit)");
+System.out.println("closeProject_commit - REST_API_CALL: cross/findLinkEnds (optical circuit)");
 System.out.println("======================================================================");
 
 kcontext.setVariable("opticalCircuitStartNodeCrossId", null);
@@ -1754,7 +1754,7 @@ cross/createTransceiver
         </drools:metaData>
         <drools:onEntry-script scriptFormat="http://www.java.com/java">
           <drools:script><![CDATA[System.out.println("========================================================================");
-System.out.println("closeProject - REST_API_CALL: cross/createTransceiver (customer SFP)");
+System.out.println("closeProject_commit - REST_API_CALL: cross/createTransceiver (customer SFP)");
 System.out.println("========================================================================");]]></drools:script>
         </drools:onEntry-script>
         <drools:onExit-script scriptFormat="http://www.java.com/java">
@@ -1867,7 +1867,7 @@ cross/findChildNodeByType
         </drools:metaData>
         <drools:onEntry-script scriptFormat="http://www.java.com/java">
           <drools:script><![CDATA[System.out.println("==========================================================================================");
-System.out.println("closeProject - REST_API_CALL: cross/executeQuery/findChildNodeByType (customer SFP LP)");
+System.out.println("closeProject_commit - REST_API_CALL: cross/executeQuery/findChildNodeByType (customer SFP LP)");
 System.out.println("==========================================================================================");
 
 kcontext.setVariable("cpeSfpLogicalPortCrossId", null);]]></drools:script>
@@ -1968,7 +1968,7 @@ cross/updateLinkStartNode
         </drools:metaData>
         <drools:onEntry-script scriptFormat="http://www.java.com/java">
           <drools:script><![CDATA[System.out.println("=================================================================================");
-System.out.println("closeProject - REST_API_CALL: cross/updateLinkStartNode (customer patch cord)");
+System.out.println("closeProject_commit - REST_API_CALL: cross/updateLinkStartNode (customer patch cord)");
 System.out.println("=================================================================================");]]></drools:script>
         </drools:onEntry-script>
       </bpmn2:extensionElements>
@@ -2054,7 +2054,7 @@ cross/deployLinkMaterialTemplate
         </drools:metaData>
         <drools:onEntry-script scriptFormat="http://www.java.com/java">
           <drools:script><![CDATA[System.out.println("=============================================================================");
-System.out.println("closeProject - REST_API_CALL: cross/deployLinkMaterialTemplate (customer)");
+System.out.println("closeProject_commit - REST_API_CALL: cross/deployLinkMaterialTemplate (customer)");
 System.out.println("=============================================================================");]]></drools:script>
         </drools:onEntry-script>
       </bpmn2:extensionElements>
@@ -2149,7 +2149,7 @@ cross/createTransceiver
         </drools:metaData>
         <drools:onEntry-script scriptFormat="http://www.java.com/java">
           <drools:script><![CDATA[System.out.println("=======================================================================");
-System.out.println("closeProject - REST_API_CALL: cross/createTransceiver (network SFP)");
+System.out.println("closeProject_commit - REST_API_CALL: cross/createTransceiver (network SFP)");
 System.out.println("=======================================================================");]]></drools:script>
         </drools:onEntry-script>
         <drools:onExit-script scriptFormat="http://www.java.com/java">
@@ -2262,7 +2262,7 @@ cross/findChildNodeByType
         </drools:metaData>
         <drools:onEntry-script scriptFormat="http://www.java.com/java">
           <drools:script><![CDATA[System.out.println("=========================================================================================");
-System.out.println("closeProject - REST_API_CALL: cross/executeQuery/findChildNodeByType (network SFP LP)");
+System.out.println("closeProject_commit - REST_API_CALL: cross/executeQuery/findChildNodeByType (network SFP LP)");
 System.out.println("=========================================================================================");
 
 kcontext.setVariable("networkSfpLogicalPortCrossId", null);]]></drools:script>
@@ -2363,7 +2363,7 @@ cross/updateLinkEndNode
         </drools:metaData>
         <drools:onEntry-script scriptFormat="http://www.java.com/java">
           <drools:script><![CDATA[System.out.println("==============================================================================");
-System.out.println("closeProject - REST_API_CALL: cross/updateLinkEndNode (network patch cord)");
+System.out.println("closeProject_commit - REST_API_CALL: cross/updateLinkEndNode (network patch cord)");
 System.out.println("==============================================================================");]]></drools:script>
         </drools:onEntry-script>
       </bpmn2:extensionElements>
@@ -2449,7 +2449,7 @@ cross/deployLinkMaterialTemplate
         </drools:metaData>
         <drools:onEntry-script scriptFormat="http://www.java.com/java">
           <drools:script><![CDATA[System.out.println("============================================================================");
-System.out.println("closeProject - REST_API_CALL: cross/deployLinkMaterialTemplate (network)");
+System.out.println("closeProject_commit - REST_API_CALL: cross/deployLinkMaterialTemplate (network)");
 System.out.println("============================================================================");]]></drools:script>
         </drools:onEntry-script>
       </bpmn2:extensionElements>
@@ -2543,7 +2543,7 @@ cross/updateEthLink]]></drools:metaValue>
         </drools:metaData>
         <drools:onEntry-script scriptFormat="http://www.java.com/java">
           <drools:script><![CDATA[System.out.println("=====================================================");
-System.out.println("closeProject - REST_API_CALL: cross/updateEthLink");
+System.out.println("closeProject_commit - REST_API_CALL: cross/updateEthLink");
 System.out.println("=====================================================");
 
 java.util.List<Object> providers = new java.util.ArrayList<Object>();
@@ -2668,7 +2668,7 @@ cross/commitProject]]></drools:metaValue>
         </drools:metaData>
         <drools:onEntry-script scriptFormat="http://www.java.com/java">
           <drools:script><![CDATA[System.out.println("=====================================================");
-System.out.println("closeProject - REST_API_CALL: cross/commitProject");
+System.out.println("closeProject_commit - REST_API_CALL: cross/commitProject");
 System.out.println("=====================================================");]]></drools:script>
         </drools:onEntry-script>
       </bpmn2:extensionElements>
@@ -2770,7 +2770,7 @@ COMPLETED]]></drools:metaValue>
       <bpmn2:incoming>_7E6AC8C3-C6DC-5A2A-8029-B5F014FF13D0</bpmn2:incoming>
       <bpmn2:outgoing>_29EFAD49-E816-50B3-B69F-403A72FE76E0</bpmn2:outgoing>
       <bpmn2:script><![CDATA[System.out.println("==================================================");
-System.out.println("closeProject - Create result: COMPLETED");
+System.out.println("closeProject_commit - Create result: COMPLETED");
 System.out.println("==================================================");
 
 java.util.Map<String, Object> map = new java.util.HashMap<String, Object>();
@@ -2815,7 +2815,7 @@ FAILED]]></drools:metaValue>
       <bpmn2:incoming>_73212170-8856-5C3D-B7DC-1542A90A816B</bpmn2:incoming>
       <bpmn2:outgoing>_C6962D52-6DC6-512D-B305-018994EA78D5</bpmn2:outgoing>
       <bpmn2:script><![CDATA[System.out.println("==================================================");
-System.out.println("closeProject - Create result: FAILED");
+System.out.println("closeProject_commit - Create result: FAILED");
 System.out.println("==================================================");
 
 if (errorMessage == null) {
@@ -2834,7 +2834,7 @@ kcontext.setVariable("response", map);]]></bpmn2:script>
     </bpmn2:endEvent>
   </bpmn2:process>
   <bpmndi:BPMNDiagram id="_CP00020C">
-    <bpmndi:BPMNPlane id="_CP00020D" bpmnElement="GC-AUTOMATION.closeProject">
+    <bpmndi:BPMNPlane id="_CP00020D" bpmnElement="GC-AUTOMATION.closeProject_commit">
       <bpmndi:BPMNShape id="shape__7949F778-EA0E-54F9-AEE2-976FD7220597" bpmnElement="_7949F778-EA0E-54F9-AEE2-976FD7220597">
         <dc:Bounds height="56.0" width="56.0" x="172.0" y="103.0"/>
       </bpmndi:BPMNShape>
