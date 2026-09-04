@@ -1888,6 +1888,9 @@ System.out.println("=======================================================");]]
         <di:waypoint xsi:type="dc:Point" x="501.0" y="101.0"/>
         <di:waypoint xsi:type="dc:Point" x="670.0" y="101.0"/>
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="shape__CPL_PARENT_BE" bpmnElement="_CPL_PARENT_BE">
+        <dc:Bounds height="56.0" width="56.0" x="1356.0" y="275.0"/>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="shape__CPL_PARENT_GW" bpmnElement="_CPL_PARENT_GW">
         <dc:Bounds height="56.0" width="56.0" x="1392.0" y="240.0"/>
       </bpmndi:BPMNShape>
@@ -1908,7 +1911,7 @@ System.out.println("=======================================================");]]
         <di:waypoint xsi:type="dc:Point" x="1508.0" y="268.0"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_shape_null_to_shape__CPL_PARENT_FAILED" bpmnElement="_CPL_PARENT_SF_BE">
-        <di:waypoint xsi:type="dc:Point" x="1484.0" y="303.0"/>
+        <di:waypoint xsi:type="dc:Point" x="1384.0" y="303.0"/>
         <di:waypoint xsi:type="dc:Point" x="1508.0" y="268.0"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_shape__AF923962-210C-4D17-83D0-C4A5919A1ED3_to_shape__DF7DBE5F-DCB0-43F2-B5A0-D14E96F15DDF" bpmnElement="_1EDC9F79-B84D-4FE1-93B9-ECB8C328CD52">
