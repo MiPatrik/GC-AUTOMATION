@@ -30,6 +30,19 @@
   <bpmn2:itemDefinition id="_caughtExceptionItem" structureRef="java.lang.Exception"/>
   <bpmn2:itemDefinition id="_edgeEquipmentNameItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_cageNameItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_addressLatitudeItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_addressLongitudeItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_placeSmwIdItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_errorMessageItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_addressCrossIdInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_globalReferenceIdInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_crossProjectNameInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_addressLatitudeInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_addressLongitudeInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_placeCrossIdOutputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_placeSmwIdOutputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_errorMessageOutputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CPL_PARENT_BE_errorOutputXItem" structureRef="java.lang.Exception"/>
   <bpmn2:itemDefinition id="__40B0CDA6-41E8-4634-9366-4BB47C6DE6E4_apiUrlInputXItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__40B0CDA6-41E8-4634-9366-4BB47C6DE6E4_routeMap.domainInputXItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__40B0CDA6-41E8-4634-9366-4BB47C6DE6E4_routeMap.sourceInputXItem" structureRef="String"/>
@@ -93,11 +106,6 @@
   <bpmn2:itemDefinition id="__8D7FF98F-68B2-41E4-A3D5-FC16BA33A194_crossIdOutputXItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__8D7FF98F-68B2-41E4-A3D5-FC16BA33A194_httpStatusCodeOutputXItem" structureRef="Integer"/>
   <bpmn2:itemDefinition id="__8D7FF98F-68B2-41E4-A3D5-FC16BA33A194_messageOutputXItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_apiUrlInputXItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_routeMap.domainInputXItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_routeMap.sourceInputXItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_dataMap.addressCrossIdInputXItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_resultListOutputXItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__65AECB8E-7858-4121-A8AD-EBAB2F9819C1_apiUrlInputXItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__65AECB8E-7858-4121-A8AD-EBAB2F9819C1_routeMap.domainInputXItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__65AECB8E-7858-4121-A8AD-EBAB2F9819C1_routeMap.sourceInputXItem" structureRef="String"/>
@@ -169,6 +177,10 @@
     <bpmn2:property id="caughtException" itemSubjectRef="_caughtExceptionItem" name="caughtException"/>
     <bpmn2:property id="edgeEquipmentName" itemSubjectRef="_edgeEquipmentNameItem" name="edgeEquipmentName"/>
     <bpmn2:property id="cageName" itemSubjectRef="_cageNameItem" name="cageName"/>
+    <bpmn2:property id="addressLatitude" itemSubjectRef="_addressLatitudeItem" name="addressLatitude"/>
+    <bpmn2:property id="addressLongitude" itemSubjectRef="_addressLongitudeItem" name="addressLongitude"/>
+    <bpmn2:property id="placeSmwId" itemSubjectRef="_placeSmwIdItem" name="placeSmwId"/>
+    <bpmn2:property id="errorMessage" itemSubjectRef="_errorMessageItem" name="errorMessage"/>
     <bpmn2:sequenceFlow id="_SF00001-FFFF-FFFF-FFFF-FFFFFFFFFFFF" sourceRef="_A8BB9DBD-1042-4D58-A632-2B701E74E4B3" targetRef="_E31191B7-13F1-4A4E-8BF2-531875B2A25D"/>
     <bpmn2:sequenceFlow id="_8FC4B840-D454-4C45-A51A-C1D9464D22F4" sourceRef="_65AECB8E-7858-4121-A8AD-EBAB2F9819C1" targetRef="_EFF44057-3F71-4525-895C-29E4A8B954A7"/>
     <bpmn2:sequenceFlow id="_4FD9F378-15C2-4FCC-AF9C-2854E65E7FDE" sourceRef="_166BA0DD-5834-4F0D-8C3D-78D21BF133EC" targetRef="_C0F94E2B-F15B-4CD0-8D13-3DA476C68148"/>
@@ -204,7 +216,19 @@ return result;]]></bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="_SF00008-FFFF-FFFF-FFFF-FFFFFFFFFFFF" sourceRef="_DF7DBE5F-DCB0-43F2-B5A0-D14E96F15DDF" targetRef="_EACD5634-2A8C-4C5C-A6FB-F0EEFDDB8CF4"/>
     <bpmn2:sequenceFlow id="_1EDC9F79-B84D-4FE1-93B9-ECB8C328CD52" sourceRef="_AF923962-210C-4D17-83D0-C4A5919A1ED3" targetRef="_DF7DBE5F-DCB0-43F2-B5A0-D14E96F15DDF"/>
-    <bpmn2:sequenceFlow id="_3772429D-3983-44F8-A089-22A6C704E17C" sourceRef="_ED6FD894-E488-4550-9DB1-80AFBD9C40F5" targetRef="_AF923962-210C-4D17-83D0-C4A5919A1ED3"/>
+    <bpmn2:sequenceFlow id="_3772429D-3983-44F8-A089-22A6C704E17C" sourceRef="_ED6FD894-E488-4550-9DB1-80AFBD9C40F5" targetRef="_CPL_PARENT_GW"/>
+    <bpmn2:sequenceFlow id="_CPL_PARENT_SF_OK" sourceRef="_CPL_PARENT_GW" targetRef="_AF923962-210C-4D17-83D0-C4A5919A1ED3"/>
+    <bpmn2:sequenceFlow id="_CPL_PARENT_SF_FAILED" name="Create place failed" sourceRef="_CPL_PARENT_GW" targetRef="_CPL_PARENT_FAILED">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Create place failed]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_CPL_PARENT_COND_FAILED" language="http://www.java.com/java"><![CDATA[boolean result = errorMessage != null;
+System.out.println("VALIDATION: Create place failed: " + result);
+return result;]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_CPL_PARENT_SF_BE" sourceRef="_CPL_PARENT_BE" targetRef="_CPL_PARENT_FAILED"/>
     <bpmn2:sequenceFlow id="_SF00020-FFFF-FFFF-FFFF-FFFFFFFFFFFF" sourceRef="_C0F94E2B-F15B-4CD0-8D13-3DA476C68148" targetRef="_7C787087-3291-4B58-BC2A-8554F2999859"/>
     <bpmn2:sequenceFlow id="_SF00024-FFFF-FFFF-FFFF-FFFFFFFFFFFF" sourceRef="_6F88B71A-AC30-43DE-8AC3-03F5B206AA80" targetRef="_CD9E8F48-82BC-449C-BA39-C7DF59E0D2CF"/>
     <bpmn2:sequenceFlow id="_D90381CE-4355-444C-9FD5-70A36D96BF9F" sourceRef="_6DF56BBA-D8CB-4D82-B7E7-0759F6EC5F5E" targetRef="_4D6BC352-749C-466C-A753-9554C14D6EB1"/>
@@ -644,19 +668,14 @@ FAILED]]></drools:metaValue>
 System.out.println("=== pniDesign - Create result: FAILED ===");
 System.out.println("=========================================");
 
-// Try errorMessage variable first (set manually by some paths)
-String errorMessage = (String) kcontext.getVariable("errorMessage");
-
-// If not set, try to extract from caught exception (sub-process intermediate error)
-if (errorMessage == null) {
-    Exception error = (Exception) kcontext.getVariable("caughtException");
-    if (error != null) {
-        errorMessage = error.getMessage();
-        kcontext.setVariable("caughtException", null);
-    }
+// errorMessage is set by gateway conditions / sub-processes; fall back to the caught exception
+String failureMessage = errorMessage;
+if (failureMessage == null && caughtException != null) {
+    failureMessage = caughtException.getMessage();
+    kcontext.setVariable("caughtException", null);
 }
 
-if (errorMessage == null) {
+if (failureMessage == null) {
     throw new IllegalArgumentException("errorMessage cannot be null. Set it by: kcontext.setVariable(\"errorMessage\", \"MESSAGE\");");
 }
 
@@ -664,7 +683,7 @@ java.util.Map<String, Object> map = new java.util.HashMap<>();
 map.put("id", kcontext.getVariable("_order"));
 map.put("version", kcontext.getVariable("version"));
 map.put("status", "FAILED");
-map.put("error", errorMessage);
+map.put("error", failureMessage);
 kcontext.setVariable("response", map);]]></bpmn2:script>
     </bpmn2:scriptTask>
     <bpmn2:intermediateThrowEvent id="_355CFC46-348C-4BC7-A6BB-83674E743A82" name="Completed">
@@ -678,78 +697,110 @@ kcontext.setVariable("response", map);]]></bpmn2:script>
         <bpmn2:target>_E5vkvaeXEfGQPYH_8ExsWg</bpmn2:target>
       </bpmn2:linkEventDefinition>
     </bpmn2:intermediateThrowEvent>
-    <bpmn2:task id="_ED6FD894-E488-4550-9DB1-80AFBD9C40F5" drools:taskName="SdcApiCall" name="REST_API_CALL:
-cross/createPlace">
-      <bpmn2:documentation id="_E5vkwaeXEfGQPYH_8ExsWg"><![CDATA[Creates place on the given addressCrossId if one was not found. Only reached via the "place not found" gateway branch.]]></bpmn2:documentation>
+    <bpmn2:callActivity id="_ED6FD894-E488-4550-9DB1-80AFBD9C40F5" drools:independent="false" drools:waitForCompletion="true" name="Create place" calledElement="GC-AUTOMATION.pniDesign_createPlace">
+      <bpmn2:documentation id="_CPL_PARENT_DOC"><![CDATA[Creates the building in SMW/PRM and the matching PLACE node in CROSS (sub-process pniDesign_createPlace). Only reached via the "place not found" gateway branch; on success the flow loops back to find place for address. Sets errorMessage on a handled failure; unhandled exceptions are caught by the boundary error event.]]></bpmn2:documentation>
       <bpmn2:extensionElements>
         <drools:metaData name="elementname">
-          <drools:metaValue><![CDATA[REST_API_CALL:
-cross/createPlace]]></drools:metaValue>
+          <drools:metaValue><![CDATA[Create place]]></drools:metaValue>
         </drools:metaData>
         <drools:onEntry-script scriptFormat="http://www.java.com/java">
-          <drools:script><![CDATA[System.out.println("=======================================================");
-System.out.println("=== pniDesign - REST_API_CALL: cross/createPlace ===");
-System.out.println("=======================================================");
+          <drools:script><![CDATA[System.out.println("=====================================");
+System.out.println("=== pniDesign - Create place ===");
+System.out.println("=====================================");
 
 resultList = null;
-
-throw new UnsupportedOperationException("Not implemented yet: pniDesign - REST_API_CALL: cross/createPlace");]]></drools:script>
+kcontext.setVariable("errorMessage", null);]]></drools:script>
         </drools:onEntry-script>
+        <drools:onExit-script scriptFormat="http://www.java.com/java">
+          <drools:script><![CDATA[System.out.println("Data Outputs: placeCrossId=" + placeCrossId + ", placeSmwId=" + placeSmwId + ", errorMessage=" + errorMessage);]]></drools:script>
+        </drools:onExit-script>
       </bpmn2:extensionElements>
       <bpmn2:incoming>_381D5FC3-DB7F-46C3-9DC3-B6A9222664BA</bpmn2:incoming>
       <bpmn2:outgoing>_3772429D-3983-44F8-A089-22A6C704E17C</bpmn2:outgoing>
-      <bpmn2:ioSpecification id="_E5vkwqeXEfGQPYH_8ExsWg">
-        <bpmn2:dataInput id="_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_apiUrlInputX" drools:dtype="String" itemSubjectRef="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_apiUrlInputXItem" name="apiUrl"/>
-        <bpmn2:dataInput id="_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_routeMap.domainInputX" drools:dtype="String" itemSubjectRef="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_routeMap.domainInputXItem" name="routeMap.domain"/>
-        <bpmn2:dataInput id="_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_routeMap.sourceInputX" drools:dtype="String" itemSubjectRef="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_routeMap.sourceInputXItem" name="routeMap.source"/>
-        <bpmn2:dataInput id="_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_dataMap.addressCrossIdInputX" drools:dtype="String" itemSubjectRef="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_dataMap.addressCrossIdInputXItem" name="dataMap.addressCrossId"/>
-        <bpmn2:dataInput id="_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_TaskNameInputX" drools:dtype="Object" name="TaskName"/>
-        <bpmn2:dataOutput id="_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_resultListOutputX" drools:dtype="String" itemSubjectRef="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_resultListOutputXItem" name="resultList"/>
-        <bpmn2:inputSet id="_E5vkw6eXEfGQPYH_8ExsWg">
-          <bpmn2:dataInputRefs>_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_apiUrlInputX</bpmn2:dataInputRefs>
-          <bpmn2:dataInputRefs>_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_routeMap.domainInputX</bpmn2:dataInputRefs>
-          <bpmn2:dataInputRefs>_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_routeMap.sourceInputX</bpmn2:dataInputRefs>
-          <bpmn2:dataInputRefs>_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_dataMap.addressCrossIdInputX</bpmn2:dataInputRefs>
-          <bpmn2:dataInputRefs>_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_TaskNameInputX</bpmn2:dataInputRefs>
+      <bpmn2:ioSpecification id="_CPL_PARENT_IOSPEC">
+        <bpmn2:dataInput id="_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_addressCrossIdInputX" drools:dtype="String" itemSubjectRef="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_addressCrossIdInputXItem" name="addressCrossId"/>
+        <bpmn2:dataInput id="_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_globalReferenceIdInputX" drools:dtype="String" itemSubjectRef="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_globalReferenceIdInputXItem" name="globalReferenceId"/>
+        <bpmn2:dataInput id="_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_crossProjectNameInputX" drools:dtype="String" itemSubjectRef="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_crossProjectNameInputXItem" name="crossProjectName"/>
+        <bpmn2:dataInput id="_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_addressLatitudeInputX" drools:dtype="String" itemSubjectRef="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_addressLatitudeInputXItem" name="addressLatitude"/>
+        <bpmn2:dataInput id="_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_addressLongitudeInputX" drools:dtype="String" itemSubjectRef="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_addressLongitudeInputXItem" name="addressLongitude"/>
+        <bpmn2:dataOutput id="_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_placeCrossIdOutputX" drools:dtype="String" itemSubjectRef="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_placeCrossIdOutputXItem" name="placeCrossId"/>
+        <bpmn2:dataOutput id="_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_placeSmwIdOutputX" drools:dtype="String" itemSubjectRef="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_placeSmwIdOutputXItem" name="placeSmwId"/>
+        <bpmn2:dataOutput id="_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_errorMessageOutputX" drools:dtype="String" itemSubjectRef="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_errorMessageOutputXItem" name="errorMessage"/>
+        <bpmn2:inputSet id="_CPL_PARENT_INSET">
+          <bpmn2:dataInputRefs>_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_addressCrossIdInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_globalReferenceIdInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_crossProjectNameInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_addressLatitudeInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_addressLongitudeInputX</bpmn2:dataInputRefs>
         </bpmn2:inputSet>
-        <bpmn2:outputSet id="_E5vkxKeXEfGQPYH_8ExsWg">
-          <bpmn2:dataOutputRefs>_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_resultListOutputX</bpmn2:dataOutputRefs>
+        <bpmn2:outputSet id="_CPL_PARENT_OUTSET">
+          <bpmn2:dataOutputRefs>_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_placeCrossIdOutputX</bpmn2:dataOutputRefs>
+          <bpmn2:dataOutputRefs>_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_placeSmwIdOutputX</bpmn2:dataOutputRefs>
+          <bpmn2:dataOutputRefs>_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_errorMessageOutputX</bpmn2:dataOutputRefs>
         </bpmn2:outputSet>
       </bpmn2:ioSpecification>
-      <bpmn2:dataInputAssociation id="_E5vkxaeXEfGQPYH_8ExsWg">
-        <bpmn2:sourceRef>_apiCallUrl</bpmn2:sourceRef>
-        <bpmn2:targetRef>_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_apiUrlInputX</bpmn2:targetRef>
-      </bpmn2:dataInputAssociation>
-      <bpmn2:dataInputAssociation id="_E5vkxqeXEfGQPYH_8ExsWg">
-        <bpmn2:targetRef>_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_routeMap.domainInputX</bpmn2:targetRef>
-        <bpmn2:assignment id="_E5vkx6eXEfGQPYH_8ExsWg">
-          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_E5vkyKeXEfGQPYH_8ExsWg"><![CDATA[REST_API_CALL]]></bpmn2:from>
-          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_E5vkyaeXEfGQPYH_8ExsWg">_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_routeMap.domainInputX</bpmn2:to>
-        </bpmn2:assignment>
-      </bpmn2:dataInputAssociation>
-      <bpmn2:dataInputAssociation id="_E5vkyqeXEfGQPYH_8ExsWg">
-        <bpmn2:targetRef>_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_routeMap.sourceInputX</bpmn2:targetRef>
-        <bpmn2:assignment id="_E5vky6eXEfGQPYH_8ExsWg">
-          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_E5vkzKeXEfGQPYH_8ExsWg"><![CDATA[createLocalityAndPlace]]></bpmn2:from>
-          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_E5wLkKeXEfGQPYH_8ExsWg">_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_routeMap.sourceInputX</bpmn2:to>
-        </bpmn2:assignment>
-      </bpmn2:dataInputAssociation>
-      <bpmn2:dataInputAssociation id="_E5wLkaeXEfGQPYH_8ExsWg">
+      <bpmn2:dataInputAssociation id="_CPL_PARENT_DIA_00">
         <bpmn2:sourceRef>addressCrossId</bpmn2:sourceRef>
-        <bpmn2:targetRef>_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_dataMap.addressCrossIdInputX</bpmn2:targetRef>
+        <bpmn2:targetRef>_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_addressCrossIdInputX</bpmn2:targetRef>
       </bpmn2:dataInputAssociation>
-      <bpmn2:dataInputAssociation id="_E5wLkqeXEfGQPYH_8ExsWg">
-        <bpmn2:targetRef>_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_TaskNameInputX</bpmn2:targetRef>
-        <bpmn2:assignment id="_E5wLk6eXEfGQPYH_8ExsWg">
-          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_E5wLlKeXEfGQPYH_8ExsWg"><![CDATA[SdcApiCall]]></bpmn2:from>
-          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_E5wLlaeXEfGQPYH_8ExsWg">_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_TaskNameInputX</bpmn2:to>
-        </bpmn2:assignment>
+      <bpmn2:dataInputAssociation id="_CPL_PARENT_DIA_01">
+        <bpmn2:sourceRef>globalReferenceId</bpmn2:sourceRef>
+        <bpmn2:targetRef>_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_globalReferenceIdInputX</bpmn2:targetRef>
       </bpmn2:dataInputAssociation>
-      <bpmn2:dataOutputAssociation id="_E5wLlqeXEfGQPYH_8ExsWg">
-        <bpmn2:sourceRef>_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_resultListOutputX</bpmn2:sourceRef>
-        <bpmn2:targetRef>resultList</bpmn2:targetRef>
+      <bpmn2:dataInputAssociation id="_CPL_PARENT_DIA_02">
+        <bpmn2:sourceRef>crossProjectName</bpmn2:sourceRef>
+        <bpmn2:targetRef>_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_crossProjectNameInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CPL_PARENT_DIA_03">
+        <bpmn2:sourceRef>addressLatitude</bpmn2:sourceRef>
+        <bpmn2:targetRef>_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_addressLatitudeInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CPL_PARENT_DIA_04">
+        <bpmn2:sourceRef>addressLongitude</bpmn2:sourceRef>
+        <bpmn2:targetRef>_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_addressLongitudeInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation id="_CPL_PARENT_DOA_00">
+        <bpmn2:sourceRef>_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_placeCrossIdOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>placeCrossId</bpmn2:targetRef>
       </bpmn2:dataOutputAssociation>
-    </bpmn2:task>
+      <bpmn2:dataOutputAssociation id="_CPL_PARENT_DOA_01">
+        <bpmn2:sourceRef>_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_placeSmwIdOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>placeSmwId</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="_CPL_PARENT_DOA_02">
+        <bpmn2:sourceRef>_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_errorMessageOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>errorMessage</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:callActivity>
+    <bpmn2:exclusiveGateway id="_CPL_PARENT_GW" drools:dg="_CPL_PARENT_SF_OK" gatewayDirection="Diverging" default="_CPL_PARENT_SF_OK">
+      <bpmn2:incoming>_3772429D-3983-44F8-A089-22A6C704E17C</bpmn2:incoming>
+      <bpmn2:outgoing>_CPL_PARENT_SF_OK</bpmn2:outgoing>
+      <bpmn2:outgoing>_CPL_PARENT_SF_FAILED</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:intermediateThrowEvent id="_CPL_PARENT_FAILED" name="Failed">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Failed]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_CPL_PARENT_SF_FAILED</bpmn2:incoming>
+      <bpmn2:incoming>_CPL_PARENT_SF_BE</bpmn2:incoming>
+      <bpmn2:linkEventDefinition id="_CPL_PARENT_LINK_FAILED_THROW" name="Failed">
+        <bpmn2:target>_E5vkkKeXEfGQPYH_8ExsWg</bpmn2:target>
+      </bpmn2:linkEventDefinition>
+    </bpmn2:intermediateThrowEvent>
+    <bpmn2:boundaryEvent id="_CPL_PARENT_BE" drools:dockerinfo="13.0^-28.0|" drools:boundaryca="true" attachedToRef="_ED6FD894-E488-4550-9DB1-80AFBD9C40F5">
+      <bpmn2:outgoing>_CPL_PARENT_SF_BE</bpmn2:outgoing>
+      <bpmn2:dataOutput id="_CPL_PARENT_BE_errorOutputX" drools:dtype="java.lang.Exception" itemSubjectRef="__CPL_PARENT_BE_errorOutputXItem" name="error"/>
+      <bpmn2:dataOutputAssociation id="_CPL_PARENT_BE_DOA">
+        <bpmn2:sourceRef>_CPL_PARENT_BE_errorOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>caughtException</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:outputSet id="_CPL_PARENT_BE_OUTSET">
+        <bpmn2:dataOutputRefs>_CPL_PARENT_BE_errorOutputX</bpmn2:dataOutputRefs>
+      </bpmn2:outputSet>
+      <bpmn2:errorEventDefinition id="_CPL_PARENT_BE_ERRDEF" errorRef="_1C2EFAF9-4C66-46C6-82A3-0893FDF2BCD7"/>
+    </bpmn2:boundaryEvent>
     <bpmn2:intermediateCatchEvent id="_0B938A52-6FB3-4108-8D77-A154FC4D8C0F" name="Failed">
       <bpmn2:extensionElements>
         <drools:metaData name="elementname">
@@ -758,6 +809,7 @@ throw new UnsupportedOperationException("Not implemented yet: pniDesign - REST_A
       </bpmn2:extensionElements>
       <bpmn2:outgoing>_SF00023-FFFF-FFFF-FFFF-FFFFFFFFFFFF</bpmn2:outgoing>
       <bpmn2:linkEventDefinition id="_E5vkkKeXEfGQPYH_8ExsWg" name="Failed">
+        <bpmn2:source>_CPL_PARENT_LINK_FAILED_THROW</bpmn2:source>
         <bpmn2:source>_E5wLl6eXEfGQPYH_8ExsWg</bpmn2:source>
         <bpmn2:source>_E5wLmKeXEfGQPYH_8ExsWg</bpmn2:source>
         <bpmn2:source>_E5wLmaeXEfGQPYH_8ExsWg</bpmn2:source>
@@ -1180,7 +1232,7 @@ if (resultList != null) {
     </bpmn2:intermediateThrowEvent>
     <bpmn2:inclusiveGateway id="_AF923962-210C-4D17-83D0-C4A5919A1ED3" gatewayDirection="Converging">
       <bpmn2:incoming>_A5233CB9-A3FA-473D-A89D-03E8A9216C66</bpmn2:incoming>
-      <bpmn2:incoming>_3772429D-3983-44F8-A089-22A6C704E17C</bpmn2:incoming>
+      <bpmn2:incoming>_CPL_PARENT_SF_OK</bpmn2:incoming>
       <bpmn2:outgoing>_1EDC9F79-B84D-4FE1-93B9-ECB8C328CD52</bpmn2:outgoing>
     </bpmn2:inclusiveGateway>
     <bpmn2:endEvent id="_7C787087-3291-4B58-BC2A-8554F2999859">
@@ -1275,6 +1327,13 @@ if (resultList != null) {
         addressCrossId = ((String) firstRow.get("addressCrossId"));
         System.out.println("addressCrossId=" + addressCrossId);
         kcontext.setVariable("addressCrossId", addressCrossId);
+
+        // WGS84 coordinates, needed as geometry when Create place adds a root PLACE node
+        Object latitude = firstRow.get("latitude");
+        Object longitude = firstRow.get("longitude");
+        kcontext.setVariable("addressLatitude", latitude == null ? null : String.valueOf(latitude));
+        kcontext.setVariable("addressLongitude", longitude == null ? null : String.valueOf(longitude));
+        System.out.println("addressLatitude=" + latitude + ", addressLongitude=" + longitude);
     }
 }]]></drools:script>
         </drools:onExit-script>
@@ -1829,9 +1888,28 @@ System.out.println("=======================================================");]]
         <di:waypoint xsi:type="dc:Point" x="501.0" y="101.0"/>
         <di:waypoint xsi:type="dc:Point" x="670.0" y="101.0"/>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="edge_shape__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_to_shape__AF923962-210C-4D17-83D0-C4A5919A1ED3" bpmnElement="_3772429D-3983-44F8-A089-22A6C704E17C">
+      <bpmndi:BPMNShape id="shape__CPL_PARENT_GW" bpmnElement="_CPL_PARENT_GW">
+        <dc:Bounds height="56.0" width="56.0" x="1392.0" y="240.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CPL_PARENT_FAILED" bpmnElement="_CPL_PARENT_FAILED">
+        <dc:Bounds height="56.0" width="56.0" x="1480.0" y="240.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_shape__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_to_shape__CPL_PARENT_GW" bpmnElement="_3772429D-3983-44F8-A089-22A6C704E17C">
         <di:waypoint xsi:type="dc:Point" x="1420.0" y="354.0"/>
+        <di:waypoint xsi:type="dc:Point" x="1420.0" y="268.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__CPL_PARENT_GW_to_shape__AF923962-210C-4D17-83D0-C4A5919A1ED3" bpmnElement="_CPL_PARENT_SF_OK">
+        <di:waypoint xsi:type="dc:Point" x="1420.0" y="268.0"/>
+        <di:waypoint xsi:type="dc:Point" x="1300.0" y="268.0"/>
         <di:waypoint xsi:type="dc:Point" x="1269.0" y="492.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__CPL_PARENT_GW_to_shape__CPL_PARENT_FAILED" bpmnElement="_CPL_PARENT_SF_FAILED">
+        <di:waypoint xsi:type="dc:Point" x="1420.0" y="268.0"/>
+        <di:waypoint xsi:type="dc:Point" x="1508.0" y="268.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape_null_to_shape__CPL_PARENT_FAILED" bpmnElement="_CPL_PARENT_SF_BE">
+        <di:waypoint xsi:type="dc:Point" x="1484.0" y="303.0"/>
+        <di:waypoint xsi:type="dc:Point" x="1508.0" y="268.0"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_shape__AF923962-210C-4D17-83D0-C4A5919A1ED3_to_shape__DF7DBE5F-DCB0-43F2-B5A0-D14E96F15DDF" bpmnElement="_1EDC9F79-B84D-4FE1-93B9-ECB8C328CD52">
         <di:waypoint xsi:type="dc:Point" x="1269.0" y="492.0"/>

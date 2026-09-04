@@ -1,0 +1,725 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.omg.org/bpmn20" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_CPL_DEFINITIONS" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd http://www.omg.org/spec/DD/20100524/DC DC.xsd http://www.omg.org/spec/DD/20100524/DI DI.xsd " exporter="jBPM Process Modeler" exporterVersion="2.0" targetNamespace="http://www.omg.org/bpmn20">
+  <bpmn2:itemDefinition id="__apiCallUrlItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_addressCrossIdItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_globalReferenceIdItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_crossProjectNameItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_addressLatitudeItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_addressLongitudeItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_smwSystemIdItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_smwProjectNameItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_smwAccessTokenItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_smwBuildingIdItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_smwBuildingNameItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_smwRequestStatusItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_placeCrossIdItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_placeSmwIdItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_httpStatusCodeItem" structureRef="Integer"/>
+  <bpmn2:itemDefinition id="_messageItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_errorMessageItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CPL_T_TOKEN_apiUrlInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CPL_T_TOKEN_routeMap.domainInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CPL_T_TOKEN_routeMap.sourceInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CPL_T_TOKEN_accessTokenOutputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CPL_T_SMW_apiUrlInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CPL_T_SMW_routeMap.domainInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CPL_T_SMW_routeMap.sourceInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CPL_T_SMW_dataMap.accessTokenInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CPL_T_SMW_dataMap.projectNameInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CPL_T_SMW_dataMap.addressIdInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CPL_T_SMW_smwBuildingIdOutputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CPL_T_SMW_smwBuildingNameOutputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CPL_T_SMW_smwRequestStatusOutputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CPL_T_CROSS_apiUrlInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CPL_T_CROSS_routeMap.domainInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CPL_T_CROSS_routeMap.sourceInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CPL_T_CROSS_dataMap.projectNameInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CPL_T_CROSS_dataMap.nameInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CPL_T_CROSS_dataMap.statusDiscriminatorInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CPL_T_CROSS_dataMap.smwSystemIdInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CPL_T_CROSS_dataMap.smwExternalIdInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CPL_T_CROSS_dataMap.addressIdInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CPL_T_CROSS_dataMap.latitudeInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CPL_T_CROSS_dataMap.longitudeInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CPL_T_CROSS_crossIdOutputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CPL_T_CROSS_httpStatusCodeOutputXItem" structureRef="Integer"/>
+  <bpmn2:itemDefinition id="__CPL_T_CROSS_messageOutputXItem" structureRef="String"/>
+  <bpmn2:process id="GC-AUTOMATION.pniDesign_createPlace" drools:packageName="com.gc.gc_automation" drools:version="1.0" drools:adHoc="false" name="pniDesign_createPlace" isExecutable="true" processType="Public">
+    <bpmn2:documentation id="_CPL_DOC_0001"><![CDATA[Sub-process of pniDesign. Creates the customer building in Smallworld/PRM (token + create_object) and then the matching PLACE node in CROSS carrying the SMW id as PNI_DE external id, so the later SMW->DTS->CROSS synchro assumes the node instead of duplicating it. Inputs: addressCrossId, globalReferenceId, crossProjectName, addressLatitude, addressLongitude. Outputs: placeCrossId, placeSmwId, errorMessage (null on success).]]></bpmn2:documentation>
+    <bpmn2:extensionElements>
+      <drools:global identifier="_apiCallUrl" type="String"/>
+    </bpmn2:extensionElements>
+    <bpmn2:property id="_apiCallUrl" itemSubjectRef="__apiCallUrlItem" name="_apiCallUrl"/>
+    <bpmn2:property id="addressCrossId" itemSubjectRef="_addressCrossIdItem" name="addressCrossId"/>
+    <bpmn2:property id="globalReferenceId" itemSubjectRef="_globalReferenceIdItem" name="globalReferenceId"/>
+    <bpmn2:property id="crossProjectName" itemSubjectRef="_crossProjectNameItem" name="crossProjectName"/>
+    <bpmn2:property id="addressLatitude" itemSubjectRef="_addressLatitudeItem" name="addressLatitude"/>
+    <bpmn2:property id="addressLongitude" itemSubjectRef="_addressLongitudeItem" name="addressLongitude"/>
+    <bpmn2:property id="smwSystemId" itemSubjectRef="_smwSystemIdItem" name="smwSystemId"/>
+    <bpmn2:property id="smwProjectName" itemSubjectRef="_smwProjectNameItem" name="smwProjectName"/>
+    <bpmn2:property id="smwAccessToken" itemSubjectRef="_smwAccessTokenItem" name="smwAccessToken"/>
+    <bpmn2:property id="smwBuildingId" itemSubjectRef="_smwBuildingIdItem" name="smwBuildingId"/>
+    <bpmn2:property id="smwBuildingName" itemSubjectRef="_smwBuildingNameItem" name="smwBuildingName"/>
+    <bpmn2:property id="smwRequestStatus" itemSubjectRef="_smwRequestStatusItem" name="smwRequestStatus"/>
+    <bpmn2:property id="placeCrossId" itemSubjectRef="_placeCrossIdItem" name="placeCrossId"/>
+    <bpmn2:property id="placeSmwId" itemSubjectRef="_placeSmwIdItem" name="placeSmwId"/>
+    <bpmn2:property id="httpStatusCode" itemSubjectRef="_httpStatusCodeItem" name="httpStatusCode"/>
+    <bpmn2:property id="message" itemSubjectRef="_messageItem" name="message"/>
+    <bpmn2:property id="errorMessage" itemSubjectRef="_errorMessageItem" name="errorMessage"/>
+    <bpmn2:sequenceFlow id="_CPL_SF_01" sourceRef="_CPL_START" targetRef="_CPL_INIT"/>
+    <bpmn2:sequenceFlow id="_CPL_SF_02" sourceRef="_CPL_INIT" targetRef="_CPL_T_TOKEN"/>
+    <bpmn2:sequenceFlow id="_CPL_SF_03" sourceRef="_CPL_T_TOKEN" targetRef="_CPL_GW_TOKEN"/>
+    <bpmn2:sequenceFlow id="_CPL_SF_04" sourceRef="_CPL_GW_TOKEN" targetRef="_CPL_T_SMW"/>
+    <bpmn2:sequenceFlow id="_CPL_SF_05" name="Token failed" sourceRef="_CPL_GW_TOKEN" targetRef="_CPL_THROW_FAILED_TOKEN">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Token failed]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_CPL_COND_0002" language="http://www.java.com/java"><![CDATA[return errorMessage != null;]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_CPL_SF_06" sourceRef="_CPL_T_SMW" targetRef="_CPL_GW_SMW"/>
+    <bpmn2:sequenceFlow id="_CPL_SF_07" sourceRef="_CPL_GW_SMW" targetRef="_CPL_T_CROSS"/>
+    <bpmn2:sequenceFlow id="_CPL_SF_08" name="SMW failed" sourceRef="_CPL_GW_SMW" targetRef="_CPL_THROW_FAILED_SMW">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[SMW failed]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_CPL_COND_0003" language="http://www.java.com/java"><![CDATA[return errorMessage != null;]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_CPL_SF_09" sourceRef="_CPL_T_CROSS" targetRef="_CPL_GW_CROSS"/>
+    <bpmn2:sequenceFlow id="_CPL_SF_10" sourceRef="_CPL_GW_CROSS" targetRef="_CPL_THROW_COMPLETED"/>
+    <bpmn2:sequenceFlow id="_CPL_SF_11" name="CROSS failed" sourceRef="_CPL_GW_CROSS" targetRef="_CPL_THROW_FAILED_CROSS">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[CROSS failed]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_CPL_COND_0004" language="http://www.java.com/java"><![CDATA[return errorMessage != null;]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_CPL_SF_12" sourceRef="_CPL_CATCH_COMPLETED" targetRef="_CPL_RESULT_COMPLETED"/>
+    <bpmn2:sequenceFlow id="_CPL_SF_13" sourceRef="_CPL_RESULT_COMPLETED" targetRef="_CPL_END_COMPLETED"/>
+    <bpmn2:sequenceFlow id="_CPL_SF_14" sourceRef="_CPL_CATCH_FAILED" targetRef="_CPL_RESULT_FAILED"/>
+    <bpmn2:sequenceFlow id="_CPL_SF_15" sourceRef="_CPL_RESULT_FAILED" targetRef="_CPL_END_FAILED"/>
+    <bpmn2:startEvent id="_CPL_START">
+      <bpmn2:outgoing>_CPL_SF_01</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:endEvent id="_CPL_END_COMPLETED">
+      <bpmn2:incoming>_CPL_SF_13</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:endEvent id="_CPL_END_FAILED">
+      <bpmn2:incoming>_CPL_SF_15</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:intermediateThrowEvent id="_CPL_THROW_COMPLETED" name="Completed">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Completed]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_CPL_SF_10</bpmn2:incoming>
+      <bpmn2:linkEventDefinition id="_CPL_LINK_COMPLETED_THROW" name="Completed">
+        <bpmn2:target>_CPL_LINK_COMPLETED_CATCH</bpmn2:target>
+      </bpmn2:linkEventDefinition>
+    </bpmn2:intermediateThrowEvent>
+    <bpmn2:intermediateThrowEvent id="_CPL_THROW_FAILED_TOKEN" name="Failed">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Failed]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_CPL_SF_05</bpmn2:incoming>
+      <bpmn2:linkEventDefinition id="_CPL_LINK_FAILED_THROW_TOKEN" name="Failed">
+        <bpmn2:target>_CPL_LINK_FAILED_CATCH</bpmn2:target>
+      </bpmn2:linkEventDefinition>
+    </bpmn2:intermediateThrowEvent>
+    <bpmn2:intermediateThrowEvent id="_CPL_THROW_FAILED_SMW" name="Failed">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Failed]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_CPL_SF_08</bpmn2:incoming>
+      <bpmn2:linkEventDefinition id="_CPL_LINK_FAILED_THROW_SMW" name="Failed">
+        <bpmn2:target>_CPL_LINK_FAILED_CATCH</bpmn2:target>
+      </bpmn2:linkEventDefinition>
+    </bpmn2:intermediateThrowEvent>
+    <bpmn2:intermediateThrowEvent id="_CPL_THROW_FAILED_CROSS" name="Failed">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Failed]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_CPL_SF_11</bpmn2:incoming>
+      <bpmn2:linkEventDefinition id="_CPL_LINK_FAILED_THROW_CROSS" name="Failed">
+        <bpmn2:target>_CPL_LINK_FAILED_CATCH</bpmn2:target>
+      </bpmn2:linkEventDefinition>
+    </bpmn2:intermediateThrowEvent>
+    <bpmn2:intermediateCatchEvent id="_CPL_CATCH_COMPLETED" name="Completed">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Completed]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:outgoing>_CPL_SF_12</bpmn2:outgoing>
+      <bpmn2:linkEventDefinition id="_CPL_LINK_COMPLETED_CATCH" name="Completed">
+        <bpmn2:source>_CPL_LINK_COMPLETED_THROW</bpmn2:source>
+      </bpmn2:linkEventDefinition>
+    </bpmn2:intermediateCatchEvent>
+    <bpmn2:intermediateCatchEvent id="_CPL_CATCH_FAILED" name="Failed">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Failed]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:outgoing>_CPL_SF_14</bpmn2:outgoing>
+      <bpmn2:linkEventDefinition id="_CPL_LINK_FAILED_CATCH" name="Failed">
+        <bpmn2:source>_CPL_LINK_FAILED_THROW_TOKEN</bpmn2:source>
+        <bpmn2:source>_CPL_LINK_FAILED_THROW_SMW</bpmn2:source>
+        <bpmn2:source>_CPL_LINK_FAILED_THROW_CROSS</bpmn2:source>
+      </bpmn2:linkEventDefinition>
+    </bpmn2:intermediateCatchEvent>
+    <bpmn2:scriptTask id="_CPL_INIT" name="Initialize" scriptFormat="http://www.java.com/java">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Initialize]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_CPL_SF_01</bpmn2:incoming>
+      <bpmn2:outgoing>_CPL_SF_02</bpmn2:outgoing>
+      <bpmn2:script><![CDATA[System.out.println("==========================================");
+System.out.println("=== pniDesign_createPlace - Initialize ===");
+System.out.println("==========================================");
+
+System.out.println(String.format("addressCrossId=%s globalReferenceId=%s crossProjectName=%s addressLatitude=%s addressLongitude=%s",
+    addressCrossId, globalReferenceId, crossProjectName, addressLatitude, addressLongitude));
+
+if (addressCrossId == null || addressCrossId.isEmpty()) {
+    throw new IllegalArgumentException("pniDesign_createPlace: addressCrossId is required");
+}
+if (globalReferenceId == null || globalReferenceId.isEmpty()) {
+    throw new IllegalArgumentException("pniDesign_createPlace: globalReferenceId (SMW address_id) is required");
+}
+if (crossProjectName == null || crossProjectName.isEmpty()) {
+    throw new IllegalArgumentException("pniDesign_createPlace: crossProjectName is required");
+}
+if (addressLatitude == null || addressLongitude == null) {
+    throw new IllegalArgumentException("pniDesign_createPlace: address coordinates are required to place the CROSS node");
+}
+
+// Smallworld instance the building is created in; DE only (same rule as updateCustomerRoom).
+kcontext.setVariable("smwSystemId", "PNI_DE");
+
+// TODO SMW project names are generated as <index>-<yy>-<orderNumber> by glb_nig_prm_api_create_project,
+// which this flow does not call yet. Until then the SMW project is addressed by crossProjectName.
+kcontext.setVariable("smwProjectName", crossProjectName);
+
+kcontext.setVariable("errorMessage", null);
+kcontext.setVariable("placeCrossId", null);
+kcontext.setVariable("placeSmwId", null);
+]]></bpmn2:script>
+    </bpmn2:scriptTask>
+    <bpmn2:task id="_CPL_T_TOKEN" drools:taskName="SdcApiCall" name="REST_API_CALL:
+smw/getToken">
+      <bpmn2:documentation id="_CPL_DOC_0005"><![CDATA[Obtains an OAuth2 client-credentials token from the SMW/PRM UAA (source smw/getToken).]]></bpmn2:documentation>
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[REST_API_CALL:
+smw/getToken]]></drools:metaValue>
+        </drools:metaData>
+        <drools:onEntry-script scriptFormat="http://www.java.com/java">
+          <drools:script><![CDATA[System.out.println("===========================================================");
+System.out.println("=== pniDesign_createPlace - REST_API_CALL: smw/getToken ===");
+System.out.println("===========================================================");
+
+smwAccessToken = null;
+]]></drools:script>
+        </drools:onEntry-script>
+        <drools:onExit-script scriptFormat="http://www.java.com/java">
+          <drools:script><![CDATA[System.out.println("Data Outputs: smwAccessToken=" + (smwAccessToken == null ? "null" : "<redacted>"));
+
+if (smwAccessToken == null || smwAccessToken.isEmpty()) {
+    kcontext.setVariable("errorMessage", "SMW token endpoint returned no access_token");
+}
+]]></drools:script>
+        </drools:onExit-script>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_CPL_SF_02</bpmn2:incoming>
+      <bpmn2:outgoing>_CPL_SF_03</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="_CPL_IOSPEC_0006">
+        <bpmn2:dataInput id="_CPL_T_TOKEN_apiUrlInputX" drools:dtype="String" itemSubjectRef="__CPL_T_TOKEN_apiUrlInputXItem" name="apiUrl"/>
+        <bpmn2:dataInput id="_CPL_T_TOKEN_routeMap.domainInputX" drools:dtype="String" itemSubjectRef="__CPL_T_TOKEN_routeMap.domainInputXItem" name="routeMap.domain"/>
+        <bpmn2:dataInput id="_CPL_T_TOKEN_routeMap.sourceInputX" drools:dtype="String" itemSubjectRef="__CPL_T_TOKEN_routeMap.sourceInputXItem" name="routeMap.source"/>
+        <bpmn2:dataInput id="_CPL_T_TOKEN_TaskNameInputX" drools:dtype="Object" name="TaskName"/>
+        <bpmn2:dataOutput id="_CPL_T_TOKEN_accessTokenOutputX" drools:dtype="String" itemSubjectRef="__CPL_T_TOKEN_accessTokenOutputXItem" name="accessToken"/>
+        <bpmn2:inputSet id="_CPL_INSET_0007">
+          <bpmn2:dataInputRefs>_CPL_T_TOKEN_apiUrlInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_CPL_T_TOKEN_routeMap.domainInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_CPL_T_TOKEN_routeMap.sourceInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_CPL_T_TOKEN_TaskNameInputX</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet id="_CPL_OUTSET_0008">
+          <bpmn2:dataOutputRefs>_CPL_T_TOKEN_accessTokenOutputX</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation id="_CPL_DIA_0009">
+        <bpmn2:sourceRef>_apiCallUrl</bpmn2:sourceRef>
+        <bpmn2:targetRef>_CPL_T_TOKEN_apiUrlInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CPL_DIA_0010">
+        <bpmn2:targetRef>_CPL_T_TOKEN_routeMap.domainInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_CPL_ASG_0011">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_CPL_FROM_0012"><![CDATA[REST_API_CALL]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_CPL_TO_0013">_CPL_T_TOKEN_routeMap.domainInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CPL_DIA_0014">
+        <bpmn2:targetRef>_CPL_T_TOKEN_routeMap.sourceInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_CPL_ASG_0015">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_CPL_FROM_0016"><![CDATA[smw/getToken]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_CPL_TO_0017">_CPL_T_TOKEN_routeMap.sourceInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CPL_DIA_0018">
+        <bpmn2:targetRef>_CPL_T_TOKEN_TaskNameInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_CPL_ASG_0019">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_CPL_FROM_0020"><![CDATA[SdcApiCall]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_CPL_TO_0021">_CPL_T_TOKEN_TaskNameInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation id="_CPL_DOA_0022">
+        <bpmn2:sourceRef>_CPL_T_TOKEN_accessTokenOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>smwAccessToken</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:task id="_CPL_T_SMW" drools:taskName="SdcApiCall" name="REST_API_CALL:
+smw/createBuilding">
+      <bpmn2:documentation id="_CPL_DOC_0023"><![CDATA[Creates an empty building with Access Point in SMW/PRM via glb_nig_prm_api_create_object (object_type=building, use_existing_project=true). address_id is the address master id (= globalReferenceId). (CREATE_OR_UPDATE)]]></bpmn2:documentation>
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[REST_API_CALL:
+smw/createBuilding]]></drools:metaValue>
+        </drools:metaData>
+        <drools:onEntry-script scriptFormat="http://www.java.com/java">
+          <drools:script><![CDATA[System.out.println("=================================================================");
+System.out.println("=== pniDesign_createPlace - REST_API_CALL: smw/createBuilding ===");
+System.out.println("=================================================================");
+
+smwBuildingId = null;
+smwBuildingName = null;
+smwRequestStatus = null;
+]]></drools:script>
+        </drools:onEntry-script>
+        <drools:onExit-script scriptFormat="http://www.java.com/java">
+          <drools:script><![CDATA[System.out.println("Data Outputs: smwBuildingId=" + smwBuildingId + ", smwBuildingName=" + smwBuildingName + ", smwRequestStatus=" + smwRequestStatus);
+
+if (!"ok".equals(smwRequestStatus) || smwBuildingId == null || smwBuildingId.isEmpty()) {
+    kcontext.setVariable("errorMessage", "SMW create building failed for address '" + globalReferenceId
+        + "' in SMW project '" + smwProjectName + "': request_status=" + smwRequestStatus);
+} else {
+    // SMW ids are stored in CROSS as <object_type>:<id>, e.g. building:132384385 (see gc_data_PLACE_v1.xml).
+    kcontext.setVariable("placeSmwId", "building:" + smwBuildingId);
+    if (smwBuildingName == null || smwBuildingName.isEmpty()) {
+        kcontext.setVariable("smwBuildingName", "building:" + smwBuildingId);
+    }
+}
+]]></drools:script>
+        </drools:onExit-script>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_CPL_SF_04</bpmn2:incoming>
+      <bpmn2:outgoing>_CPL_SF_06</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="_CPL_IOSPEC_0024">
+        <bpmn2:dataInput id="_CPL_T_SMW_apiUrlInputX" drools:dtype="String" itemSubjectRef="__CPL_T_SMW_apiUrlInputXItem" name="apiUrl"/>
+        <bpmn2:dataInput id="_CPL_T_SMW_routeMap.domainInputX" drools:dtype="String" itemSubjectRef="__CPL_T_SMW_routeMap.domainInputXItem" name="routeMap.domain"/>
+        <bpmn2:dataInput id="_CPL_T_SMW_routeMap.sourceInputX" drools:dtype="String" itemSubjectRef="__CPL_T_SMW_routeMap.sourceInputXItem" name="routeMap.source"/>
+        <bpmn2:dataInput id="_CPL_T_SMW_dataMap.accessTokenInputX" drools:dtype="String" itemSubjectRef="__CPL_T_SMW_dataMap.accessTokenInputXItem" name="dataMap.accessToken"/>
+        <bpmn2:dataInput id="_CPL_T_SMW_dataMap.projectNameInputX" drools:dtype="String" itemSubjectRef="__CPL_T_SMW_dataMap.projectNameInputXItem" name="dataMap.projectName"/>
+        <bpmn2:dataInput id="_CPL_T_SMW_dataMap.addressIdInputX" drools:dtype="String" itemSubjectRef="__CPL_T_SMW_dataMap.addressIdInputXItem" name="dataMap.addressId"/>
+        <bpmn2:dataInput id="_CPL_T_SMW_TaskNameInputX" drools:dtype="Object" name="TaskName"/>
+        <bpmn2:dataOutput id="_CPL_T_SMW_smwBuildingIdOutputX" drools:dtype="String" itemSubjectRef="__CPL_T_SMW_smwBuildingIdOutputXItem" name="smwBuildingId"/>
+        <bpmn2:dataOutput id="_CPL_T_SMW_smwBuildingNameOutputX" drools:dtype="String" itemSubjectRef="__CPL_T_SMW_smwBuildingNameOutputXItem" name="smwBuildingName"/>
+        <bpmn2:dataOutput id="_CPL_T_SMW_smwRequestStatusOutputX" drools:dtype="String" itemSubjectRef="__CPL_T_SMW_smwRequestStatusOutputXItem" name="smwRequestStatus"/>
+        <bpmn2:inputSet id="_CPL_INSET_0025">
+          <bpmn2:dataInputRefs>_CPL_T_SMW_apiUrlInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_CPL_T_SMW_routeMap.domainInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_CPL_T_SMW_routeMap.sourceInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_CPL_T_SMW_dataMap.accessTokenInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_CPL_T_SMW_dataMap.projectNameInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_CPL_T_SMW_dataMap.addressIdInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_CPL_T_SMW_TaskNameInputX</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet id="_CPL_OUTSET_0026">
+          <bpmn2:dataOutputRefs>_CPL_T_SMW_smwBuildingIdOutputX</bpmn2:dataOutputRefs>
+          <bpmn2:dataOutputRefs>_CPL_T_SMW_smwBuildingNameOutputX</bpmn2:dataOutputRefs>
+          <bpmn2:dataOutputRefs>_CPL_T_SMW_smwRequestStatusOutputX</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation id="_CPL_DIA_0027">
+        <bpmn2:sourceRef>_apiCallUrl</bpmn2:sourceRef>
+        <bpmn2:targetRef>_CPL_T_SMW_apiUrlInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CPL_DIA_0028">
+        <bpmn2:targetRef>_CPL_T_SMW_routeMap.domainInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_CPL_ASG_0029">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_CPL_FROM_0030"><![CDATA[REST_API_CALL]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_CPL_TO_0031">_CPL_T_SMW_routeMap.domainInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CPL_DIA_0032">
+        <bpmn2:targetRef>_CPL_T_SMW_routeMap.sourceInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_CPL_ASG_0033">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_CPL_FROM_0034"><![CDATA[smw/createBuilding]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_CPL_TO_0035">_CPL_T_SMW_routeMap.sourceInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CPL_DIA_0036">
+        <bpmn2:sourceRef>smwAccessToken</bpmn2:sourceRef>
+        <bpmn2:targetRef>_CPL_T_SMW_dataMap.accessTokenInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CPL_DIA_0037">
+        <bpmn2:sourceRef>smwProjectName</bpmn2:sourceRef>
+        <bpmn2:targetRef>_CPL_T_SMW_dataMap.projectNameInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CPL_DIA_0038">
+        <bpmn2:sourceRef>globalReferenceId</bpmn2:sourceRef>
+        <bpmn2:targetRef>_CPL_T_SMW_dataMap.addressIdInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CPL_DIA_0039">
+        <bpmn2:targetRef>_CPL_T_SMW_TaskNameInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_CPL_ASG_0040">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_CPL_FROM_0041"><![CDATA[SdcApiCall]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_CPL_TO_0042">_CPL_T_SMW_TaskNameInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation id="_CPL_DOA_0043">
+        <bpmn2:sourceRef>_CPL_T_SMW_smwBuildingIdOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>smwBuildingId</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="_CPL_DOA_0044">
+        <bpmn2:sourceRef>_CPL_T_SMW_smwBuildingNameOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>smwBuildingName</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="_CPL_DOA_0045">
+        <bpmn2:sourceRef>_CPL_T_SMW_smwRequestStatusOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>smwRequestStatus</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:task id="_CPL_T_CROSS" drools:taskName="SdcApiCall" name="REST_API_CALL:
+cross/createPlace">
+      <bpmn2:documentation id="_CPL_DOC_0046"><![CDATA[Creates the PLACE node in CROSS (POST /v1/node/) inside crossProjectName with the SMW building id as PNI_DE external id and the ADDRESS reference to the address master id, so the SMW probe can assume the node later. (CREATE_OR_UPDATE)]]></bpmn2:documentation>
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[REST_API_CALL:
+cross/createPlace]]></drools:metaValue>
+        </drools:metaData>
+        <drools:onEntry-script scriptFormat="http://www.java.com/java">
+          <drools:script><![CDATA[System.out.println("================================================================");
+System.out.println("=== pniDesign_createPlace - REST_API_CALL: cross/createPlace ===");
+System.out.println("================================================================");
+
+placeCrossId = null;
+]]></drools:script>
+        </drools:onEntry-script>
+        <drools:onExit-script scriptFormat="http://www.java.com/java">
+          <drools:script><![CDATA[System.out.println("Data Outputs: placeCrossId=" + placeCrossId + ", httpStatusCode=" + httpStatusCode + ", message=" + message);
+
+if (placeCrossId == null || placeCrossId.isEmpty()) {
+    kcontext.setVariable("errorMessage", "CROSS place creation failed for SMW building '" + placeSmwId + "': " + message);
+}
+]]></drools:script>
+        </drools:onExit-script>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_CPL_SF_07</bpmn2:incoming>
+      <bpmn2:outgoing>_CPL_SF_09</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="_CPL_IOSPEC_0047">
+        <bpmn2:dataInput id="_CPL_T_CROSS_apiUrlInputX" drools:dtype="String" itemSubjectRef="__CPL_T_CROSS_apiUrlInputXItem" name="apiUrl"/>
+        <bpmn2:dataInput id="_CPL_T_CROSS_routeMap.domainInputX" drools:dtype="String" itemSubjectRef="__CPL_T_CROSS_routeMap.domainInputXItem" name="routeMap.domain"/>
+        <bpmn2:dataInput id="_CPL_T_CROSS_routeMap.sourceInputX" drools:dtype="String" itemSubjectRef="__CPL_T_CROSS_routeMap.sourceInputXItem" name="routeMap.source"/>
+        <bpmn2:dataInput id="_CPL_T_CROSS_dataMap.projectNameInputX" drools:dtype="String" itemSubjectRef="__CPL_T_CROSS_dataMap.projectNameInputXItem" name="dataMap.projectName"/>
+        <bpmn2:dataInput id="_CPL_T_CROSS_dataMap.nameInputX" drools:dtype="String" itemSubjectRef="__CPL_T_CROSS_dataMap.nameInputXItem" name="dataMap.name"/>
+        <bpmn2:dataInput id="_CPL_T_CROSS_dataMap.statusDiscriminatorInputX" drools:dtype="String" itemSubjectRef="__CPL_T_CROSS_dataMap.statusDiscriminatorInputXItem" name="dataMap.statusDiscriminator"/>
+        <bpmn2:dataInput id="_CPL_T_CROSS_dataMap.smwSystemIdInputX" drools:dtype="String" itemSubjectRef="__CPL_T_CROSS_dataMap.smwSystemIdInputXItem" name="dataMap.smwSystemId"/>
+        <bpmn2:dataInput id="_CPL_T_CROSS_dataMap.smwExternalIdInputX" drools:dtype="String" itemSubjectRef="__CPL_T_CROSS_dataMap.smwExternalIdInputXItem" name="dataMap.smwExternalId"/>
+        <bpmn2:dataInput id="_CPL_T_CROSS_dataMap.addressIdInputX" drools:dtype="String" itemSubjectRef="__CPL_T_CROSS_dataMap.addressIdInputXItem" name="dataMap.addressId"/>
+        <bpmn2:dataInput id="_CPL_T_CROSS_dataMap.latitudeInputX" drools:dtype="String" itemSubjectRef="__CPL_T_CROSS_dataMap.latitudeInputXItem" name="dataMap.latitude"/>
+        <bpmn2:dataInput id="_CPL_T_CROSS_dataMap.longitudeInputX" drools:dtype="String" itemSubjectRef="__CPL_T_CROSS_dataMap.longitudeInputXItem" name="dataMap.longitude"/>
+        <bpmn2:dataInput id="_CPL_T_CROSS_TaskNameInputX" drools:dtype="Object" name="TaskName"/>
+        <bpmn2:dataOutput id="_CPL_T_CROSS_crossIdOutputX" drools:dtype="String" itemSubjectRef="__CPL_T_CROSS_crossIdOutputXItem" name="crossId"/>
+        <bpmn2:dataOutput id="_CPL_T_CROSS_httpStatusCodeOutputX" drools:dtype="Integer" itemSubjectRef="__CPL_T_CROSS_httpStatusCodeOutputXItem" name="httpStatusCode"/>
+        <bpmn2:dataOutput id="_CPL_T_CROSS_messageOutputX" drools:dtype="String" itemSubjectRef="__CPL_T_CROSS_messageOutputXItem" name="message"/>
+        <bpmn2:inputSet id="_CPL_INSET_0048">
+          <bpmn2:dataInputRefs>_CPL_T_CROSS_apiUrlInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_CPL_T_CROSS_routeMap.domainInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_CPL_T_CROSS_routeMap.sourceInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_CPL_T_CROSS_dataMap.projectNameInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_CPL_T_CROSS_dataMap.nameInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_CPL_T_CROSS_dataMap.statusDiscriminatorInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_CPL_T_CROSS_dataMap.smwSystemIdInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_CPL_T_CROSS_dataMap.smwExternalIdInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_CPL_T_CROSS_dataMap.addressIdInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_CPL_T_CROSS_dataMap.latitudeInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_CPL_T_CROSS_dataMap.longitudeInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_CPL_T_CROSS_TaskNameInputX</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet id="_CPL_OUTSET_0049">
+          <bpmn2:dataOutputRefs>_CPL_T_CROSS_crossIdOutputX</bpmn2:dataOutputRefs>
+          <bpmn2:dataOutputRefs>_CPL_T_CROSS_httpStatusCodeOutputX</bpmn2:dataOutputRefs>
+          <bpmn2:dataOutputRefs>_CPL_T_CROSS_messageOutputX</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation id="_CPL_DIA_0050">
+        <bpmn2:sourceRef>_apiCallUrl</bpmn2:sourceRef>
+        <bpmn2:targetRef>_CPL_T_CROSS_apiUrlInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CPL_DIA_0051">
+        <bpmn2:targetRef>_CPL_T_CROSS_routeMap.domainInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_CPL_ASG_0052">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_CPL_FROM_0053"><![CDATA[REST_API_CALL]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_CPL_TO_0054">_CPL_T_CROSS_routeMap.domainInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CPL_DIA_0055">
+        <bpmn2:targetRef>_CPL_T_CROSS_routeMap.sourceInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_CPL_ASG_0056">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_CPL_FROM_0057"><![CDATA[cross/createPlace]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_CPL_TO_0058">_CPL_T_CROSS_routeMap.sourceInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CPL_DIA_0059">
+        <bpmn2:sourceRef>crossProjectName</bpmn2:sourceRef>
+        <bpmn2:targetRef>_CPL_T_CROSS_dataMap.projectNameInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CPL_DIA_0060">
+        <bpmn2:sourceRef>smwBuildingName</bpmn2:sourceRef>
+        <bpmn2:targetRef>_CPL_T_CROSS_dataMap.nameInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CPL_DIA_0061">
+        <bpmn2:targetRef>_CPL_T_CROSS_dataMap.statusDiscriminatorInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_CPL_ASG_0062">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_CPL_FROM_0063"><![CDATA[DESIGNED]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_CPL_TO_0064">_CPL_T_CROSS_dataMap.statusDiscriminatorInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CPL_DIA_0065">
+        <bpmn2:sourceRef>smwSystemId</bpmn2:sourceRef>
+        <bpmn2:targetRef>_CPL_T_CROSS_dataMap.smwSystemIdInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CPL_DIA_0066">
+        <bpmn2:sourceRef>placeSmwId</bpmn2:sourceRef>
+        <bpmn2:targetRef>_CPL_T_CROSS_dataMap.smwExternalIdInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CPL_DIA_0067">
+        <bpmn2:sourceRef>globalReferenceId</bpmn2:sourceRef>
+        <bpmn2:targetRef>_CPL_T_CROSS_dataMap.addressIdInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CPL_DIA_0068">
+        <bpmn2:sourceRef>addressLatitude</bpmn2:sourceRef>
+        <bpmn2:targetRef>_CPL_T_CROSS_dataMap.latitudeInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CPL_DIA_0069">
+        <bpmn2:sourceRef>addressLongitude</bpmn2:sourceRef>
+        <bpmn2:targetRef>_CPL_T_CROSS_dataMap.longitudeInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CPL_DIA_0070">
+        <bpmn2:targetRef>_CPL_T_CROSS_TaskNameInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_CPL_ASG_0071">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_CPL_FROM_0072"><![CDATA[SdcApiCall]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_CPL_TO_0073">_CPL_T_CROSS_TaskNameInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation id="_CPL_DOA_0074">
+        <bpmn2:sourceRef>_CPL_T_CROSS_crossIdOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>placeCrossId</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="_CPL_DOA_0075">
+        <bpmn2:sourceRef>_CPL_T_CROSS_httpStatusCodeOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>httpStatusCode</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="_CPL_DOA_0076">
+        <bpmn2:sourceRef>_CPL_T_CROSS_messageOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>message</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:exclusiveGateway id="_CPL_GW_TOKEN" drools:dg="_CPL_SF_04" gatewayDirection="Diverging" default="_CPL_SF_04">
+      <bpmn2:incoming>_CPL_SF_03</bpmn2:incoming>
+      <bpmn2:outgoing>_CPL_SF_04</bpmn2:outgoing>
+      <bpmn2:outgoing>_CPL_SF_05</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:exclusiveGateway id="_CPL_GW_SMW" drools:dg="_CPL_SF_07" gatewayDirection="Diverging" default="_CPL_SF_07">
+      <bpmn2:incoming>_CPL_SF_06</bpmn2:incoming>
+      <bpmn2:outgoing>_CPL_SF_07</bpmn2:outgoing>
+      <bpmn2:outgoing>_CPL_SF_08</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:exclusiveGateway id="_CPL_GW_CROSS" drools:dg="_CPL_SF_10" gatewayDirection="Diverging" default="_CPL_SF_10">
+      <bpmn2:incoming>_CPL_SF_09</bpmn2:incoming>
+      <bpmn2:outgoing>_CPL_SF_10</bpmn2:outgoing>
+      <bpmn2:outgoing>_CPL_SF_11</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:scriptTask id="_CPL_RESULT_COMPLETED" name="Create result:
+COMPLETED" scriptFormat="http://www.java.com/java">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Create result:
+COMPLETED]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_CPL_SF_12</bpmn2:incoming>
+      <bpmn2:outgoing>_CPL_SF_13</bpmn2:outgoing>
+      <bpmn2:script><![CDATA[System.out.println("========================================================");
+System.out.println("=== pniDesign_createPlace - Create result: COMPLETED ===");
+System.out.println("========================================================");
+
+System.out.println("placeCrossId=" + placeCrossId + ", placeSmwId=" + placeSmwId);
+]]></bpmn2:script>
+    </bpmn2:scriptTask>
+    <bpmn2:scriptTask id="_CPL_RESULT_FAILED" name="Create result:
+FAILED" scriptFormat="http://www.java.com/java">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Create result:
+FAILED]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_CPL_SF_14</bpmn2:incoming>
+      <bpmn2:outgoing>_CPL_SF_15</bpmn2:outgoing>
+      <bpmn2:script><![CDATA[System.out.println("=====================================================");
+System.out.println("=== pniDesign_createPlace - Create result: FAILED ===");
+System.out.println("=====================================================");
+
+if (errorMessage == null) {
+    throw new IllegalArgumentException("errorMessage cannot be null. Set it by: kcontext.setVariable(\"errorMessage\", \"MESSAGE\");");
+}
+System.out.println("errorMessage=" + errorMessage);
+]]></bpmn2:script>
+    </bpmn2:scriptTask>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="_CPL_DIAGRAM">
+    <bpmndi:BPMNPlane id="_CPL_PLANE" bpmnElement="GC-AUTOMATION.pniDesign_createPlace">
+      <bpmndi:BPMNShape id="shape__CPL_START" bpmnElement="_CPL_START">
+        <dc:Bounds height="56.0" width="56.0" x="100.0" y="203.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CPL_INIT" bpmnElement="_CPL_INIT">
+        <dc:Bounds height="102.0" width="154.0" x="200.0" y="180.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CPL_T_TOKEN" bpmnElement="_CPL_T_TOKEN">
+        <dc:Bounds height="102.0" width="154.0" x="400.0" y="180.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CPL_GW_TOKEN" bpmnElement="_CPL_GW_TOKEN">
+        <dc:Bounds height="56.0" width="56.0" x="600.0" y="203.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CPL_T_SMW" bpmnElement="_CPL_T_SMW">
+        <dc:Bounds height="102.0" width="154.0" x="700.0" y="180.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CPL_GW_SMW" bpmnElement="_CPL_GW_SMW">
+        <dc:Bounds height="56.0" width="56.0" x="900.0" y="203.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CPL_T_CROSS" bpmnElement="_CPL_T_CROSS">
+        <dc:Bounds height="102.0" width="154.0" x="1000.0" y="180.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CPL_GW_CROSS" bpmnElement="_CPL_GW_CROSS">
+        <dc:Bounds height="56.0" width="56.0" x="1200.0" y="203.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CPL_THROW_COMPLETED" bpmnElement="_CPL_THROW_COMPLETED">
+        <dc:Bounds height="56.0" width="56.0" x="1300.0" y="203.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CPL_THROW_FAILED_TOKEN" bpmnElement="_CPL_THROW_FAILED_TOKEN">
+        <dc:Bounds height="56.0" width="56.0" x="600.0" y="330.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CPL_THROW_FAILED_SMW" bpmnElement="_CPL_THROW_FAILED_SMW">
+        <dc:Bounds height="56.0" width="56.0" x="900.0" y="330.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CPL_THROW_FAILED_CROSS" bpmnElement="_CPL_THROW_FAILED_CROSS">
+        <dc:Bounds height="56.0" width="56.0" x="1200.0" y="330.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CPL_CATCH_COMPLETED" bpmnElement="_CPL_CATCH_COMPLETED">
+        <dc:Bounds height="56.0" width="56.0" x="100.0" y="423.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CPL_RESULT_COMPLETED" bpmnElement="_CPL_RESULT_COMPLETED">
+        <dc:Bounds height="102.0" width="154.0" x="200.0" y="400.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CPL_END_COMPLETED" bpmnElement="_CPL_END_COMPLETED">
+        <dc:Bounds height="56.0" width="56.0" x="400.0" y="423.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CPL_CATCH_FAILED" bpmnElement="_CPL_CATCH_FAILED">
+        <dc:Bounds height="56.0" width="56.0" x="100.0" y="623.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CPL_RESULT_FAILED" bpmnElement="_CPL_RESULT_FAILED">
+        <dc:Bounds height="102.0" width="154.0" x="200.0" y="600.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CPL_END_FAILED" bpmnElement="_CPL_END_FAILED">
+        <dc:Bounds height="56.0" width="56.0" x="400.0" y="623.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_shape__CPL_START_to_shape__CPL_INIT" bpmnElement="_CPL_SF_01">
+        <di:waypoint xsi:type="dc:Point" x="128.0" y="231.0"/>
+        <di:waypoint xsi:type="dc:Point" x="277.0" y="231.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__CPL_INIT_to_shape__CPL_T_TOKEN" bpmnElement="_CPL_SF_02">
+        <di:waypoint xsi:type="dc:Point" x="277.0" y="231.0"/>
+        <di:waypoint xsi:type="dc:Point" x="477.0" y="231.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__CPL_T_TOKEN_to_shape__CPL_GW_TOKEN" bpmnElement="_CPL_SF_03">
+        <di:waypoint xsi:type="dc:Point" x="477.0" y="231.0"/>
+        <di:waypoint xsi:type="dc:Point" x="628.0" y="231.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__CPL_GW_TOKEN_to_shape__CPL_T_SMW" bpmnElement="_CPL_SF_04">
+        <di:waypoint xsi:type="dc:Point" x="628.0" y="231.0"/>
+        <di:waypoint xsi:type="dc:Point" x="777.0" y="231.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__CPL_GW_TOKEN_to_shape__CPL_THROW_FAILED_TOKEN" bpmnElement="_CPL_SF_05">
+        <di:waypoint xsi:type="dc:Point" x="628.0" y="231.0"/>
+        <di:waypoint xsi:type="dc:Point" x="628.0" y="358.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__CPL_T_SMW_to_shape__CPL_GW_SMW" bpmnElement="_CPL_SF_06">
+        <di:waypoint xsi:type="dc:Point" x="777.0" y="231.0"/>
+        <di:waypoint xsi:type="dc:Point" x="928.0" y="231.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__CPL_GW_SMW_to_shape__CPL_T_CROSS" bpmnElement="_CPL_SF_07">
+        <di:waypoint xsi:type="dc:Point" x="928.0" y="231.0"/>
+        <di:waypoint xsi:type="dc:Point" x="1077.0" y="231.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__CPL_GW_SMW_to_shape__CPL_THROW_FAILED_SMW" bpmnElement="_CPL_SF_08">
+        <di:waypoint xsi:type="dc:Point" x="928.0" y="231.0"/>
+        <di:waypoint xsi:type="dc:Point" x="928.0" y="358.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__CPL_T_CROSS_to_shape__CPL_GW_CROSS" bpmnElement="_CPL_SF_09">
+        <di:waypoint xsi:type="dc:Point" x="1077.0" y="231.0"/>
+        <di:waypoint xsi:type="dc:Point" x="1228.0" y="231.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__CPL_GW_CROSS_to_shape__CPL_THROW_COMPLETED" bpmnElement="_CPL_SF_10">
+        <di:waypoint xsi:type="dc:Point" x="1228.0" y="231.0"/>
+        <di:waypoint xsi:type="dc:Point" x="1328.0" y="231.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__CPL_GW_CROSS_to_shape__CPL_THROW_FAILED_CROSS" bpmnElement="_CPL_SF_11">
+        <di:waypoint xsi:type="dc:Point" x="1228.0" y="231.0"/>
+        <di:waypoint xsi:type="dc:Point" x="1228.0" y="358.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__CPL_CATCH_COMPLETED_to_shape__CPL_RESULT_COMPLETED" bpmnElement="_CPL_SF_12">
+        <di:waypoint xsi:type="dc:Point" x="128.0" y="451.0"/>
+        <di:waypoint xsi:type="dc:Point" x="277.0" y="451.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__CPL_RESULT_COMPLETED_to_shape__CPL_END_COMPLETED" bpmnElement="_CPL_SF_13">
+        <di:waypoint xsi:type="dc:Point" x="277.0" y="451.0"/>
+        <di:waypoint xsi:type="dc:Point" x="428.0" y="451.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__CPL_CATCH_FAILED_to_shape__CPL_RESULT_FAILED" bpmnElement="_CPL_SF_14">
+        <di:waypoint xsi:type="dc:Point" x="128.0" y="651.0"/>
+        <di:waypoint xsi:type="dc:Point" x="277.0" y="651.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__CPL_RESULT_FAILED_to_shape__CPL_END_FAILED" bpmnElement="_CPL_SF_15">
+        <di:waypoint xsi:type="dc:Point" x="277.0" y="651.0"/>
+        <di:waypoint xsi:type="dc:Point" x="428.0" y="651.0"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+  <bpmn2:relationship id="_CPL_RELATIONSHIP" type="BPSimData">
+    <bpmn2:extensionElements>
+      <bpsim:BPSimData>
+        <bpsim:Scenario xsi:type="bpsim:Scenario" id="default" name="Simulationscenario">
+          <bpsim:ScenarioParameters xsi:type="bpsim:ScenarioParameters"/>
+        </bpsim:Scenario>
+      </bpsim:BPSimData>
+    </bpmn2:extensionElements>
+    <bpmn2:source>_CPL_DEFINITIONS</bpmn2:source>
+    <bpmn2:target>_CPL_DEFINITIONS</bpmn2:target>
+  </bpmn2:relationship>
+</bpmn2:definitions>
