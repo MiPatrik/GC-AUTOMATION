@@ -183,7 +183,7 @@
     <bpmn2:property id="placeSmwId" itemSubjectRef="_placeSmwIdItem" name="placeSmwId"/>
     <bpmn2:property id="errorMessage" itemSubjectRef="_errorMessageItem" name="errorMessage"/>
     <bpmn2:sequenceFlow id="_SF00001-FFFF-FFFF-FFFF-FFFFFFFFFFFF" sourceRef="_A8BB9DBD-1042-4D58-A632-2B701E74E4B3" targetRef="_E31191B7-13F1-4A4E-8BF2-531875B2A25D"/>
-    <bpmn2:sequenceFlow id="_CPL_PARENT_SF_BE" sourceRef="_CPL_PARENT_BE" targetRef="_CPL_PARENT_FAILED"/>
+    <bpmn2:sequenceFlow id="_CPL_PARENT_SF_BE" sourceRef="_CPL_PARENT_BE" targetRef="_CPL_PARENT_FAILED_BE"/>
     <bpmn2:sequenceFlow id="_8FC4B840-D454-4C45-A51A-C1D9464D22F4" sourceRef="_65AECB8E-7858-4121-A8AD-EBAB2F9819C1" targetRef="_EFF44057-3F71-4525-895C-29E4A8B954A7"/>
     <bpmn2:sequenceFlow id="_4FD9F378-15C2-4FCC-AF9C-2854E65E7FDE" sourceRef="_166BA0DD-5834-4F0D-8C3D-78D21BF133EC" targetRef="_C0F94E2B-F15B-4CD0-8D13-3DA476C68148"/>
     <bpmn2:sequenceFlow id="_82DB8A09-19AD-4D3C-A774-F6BFAB821174" sourceRef="_EACD5634-2A8C-4C5C-A6FB-F0EEFDDB8CF4" targetRef="_2869091D-AB6B-46B8-B0F8-D432C62226B8"/>
@@ -473,6 +473,17 @@ System.out.println("====================================================");]]></
         </bpmn2:assignment>
       </bpmn2:dataInputAssociation>
     </bpmn2:task>
+    <bpmn2:intermediateThrowEvent id="_CPL_PARENT_FAILED_BE" name="Failed">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Failed]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_CPL_PARENT_SF_BE</bpmn2:incoming>
+      <bpmn2:linkEventDefinition id="_CPL_PARENT_LINK_FAILED_THROW_BE" name="Failed">
+        <bpmn2:target>_jZ1ZyqhHEfG7tdXwshgAXw</bpmn2:target>
+      </bpmn2:linkEventDefinition>
+    </bpmn2:intermediateThrowEvent>
     <bpmn2:intermediateThrowEvent id="_CPL_PARENT_FAILED" name="Failed">
       <bpmn2:extensionElements>
         <drools:metaData name="elementname">
@@ -480,7 +491,6 @@ System.out.println("====================================================");]]></
         </drools:metaData>
       </bpmn2:extensionElements>
       <bpmn2:incoming>_CPL_PARENT_SF_FAILED</bpmn2:incoming>
-      <bpmn2:incoming>_CPL_PARENT_SF_BE</bpmn2:incoming>
       <bpmn2:linkEventDefinition id="_jZ1Z36hHEfG7tdXwshgAXw" name="Failed">
         <bpmn2:target>_jZ1ZyqhHEfG7tdXwshgAXw</bpmn2:target>
       </bpmn2:linkEventDefinition>
@@ -785,7 +795,7 @@ kcontext.setVariable("errorMessage", null);]]></drools:script>
         <bpmn2:targetRef>errorMessage</bpmn2:targetRef>
       </bpmn2:dataOutputAssociation>
     </bpmn2:callActivity>
-    <bpmn2:exclusiveGateway id="_CPL_PARENT_GW" drools:dg="_CPL_PARENT_SF_OK" gatewayDirection="Diverging">
+    <bpmn2:exclusiveGateway id="_CPL_PARENT_GW" drools:dg="_779FF14F-F587-4281-A6D8-CF63D2542BBA" gatewayDirection="Diverging" default="_779FF14F-F587-4281-A6D8-CF63D2542BBA">
       <bpmn2:incoming>_3772429D-3983-44F8-A089-22A6C704E17C</bpmn2:incoming>
       <bpmn2:outgoing>_779FF14F-F587-4281-A6D8-CF63D2542BBA</bpmn2:outgoing>
       <bpmn2:outgoing>_CPL_PARENT_SF_FAILED</bpmn2:outgoing>
@@ -798,6 +808,7 @@ kcontext.setVariable("errorMessage", null);]]></drools:script>
       </bpmn2:extensionElements>
       <bpmn2:outgoing>_SF00023-FFFF-FFFF-FFFF-FFFFFFFFFFFF</bpmn2:outgoing>
       <bpmn2:linkEventDefinition id="_jZ1ZyqhHEfG7tdXwshgAXw" name="Failed">
+        <bpmn2:source>_CPL_PARENT_LINK_FAILED_THROW_BE</bpmn2:source>
         <bpmn2:source>_jZ2A2ahHEfG7tdXwshgAXw</bpmn2:source>
         <bpmn2:source>_jZ2A2qhHEfG7tdXwshgAXw</bpmn2:source>
         <bpmn2:source>_jZ2A26hHEfG7tdXwshgAXw</bpmn2:source>
@@ -1971,9 +1982,12 @@ System.out.println("=======================================================");]]
         <di:waypoint xsi:type="dc:Point" x="1125.0" y="796.0"/>
         <di:waypoint xsi:type="dc:Point" x="1272.0" y="795.0"/>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="edge_shape_null_to_shape__CPL_PARENT_FAILED" bpmnElement="_CPL_PARENT_SF_BE">
+      <bpmndi:BPMNShape id="shape__CPL_PARENT_FAILED_BE" bpmnElement="_CPL_PARENT_FAILED_BE">
+        <dc:Bounds height="56.0" width="56.0" x="1535.0" y="335.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_shape__CPL_PARENT_BE_to_shape__CPL_PARENT_FAILED_BE" bpmnElement="_CPL_PARENT_SF_BE">
         <di:waypoint xsi:type="dc:Point" x="1467.9822" y="363.0"/>
-        <di:waypoint xsi:type="dc:Point" x="1563.0" y="299.0"/>
+        <di:waypoint xsi:type="dc:Point" x="1563.0" y="363.0"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_shape__A8BB9DBD-1042-4D58-A632-2B701E74E4B3_to_shape__E31191B7-13F1-4A4E-8BF2-531875B2A25D" bpmnElement="_SF00001-FFFF-FFFF-FFFF-FFFFFFFFFFFF">
         <di:waypoint xsi:type="dc:Point" x="381.0" y="575.0"/>
