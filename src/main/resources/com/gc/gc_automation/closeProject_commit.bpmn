@@ -23,6 +23,8 @@
   <bpmn2:itemDefinition id="_opticalCircuitCrossIdItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_ethLinkCrossIdItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_networkSideCageCrossIdItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_edgeEquipmentShelfCrossIdItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_edgeEquipmentShelfStatusDiscriminatorItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_customerSideCageCrossIdItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_networkSidePatchCordCrossIdItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_customerSidePatchCordCrossIdItem" structureRef="String"/>
@@ -229,6 +231,13 @@
   <bpmn2:itemDefinition id="__2E4F8BD6-67E8-4AB0-97E6-284C3DCBBF14_routeMap.sourceInputXItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__2E4F8BD6-67E8-4AB0-97E6-284C3DCBBF14_dataMap.materialTemplateNameInputXItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__2E4F8BD6-67E8-4AB0-97E6-284C3DCBBF14_crossIdOutputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__66802770-F17A-4E61-BD29-2BC24B1D632B_apiUrlInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__66802770-F17A-4E61-BD29-2BC24B1D632B_routeMap.domainInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__66802770-F17A-4E61-BD29-2BC24B1D632B_routeMap.sourceInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__66802770-F17A-4E61-BD29-2BC24B1D632B_dataMap.childCrossIdInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__66802770-F17A-4E61-BD29-2BC24B1D632B_dataMap.nodeTypeInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__66802770-F17A-4E61-BD29-2BC24B1D632B_crossIdOutputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__66802770-F17A-4E61-BD29-2BC24B1D632B_statusDiscriminatorOutputXItem" structureRef="String"/>
   <bpmn2:process id="GC-AUTOMATION.closeProject_commit" drools:packageName="com.gc.gc_automation" drools:version="1.0" drools:adHoc="false" name="closeProject_commit" isExecutable="true" processType="Public">
     <bpmn2:extensionElements>
       <drools:global identifier="_apiCallUrl" type="String"/>
@@ -256,6 +265,8 @@
     <bpmn2:property id="opticalCircuitCrossId" itemSubjectRef="_opticalCircuitCrossIdItem" name="opticalCircuitCrossId"/>
     <bpmn2:property id="ethLinkCrossId" itemSubjectRef="_ethLinkCrossIdItem" name="ethLinkCrossId"/>
     <bpmn2:property id="networkSideCageCrossId" itemSubjectRef="_networkSideCageCrossIdItem" name="networkSideCageCrossId"/>
+    <bpmn2:property id="edgeEquipmentShelfCrossId" itemSubjectRef="_edgeEquipmentShelfCrossIdItem" name="edgeEquipmentShelfCrossId"/>
+    <bpmn2:property id="edgeEquipmentShelfStatusDiscriminator" itemSubjectRef="_edgeEquipmentShelfStatusDiscriminatorItem" name="edgeEquipmentShelfStatusDiscriminator"/>
     <bpmn2:property id="customerSideCageCrossId" itemSubjectRef="_customerSideCageCrossIdItem" name="customerSideCageCrossId"/>
     <bpmn2:property id="networkSidePatchCordCrossId" itemSubjectRef="_networkSidePatchCordCrossIdItem" name="networkSidePatchCordCrossId"/>
     <bpmn2:property id="customerSidePatchCordCrossId" itemSubjectRef="_customerSidePatchCordCrossIdItem" name="customerSidePatchCordCrossId"/>
@@ -440,7 +451,19 @@ return result;]]></bpmn2:conditionExpression>
     <bpmn2:sequenceFlow id="_73212170-8856-5C3D-B7DC-1542A90A816B" sourceRef="_355276D6-C1B9-53E5-9CDB-B73E9AC74B2E" targetRef="_F4A10B4A-94C8-59CE-9950-1D7FD3602FA3"/>
     <bpmn2:sequenceFlow id="_39C9629A-1D86-508F-AB8C-7120FC1D2EFF" sourceRef="_AF54E728-CE26-591D-9633-5F2A1478E7FC" targetRef="_4E2BD190-AC42-5470-8195-F221936EB169"/>
     <bpmn2:sequenceFlow id="_0DE4CAAC-BC1B-53F8-A72A-7A09F92C54CE" sourceRef="_C4761E51-22D7-5E50-9AE7-CA0354C100D7" targetRef="_20C3B5C5-EEE3-5965-A558-4032CCD83F02"/>
-    <bpmn2:sequenceFlow id="_F9B15FA9-19D1-5D93-9FD5-240977E8049E" sourceRef="_9B209ED2-F771-5DFF-A98B-E8F76B240D81" targetRef="_C4761E51-22D7-5E50-9AE7-CA0354C100D7"/>
+    <bpmn2:sequenceFlow id="_F9B15FA9-19D1-5D93-9FD5-240977E8049E" sourceRef="_9B209ED2-F771-5DFF-A98B-E8F76B240D81" targetRef="_66802770-F17A-4E61-BD29-2BC24B1D632B"/>
+    <bpmn2:sequenceFlow id="_CFEAE94E-E8CF-4630-A0C2-4839E4232F16" sourceRef="_66802770-F17A-4E61-BD29-2BC24B1D632B" targetRef="_1517FB84-5DCB-4BC3-893F-9DA4463DB824"/>
+    <bpmn2:sequenceFlow id="_0CA20044-0182-420D-AC5F-E8AE3F98CACF" sourceRef="_1517FB84-5DCB-4BC3-893F-9DA4463DB824" targetRef="_C4761E51-22D7-5E50-9AE7-CA0354C100D7"/>
+    <bpmn2:sequenceFlow id="_62E25181-BEAC-4F8F-8C51-2D90AC6D330E" name="Not found" sourceRef="_1517FB84-5DCB-4BC3-893F-9DA4463DB824" targetRef="_CF059C1B-EF4A-49D6-8833-0E5BB594D4BB">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Not found]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_62E25181-BEAC-4F8F-8C51-2D90AC6D330E_cond" language="http://www.java.com/java"><![CDATA[boolean result = errorMessage != null;
+System.out.println("VALIDATION: findParentNodeByType (edge equipment SHELF parent) failed=" + result + ", errorMessage=" + errorMessage);
+return result;]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="_608FAA45-8864-5094-8F9E-B519F478863F" sourceRef="_21A1D8BA-4C95-5E40-AB14-B690A207A1F2" targetRef="_AF54E728-CE26-591D-9633-5F2A1478E7FC"/>
     <bpmn2:sequenceFlow id="_843D290C-EC00-527C-A6F7-1C696C1E0142" sourceRef="_F6B3785E-5F89-526D-AA76-036825E0CBD3" targetRef="_21A1D8BA-4C95-5E40-AB14-B690A207A1F2"/>
     <bpmn2:sequenceFlow id="_98C1C5A4-467A-5C70-93F6-CB03E90F96FD" sourceRef="_204801D5-FA01-5975-85A3-1F772778C7E2" targetRef="_755474C4-0E84-5903-B57F-DB2327E7A373"/>
@@ -2501,6 +2524,118 @@ System.out.println("opticalCircuitCrossId=" + kcontext.getVariable("opticalCircu
         <bpmn2:target>_8qyZr3oxEfG20Kz8fLTUEg</bpmn2:target>
       </bpmn2:linkEventDefinition>
     </bpmn2:intermediateThrowEvent>
+    <bpmn2:task id="_66802770-F17A-4E61-BD29-2BC24B1D632B" drools:taskName="SdcApiCall" name="REST_API_CALL:
+cross/executeQuery/findParentNodeByType
+(edge equipment SHELF parent)">
+      <bpmn2:documentation id="_66802770-F17A-4E61-BD29-2BC24B1D632B_doc"><![CDATA[Find the network-side cage's (networkSideCageCrossId) ancestor node of type SHELF (the network edge equipment, MER/MAS) and read its status, so the commit is rejected if that edge equipment is not ACTIVE. GENERIC source (parent-of-type-X, mirror of cross/executeQuery/findChildNodeByType). (FIND)]]></bpmn2:documentation>
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[REST_API_CALL:
+cross/executeQuery/findParentNodeByType
+(edge equipment SHELF parent)]]></drools:metaValue>
+        </drools:metaData>
+        <drools:onEntry-script scriptFormat="http://www.java.com/java">
+          <drools:script><![CDATA[System.out.println("===========================================================================================================");
+System.out.println("closeProject_commit - REST_API_CALL: cross/executeQuery/findParentNodeByType (edge equipment SHELF parent)");
+System.out.println("===========================================================================================================");
+
+kcontext.setVariable("edgeEquipmentShelfCrossId", null);
+kcontext.setVariable("edgeEquipmentShelfStatusDiscriminator", null);]]></drools:script>
+        </drools:onEntry-script>
+        <drools:onExit-script scriptFormat="http://www.java.com/java">
+          <drools:script><![CDATA[System.out.println("Data Outputs: edgeEquipmentShelfCrossId=" + edgeEquipmentShelfCrossId + ", edgeEquipmentShelfStatusDiscriminator=" + edgeEquipmentShelfStatusDiscriminator);
+if (edgeEquipmentShelfCrossId == null || edgeEquipmentShelfCrossId.isEmpty()) {
+    kcontext.setVariable("errorMessage", "Network-side cage '" + networkSideCageCrossId + "' has no ancestor node of type SHELF");
+} else if (edgeEquipmentShelfStatusDiscriminator != null && !"ACTIVE".equalsIgnoreCase(edgeEquipmentShelfStatusDiscriminator)) {
+    kcontext.setVariable("errorMessage", "Edge equipment SHELF node '" + edgeEquipmentShelfCrossId + "' is not ACTIVE (was '" + edgeEquipmentShelfStatusDiscriminator + "')");
+}]]></drools:script>
+        </drools:onExit-script>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_F9B15FA9-19D1-5D93-9FD5-240977E8049E</bpmn2:incoming>
+      <bpmn2:outgoing>_CFEAE94E-E8CF-4630-A0C2-4839E4232F16</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="_66802770-F17A-4E61-BD29-2BC24B1D632B_io">
+        <bpmn2:dataInput id="_66802770-F17A-4E61-BD29-2BC24B1D632B_apiUrlInputX" drools:dtype="String" itemSubjectRef="__66802770-F17A-4E61-BD29-2BC24B1D632B_apiUrlInputXItem" name="apiUrl"/>
+        <bpmn2:dataInput id="_66802770-F17A-4E61-BD29-2BC24B1D632B_routeMap.domainInputX" drools:dtype="String" itemSubjectRef="__66802770-F17A-4E61-BD29-2BC24B1D632B_routeMap.domainInputXItem" name="routeMap.domain"/>
+        <bpmn2:dataInput id="_66802770-F17A-4E61-BD29-2BC24B1D632B_routeMap.sourceInputX" drools:dtype="String" itemSubjectRef="__66802770-F17A-4E61-BD29-2BC24B1D632B_routeMap.sourceInputXItem" name="routeMap.source"/>
+        <bpmn2:dataInput id="_66802770-F17A-4E61-BD29-2BC24B1D632B_dataMap.childCrossIdInputX" drools:dtype="String" itemSubjectRef="__66802770-F17A-4E61-BD29-2BC24B1D632B_dataMap.childCrossIdInputXItem" name="dataMap.childCrossId"/>
+        <bpmn2:dataInput id="_66802770-F17A-4E61-BD29-2BC24B1D632B_dataMap.nodeTypeInputX" drools:dtype="String" itemSubjectRef="__66802770-F17A-4E61-BD29-2BC24B1D632B_dataMap.nodeTypeInputXItem" name="dataMap.nodeType"/>
+        <bpmn2:dataInput id="_66802770-F17A-4E61-BD29-2BC24B1D632B_TaskNameInputX" drools:dtype="Object" name="TaskName"/>
+        <bpmn2:dataOutput id="_66802770-F17A-4E61-BD29-2BC24B1D632B_crossIdOutputX" drools:dtype="String" itemSubjectRef="__66802770-F17A-4E61-BD29-2BC24B1D632B_crossIdOutputXItem" name="crossId"/>
+        <bpmn2:dataOutput id="_66802770-F17A-4E61-BD29-2BC24B1D632B_statusDiscriminatorOutputX" drools:dtype="String" itemSubjectRef="__66802770-F17A-4E61-BD29-2BC24B1D632B_statusDiscriminatorOutputXItem" name="statusDiscriminator"/>
+        <bpmn2:inputSet id="_66802770-F17A-4E61-BD29-2BC24B1D632B_is">
+          <bpmn2:dataInputRefs>_66802770-F17A-4E61-BD29-2BC24B1D632B_apiUrlInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_66802770-F17A-4E61-BD29-2BC24B1D632B_routeMap.domainInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_66802770-F17A-4E61-BD29-2BC24B1D632B_routeMap.sourceInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_66802770-F17A-4E61-BD29-2BC24B1D632B_dataMap.childCrossIdInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_66802770-F17A-4E61-BD29-2BC24B1D632B_dataMap.nodeTypeInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_66802770-F17A-4E61-BD29-2BC24B1D632B_TaskNameInputX</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet id="_66802770-F17A-4E61-BD29-2BC24B1D632B_os">
+          <bpmn2:dataOutputRefs>_66802770-F17A-4E61-BD29-2BC24B1D632B_crossIdOutputX</bpmn2:dataOutputRefs>
+          <bpmn2:dataOutputRefs>_66802770-F17A-4E61-BD29-2BC24B1D632B_statusDiscriminatorOutputX</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation id="_66802770-F17A-4E61-BD29-2BC24B1D632B_ia1">
+        <bpmn2:sourceRef>_apiCallUrl</bpmn2:sourceRef>
+        <bpmn2:targetRef>_66802770-F17A-4E61-BD29-2BC24B1D632B_apiUrlInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_66802770-F17A-4E61-BD29-2BC24B1D632B_ia2">
+        <bpmn2:targetRef>_66802770-F17A-4E61-BD29-2BC24B1D632B_routeMap.domainInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_66802770-F17A-4E61-BD29-2BC24B1D632B_ia2a">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_66802770-F17A-4E61-BD29-2BC24B1D632B_ia2f"><![CDATA[REST_API_CALL]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_66802770-F17A-4E61-BD29-2BC24B1D632B_ia2t">_66802770-F17A-4E61-BD29-2BC24B1D632B_routeMap.domainInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_66802770-F17A-4E61-BD29-2BC24B1D632B_ia3">
+        <bpmn2:targetRef>_66802770-F17A-4E61-BD29-2BC24B1D632B_routeMap.sourceInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_66802770-F17A-4E61-BD29-2BC24B1D632B_ia3a">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_66802770-F17A-4E61-BD29-2BC24B1D632B_ia3f"><![CDATA[cross/executeQuery/findParentNodeByType]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_66802770-F17A-4E61-BD29-2BC24B1D632B_ia3t">_66802770-F17A-4E61-BD29-2BC24B1D632B_routeMap.sourceInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_66802770-F17A-4E61-BD29-2BC24B1D632B_ia4">
+        <bpmn2:sourceRef>networkSideCageCrossId</bpmn2:sourceRef>
+        <bpmn2:targetRef>_66802770-F17A-4E61-BD29-2BC24B1D632B_dataMap.childCrossIdInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_66802770-F17A-4E61-BD29-2BC24B1D632B_ia5">
+        <bpmn2:targetRef>_66802770-F17A-4E61-BD29-2BC24B1D632B_dataMap.nodeTypeInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_66802770-F17A-4E61-BD29-2BC24B1D632B_ia5a">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_66802770-F17A-4E61-BD29-2BC24B1D632B_ia5f"><![CDATA[SHELF]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_66802770-F17A-4E61-BD29-2BC24B1D632B_ia5t">_66802770-F17A-4E61-BD29-2BC24B1D632B_dataMap.nodeTypeInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_66802770-F17A-4E61-BD29-2BC24B1D632B_ia6">
+        <bpmn2:targetRef>_66802770-F17A-4E61-BD29-2BC24B1D632B_TaskNameInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_66802770-F17A-4E61-BD29-2BC24B1D632B_ia6a">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_66802770-F17A-4E61-BD29-2BC24B1D632B_ia6f"><![CDATA[SdcApiCall]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_66802770-F17A-4E61-BD29-2BC24B1D632B_ia6t">_66802770-F17A-4E61-BD29-2BC24B1D632B_TaskNameInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation id="_66802770-F17A-4E61-BD29-2BC24B1D632B_oa1">
+        <bpmn2:sourceRef>_66802770-F17A-4E61-BD29-2BC24B1D632B_crossIdOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>edgeEquipmentShelfCrossId</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="_66802770-F17A-4E61-BD29-2BC24B1D632B_oa2">
+        <bpmn2:sourceRef>_66802770-F17A-4E61-BD29-2BC24B1D632B_statusDiscriminatorOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>edgeEquipmentShelfStatusDiscriminator</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:exclusiveGateway id="_1517FB84-5DCB-4BC3-893F-9DA4463DB824" drools:dg="_0CA20044-0182-420D-AC5F-E8AE3F98CACF" gatewayDirection="Diverging" default="_0CA20044-0182-420D-AC5F-E8AE3F98CACF">
+      <bpmn2:incoming>_CFEAE94E-E8CF-4630-A0C2-4839E4232F16</bpmn2:incoming>
+      <bpmn2:outgoing>_0CA20044-0182-420D-AC5F-E8AE3F98CACF</bpmn2:outgoing>
+      <bpmn2:outgoing>_62E25181-BEAC-4F8F-8C51-2D90AC6D330E</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:intermediateThrowEvent id="_CF059C1B-EF4A-49D6-8833-0E5BB594D4BB" name="Failed">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Failed]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_62E25181-BEAC-4F8F-8C51-2D90AC6D330E</bpmn2:incoming>
+      <bpmn2:linkEventDefinition id="_C7325497-BB04-4100-AF7F-459113191373" name="Failed">
+        <bpmn2:target>_8qyZyXoxEfG20Kz8fLTUEg</bpmn2:target>
+      </bpmn2:linkEventDefinition>
+    </bpmn2:intermediateThrowEvent>
     <bpmn2:task id="_C4761E51-22D7-5E50-9AE7-CA0354C100D7" drools:taskName="SdcApiCall" name="REST_API_CALL:
 cross/findLinkByEndNode
 (network patch cord)">
@@ -2525,7 +2660,7 @@ if (networkSidePatchCordCrossId == null) {
 }]]></drools:script>
         </drools:onExit-script>
       </bpmn2:extensionElements>
-      <bpmn2:incoming>_F9B15FA9-19D1-5D93-9FD5-240977E8049E</bpmn2:incoming>
+      <bpmn2:incoming>_0CA20044-0182-420D-AC5F-E8AE3F98CACF</bpmn2:incoming>
       <bpmn2:outgoing>_0DE4CAAC-BC1B-53F8-A72A-7A09F92C54CE</bpmn2:outgoing>
       <bpmn2:ioSpecification id="_8qzoFnoxEfG20Kz8fLTUEg">
         <bpmn2:dataInput id="_C4761E51-22D7-5E50-9AE7-CA0354C100D7_apiUrlInputX" drools:dtype="String" itemSubjectRef="__C4761E51-22D7-5E50-9AE7-CA0354C100D7_apiUrlInputXItem" name="apiUrl"/>
