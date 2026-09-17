@@ -7,6 +7,7 @@
   <bpmn2:itemDefinition id="_projectCrossIdItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_serviceCrossIdItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_smwRoomIdItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_crossRoomIdItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_countryItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_smwSystemIdItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_serviceComponentsItem" structureRef="java.util.List"/>
@@ -38,11 +39,13 @@
   <bpmn2:itemDefinition id="__A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_dataMap.jsonata.crossProjectNameInputXItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_dataMap.jsonata.serviceCrossIdInputXItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_dataMap.jsonata.smwRoomIdInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_dataMap.jsonata.crossRoomIdInputXItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_dataMap.jsonata.countryInputXItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_versionOutputXItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_crossProjectNameOutputXItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_serviceCrossIdOutputXItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_smwRoomIdOutputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_crossRoomIdOutputXItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_countryOutputXItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__DE70A09C-D121-4102-BB26-7C89723EFE89_apiUrlInputXItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__DE70A09C-D121-4102-BB26-7C89723EFE89_routeMap.domainInputXItem" structureRef="String"/>
@@ -91,6 +94,7 @@
     <bpmn2:property id="projectCrossId" itemSubjectRef="_projectCrossIdItem" name="projectCrossId"/>
     <bpmn2:property id="serviceCrossId" itemSubjectRef="_serviceCrossIdItem" name="serviceCrossId"/>
     <bpmn2:property id="smwRoomId" itemSubjectRef="_smwRoomIdItem" name="smwRoomId"/>
+    <bpmn2:property id="crossRoomId" itemSubjectRef="_crossRoomIdItem" name="crossRoomId"/>
     <bpmn2:property id="country" itemSubjectRef="_countryItem" name="country"/>
     <bpmn2:property id="smwSystemId" itemSubjectRef="_smwSystemIdItem" name="smwSystemId"/>
     <bpmn2:property id="serviceComponents" itemSubjectRef="_serviceComponentsItem" name="serviceComponents"/>
@@ -153,7 +157,18 @@ return result;]]></bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="flow_resultok_end" sourceRef="_ECD39505-5686-4C54-B7B5-65076DBCDA3D" targetRef="_E2349E36-92BB-4A64-9495-1F8F71D24903"/>
     <bpmn2:sequenceFlow id="flow_findroom_gw2" sourceRef="_DE70A09C-D121-4102-BB26-7C89723EFE89" targetRef="_B3621A74-EE43-47B3-81BD-697E1F6D9B24"/>
-    <bpmn2:sequenceFlow id="flow_gw1_findnode" sourceRef="_C2586953-D211-4AEF-A761-82289F7B6FC6" targetRef="_DE70A09C-D121-4102-BB26-7C89723EFE89"/>
+    <bpmn2:sequenceFlow id="flow_gw1_findnode" sourceRef="_C2586953-D211-4AEF-A761-82289F7B6FC6" targetRef="_ADD2A003-4444-4444-8444-ADD2A0030003"/>
+    <bpmn2:sequenceFlow id="flow_gwroom_findroom" sourceRef="_ADD2A003-4444-4444-8444-ADD2A0030003" targetRef="_DE70A09C-D121-4102-BB26-7C89723EFE89"/>
+    <bpmn2:sequenceFlow id="flow_gwroom_skiproom" name="crossRoomId given" sourceRef="_ADD2A003-4444-4444-8444-ADD2A0030003" targetRef="_D95EE22A-59AD-49BB-B800-70B428BEFE43">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[crossRoomId given]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_ADD2A003CondExpr" language="http://www.java.com/java"><![CDATA[boolean result = roomCrossId != null;
+System.out.println("VALIDATION: crossRoomId path (skip SMW room lookup)=" + result);
+return result;]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="flow_gwsacc_findsvc1" sourceRef="_ADD1A002-3333-4333-8333-ADD1A0020002" targetRef="_ADD1A004-3333-4333-8333-ADD1A0040004"/>
     <bpmn2:sequenceFlow id="flow_gwsacc_fail" name="Error" sourceRef="_ADD1A002-3333-4333-8333-ADD1A0020002" targetRef="_ADD1A003-3333-4333-8333-ADD1A0030003">
       <bpmn2:extensionElements>
@@ -172,7 +187,18 @@ return result;]]></bpmn2:conditionExpression>
         </drools:metaData>
       </bpmn2:extensionElements>
     </bpmn2:sequenceFlow>
-    <bpmn2:sequenceFlow id="flow_tmf_findservice" sourceRef="_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A" targetRef="_D2857D83-E930-475A-8E23-CDE506DE89AC"/>
+    <bpmn2:sequenceFlow id="flow_tmf_findservice" sourceRef="_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A" targetRef="_ADD2A001-4444-4444-8444-ADD2A0010001"/>
+    <bpmn2:sequenceFlow id="flow_gwtmf_findproject" sourceRef="_ADD2A001-4444-4444-8444-ADD2A0010001" targetRef="_D2857D83-E930-475A-8E23-CDE506DE89AC"/>
+    <bpmn2:sequenceFlow id="flow_gwtmf_fail" name="Error" sourceRef="_ADD2A001-4444-4444-8444-ADD2A0010001" targetRef="_ADD2A002-4444-4444-8444-ADD2A0020002">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Error]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_ADD2A001CondExpr" language="http://www.java.com/java"><![CDATA[boolean result = errorMessage != null;
+System.out.println("VALIDATION: TMF_STORE get data failed=" + result + ", errorMessage=" + errorMessage);
+return result;]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="flow_start_tmf" sourceRef="_C10F678B-1D88-4E6F-BB83-EF2E45529103" targetRef="_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A"/>
     <bpmn2:sequenceFlow id="flow_gw2_upsert" sourceRef="_B3621A74-EE43-47B3-81BD-697E1F6D9B24" targetRef="_D95EE22A-59AD-49BB-B800-70B428BEFE43"/>
     <bpmn2:sequenceFlow id="flow_update_completed" sourceRef="_2219AC2D-7D00-49DA-B3D2-86FFADE5B45C" targetRef="_AB09F9D9-AC47-4B6B-9DBE-8F12CEB69D65"/>
@@ -510,7 +536,7 @@ if (projectCrossId == null || projectCrossId.isEmpty()) {
 }]]></drools:script>
         </drools:onExit-script>
       </bpmn2:extensionElements>
-      <bpmn2:incoming>flow_tmf_findservice</bpmn2:incoming>
+      <bpmn2:incoming>flow_gwtmf_findproject</bpmn2:incoming>
       <bpmn2:outgoing>flow_findproject_gwproj</bpmn2:outgoing>
       <bpmn2:ioSpecification id="_NPpeunooEfG20Kz8fLTUEg">
         <bpmn2:dataInput id="_D2857D83-E930-475A-8E23-CDE506DE89AC_apiUrlInputX" drools:dtype="String" itemSubjectRef="__D2857D83-E930-475A-8E23-CDE506DE89AC_apiUrlInputXItem" name="apiUrl"/>
@@ -581,6 +607,29 @@ if (projectCrossId == null || projectCrossId.isEmpty()) {
       <bpmn2:outgoing>flow_gw1_findnode</bpmn2:outgoing>
       <bpmn2:outgoing>flow_gw1_fail</bpmn2:outgoing>
     </bpmn2:exclusiveGateway>
+    <bpmn2:exclusiveGateway id="_ADD2A003-4444-4444-8444-ADD2A0030003" drools:dg="flow_gwroom_findroom" gatewayDirection="Diverging" default="flow_gwroom_findroom">
+      <bpmn2:documentation id="_ADD2A003Doc"><![CDATA[Skip the SMW room lookup entirely when crossRoomId was supplied - roomCrossId is already set (from crossRoomId) in the On Exit of "TMF_STORE get data" in that case.]]></bpmn2:documentation>
+      <bpmn2:incoming>flow_gw1_findnode</bpmn2:incoming>
+      <bpmn2:outgoing>flow_gwroom_findroom</bpmn2:outgoing>
+      <bpmn2:outgoing>flow_gwroom_skiproom</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:exclusiveGateway id="_ADD2A001-4444-4444-8444-ADD2A0010001" drools:dg="flow_gwtmf_findproject" gatewayDirection="Diverging" default="flow_gwtmf_findproject">
+      <bpmn2:documentation id="_ADD2A001Doc"><![CDATA[Validate that exactly one of smwRoomId (with country) or crossRoomId was supplied.]]></bpmn2:documentation>
+      <bpmn2:incoming>flow_tmf_findservice</bpmn2:incoming>
+      <bpmn2:outgoing>flow_gwtmf_findproject</bpmn2:outgoing>
+      <bpmn2:outgoing>flow_gwtmf_fail</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:intermediateThrowEvent id="_ADD2A002-4444-4444-8444-ADD2A0020002" name="Failed">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Failed]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>flow_gwtmf_fail</bpmn2:incoming>
+      <bpmn2:linkEventDefinition id="_ADD2A002LinkFailed" name="Failed">
+        <bpmn2:target>_NPpeoXooEfG20Kz8fLTUEg</bpmn2:target>
+      </bpmn2:linkEventDefinition>
+    </bpmn2:intermediateThrowEvent>
     <bpmn2:intermediateCatchEvent id="_C69B199F-6320-4024-8BD9-FD889B6E8E94" name="Failed">
       <bpmn2:extensionElements>
         <drools:metaData name="elementname">
@@ -594,6 +643,7 @@ if (projectCrossId == null || projectCrossId.isEmpty()) {
         <bpmn2:source>_NPpe0HooEfG20Kz8fLTUEg</bpmn2:source>
         <bpmn2:source>_NPpe0XooEfG20Kz8fLTUEg</bpmn2:source>
         <bpmn2:source>_NPpeoHooEfG20Kz8fLTUEg</bpmn2:source>
+        <bpmn2:source>_ADD2A002LinkFailed</bpmn2:source>
       </bpmn2:linkEventDefinition>
     </bpmn2:intermediateCatchEvent>
     <bpmn2:intermediateThrowEvent id="_ADD1A003-3333-4333-8333-ADD1A0030003" name="Failed">
@@ -676,6 +726,7 @@ map.put("serviceCrossId", kcontext.getVariable("serviceCrossId"));
 map.put("cpeCrossId", kcontext.getVariable("cpeCrossId"));
 map.put("roomCrossId", kcontext.getVariable("roomCrossId"));
 map.put("smwRoomId", kcontext.getVariable("smwRoomId"));
+map.put("crossRoomId", kcontext.getVariable("crossRoomId"));
 kcontext.setVariable("response", map);]]></bpmn2:script>
     </bpmn2:scriptTask>
     <bpmn2:scriptTask id="_ADD0A001-2222-4222-8222-ADD0A0010001" name="find servicePhysicalAccessCrossId" scriptFormat="http://www.java.com/java">
@@ -804,7 +855,7 @@ if ( roomCrossId == null ) {
 }]]></drools:script>
         </drools:onExit-script>
       </bpmn2:extensionElements>
-      <bpmn2:incoming>flow_gw1_findnode</bpmn2:incoming>
+      <bpmn2:incoming>flow_gwroom_findroom</bpmn2:incoming>
       <bpmn2:outgoing>flow_findroom_gw2</bpmn2:outgoing>
       <bpmn2:ioSpecification id="_NPpe03ooEfG20Kz8fLTUEg">
         <bpmn2:dataInput id="_DE70A09C-D121-4102-BB26-7C89723EFE89_apiUrlInputX" drools:dtype="String" itemSubjectRef="__DE70A09C-D121-4102-BB26-7C89723EFE89_apiUrlInputXItem" name="apiUrl"/>
@@ -895,8 +946,17 @@ System.out.println("updateCustomerRoom - TMF_STORE: get data");
 System.out.println("================================================");]]></drools:script>
         </drools:onEntry-script>
         <drools:onExit-script scriptFormat="http://www.java.com/java">
-          <drools:script><![CDATA[System.out.println("Data Outputs: version=" + version + ", crossProjectName=" + crossProjectName + ", serviceCrossId=" + serviceCrossId + ", smwRoomId=" + smwRoomId + ", country=" + country);
-if ( "DE".equalsIgnoreCase(country) ) {
+          <drools:script><![CDATA[System.out.println("Data Outputs: version=" + version + ", crossProjectName=" + crossProjectName + ", serviceCrossId=" + serviceCrossId + ", smwRoomId=" + smwRoomId + ", crossRoomId=" + crossRoomId + ", country=" + country);
+// the target room is given exactly one of two ways, discriminated purely by which field is
+// present in the request - there is no separate version flag for this.
+boolean hasSmwRoomId = smwRoomId != null && !smwRoomId.isEmpty();
+boolean hasCrossRoomId = crossRoomId != null && !crossRoomId.isEmpty();
+if ( hasSmwRoomId == hasCrossRoomId ) {
+    kcontext.setVariable("errorMessage", "Exactly one of 'smwRoomId' (with 'country') or 'crossRoomId' must be provided");
+} else if ( hasCrossRoomId ) {
+    // CROSS-native path: use the given room id directly, no Smallworld lookup needed at all.
+    kcontext.setVariable("roomCrossId", crossRoomId);
+} else if ( "DE".equalsIgnoreCase(country) ) {
     kcontext.setVariable("smwSystemId", "PNI_DE");
 } else {
     throw new IllegalArgumentException("Unsupported country '" + country + "' - only 'DE' (Germany) is supported for now");
@@ -915,12 +975,14 @@ if ( "DE".equalsIgnoreCase(country) ) {
         <bpmn2:dataInput id="_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_dataMap.jsonata.crossProjectNameInputX" drools:dtype="String" itemSubjectRef="__A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_dataMap.jsonata.crossProjectNameInputXItem" name="dataMap.jsonata.crossProjectName"/>
         <bpmn2:dataInput id="_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_dataMap.jsonata.serviceCrossIdInputX" drools:dtype="String" itemSubjectRef="__A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_dataMap.jsonata.serviceCrossIdInputXItem" name="dataMap.jsonata.serviceCrossId"/>
         <bpmn2:dataInput id="_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_dataMap.jsonata.smwRoomIdInputX" drools:dtype="String" itemSubjectRef="__A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_dataMap.jsonata.smwRoomIdInputXItem" name="dataMap.jsonata.smwRoomId"/>
+        <bpmn2:dataInput id="_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_dataMap.jsonata.crossRoomIdInputX" drools:dtype="String" itemSubjectRef="__A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_dataMap.jsonata.crossRoomIdInputXItem" name="dataMap.jsonata.crossRoomId"/>
         <bpmn2:dataInput id="_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_dataMap.jsonata.countryInputX" drools:dtype="String" itemSubjectRef="__A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_dataMap.jsonata.countryInputXItem" name="dataMap.jsonata.country"/>
         <bpmn2:dataInput id="_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_TaskNameInputX" drools:dtype="Object" name="TaskName"/>
         <bpmn2:dataOutput id="_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_versionOutputX" drools:dtype="String" itemSubjectRef="__A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_versionOutputXItem" name="version"/>
         <bpmn2:dataOutput id="_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_crossProjectNameOutputX" drools:dtype="String" itemSubjectRef="__A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_crossProjectNameOutputXItem" name="crossProjectName"/>
         <bpmn2:dataOutput id="_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_serviceCrossIdOutputX" drools:dtype="String" itemSubjectRef="__A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_serviceCrossIdOutputXItem" name="serviceCrossId"/>
         <bpmn2:dataOutput id="_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_smwRoomIdOutputX" drools:dtype="String" itemSubjectRef="__A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_smwRoomIdOutputXItem" name="smwRoomId"/>
+        <bpmn2:dataOutput id="_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_crossRoomIdOutputX" drools:dtype="String" itemSubjectRef="__A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_crossRoomIdOutputXItem" name="crossRoomId"/>
         <bpmn2:dataOutput id="_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_countryOutputX" drools:dtype="String" itemSubjectRef="__A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_countryOutputXItem" name="country"/>
         <bpmn2:inputSet id="_NPpe6nooEfG20Kz8fLTUEg">
           <bpmn2:dataInputRefs>_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_apiUrlInputX</bpmn2:dataInputRefs>
@@ -932,6 +994,7 @@ if ( "DE".equalsIgnoreCase(country) ) {
           <bpmn2:dataInputRefs>_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_dataMap.jsonata.crossProjectNameInputX</bpmn2:dataInputRefs>
           <bpmn2:dataInputRefs>_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_dataMap.jsonata.serviceCrossIdInputX</bpmn2:dataInputRefs>
           <bpmn2:dataInputRefs>_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_dataMap.jsonata.smwRoomIdInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_dataMap.jsonata.crossRoomIdInputX</bpmn2:dataInputRefs>
           <bpmn2:dataInputRefs>_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_dataMap.jsonata.countryInputX</bpmn2:dataInputRefs>
           <bpmn2:dataInputRefs>_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_TaskNameInputX</bpmn2:dataInputRefs>
         </bpmn2:inputSet>
@@ -940,6 +1003,7 @@ if ( "DE".equalsIgnoreCase(country) ) {
           <bpmn2:dataOutputRefs>_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_crossProjectNameOutputX</bpmn2:dataOutputRefs>
           <bpmn2:dataOutputRefs>_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_serviceCrossIdOutputX</bpmn2:dataOutputRefs>
           <bpmn2:dataOutputRefs>_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_smwRoomIdOutputX</bpmn2:dataOutputRefs>
+          <bpmn2:dataOutputRefs>_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_crossRoomIdOutputX</bpmn2:dataOutputRefs>
           <bpmn2:dataOutputRefs>_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_countryOutputX</bpmn2:dataOutputRefs>
         </bpmn2:outputSet>
       </bpmn2:ioSpecification>
@@ -1000,6 +1064,13 @@ if ( "DE".equalsIgnoreCase(country) ) {
           <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_NPpfCXooEfG20Kz8fLTUEg">_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_dataMap.jsonata.smwRoomIdInputX</bpmn2:to>
         </bpmn2:assignment>
       </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_ADD2A004DIA">
+        <bpmn2:targetRef>_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_dataMap.jsonata.crossRoomIdInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_ADD2A004Assign">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_ADD2A004From"><![CDATA[crossRoomId]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_ADD2A004To">_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_dataMap.jsonata.crossRoomIdInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
       <bpmn2:dataInputAssociation id="_NPpfCnooEfG20Kz8fLTUEg">
         <bpmn2:targetRef>_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_dataMap.jsonata.countryInputX</bpmn2:targetRef>
         <bpmn2:assignment id="_NPpfC3ooEfG20Kz8fLTUEg">
@@ -1030,6 +1101,10 @@ if ( "DE".equalsIgnoreCase(country) ) {
         <bpmn2:sourceRef>_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_smwRoomIdOutputX</bpmn2:sourceRef>
         <bpmn2:targetRef>smwRoomId</bpmn2:targetRef>
       </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="_ADD2A005DOA">
+        <bpmn2:sourceRef>_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_crossRoomIdOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>crossRoomId</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
       <bpmn2:dataOutputAssociation id="_NPpfFnooEfG20Kz8fLTUEg">
         <bpmn2:sourceRef>_A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_countryOutputX</bpmn2:sourceRef>
         <bpmn2:targetRef>country</bpmn2:targetRef>
@@ -1053,6 +1128,7 @@ if ( "DE".equalsIgnoreCase(country) ) {
         </drools:metaData>
       </bpmn2:extensionElements>
       <bpmn2:incoming>flow_gw2_upsert</bpmn2:incoming>
+      <bpmn2:incoming>flow_gwroom_skiproom</bpmn2:incoming>
       <bpmn2:linkEventDefinition id="_NPpfGHooEfG20Kz8fLTUEg" name="Upsert">
         <bpmn2:target>_NPpfF3ooEfG20Kz8fLTUEg</bpmn2:target>
       </bpmn2:linkEventDefinition>
@@ -1261,6 +1337,15 @@ kcontext.setVariable("parentCrossIds", parentCrossIdsList);]]></drools:script>
       <bpmndi:BPMNShape id="shape__D25B668F-EE31-469E-9F12-F75D54EC088E" bpmnElement="_D25B668F-EE31-469E-9F12-F75D54EC088E">
         <dc:Bounds height="102.0" width="154.0" x="995.0" y="177.0"/>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__ADD2A001-4444-4444-8444-ADD2A0010001" bpmnElement="_ADD2A001-4444-4444-8444-ADD2A0010001">
+        <dc:Bounds height="56.0" width="56.0" x="715.0" y="200.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__ADD2A002-4444-4444-8444-ADD2A0020002" bpmnElement="_ADD2A002-4444-4444-8444-ADD2A0020002">
+        <dc:Bounds height="56.0" width="56.0" x="740.0" y="87.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__ADD2A003-4444-4444-8444-ADD2A0030003" bpmnElement="_ADD2A003-4444-4444-8444-ADD2A0030003">
+        <dc:Bounds height="56.0" width="56.0" x="2260.0" y="140.0"/>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="edge_shape_null_to_shape__ECD39505-5686-4C54-B7B5-65076DBCDA3D" bpmnElement="flow_completed_resultok">
         <di:waypoint xsi:type="dc:Point" x="434.0" y="590.0"/>
         <di:waypoint xsi:type="dc:Point" x="610.0" y="590.0"/>
@@ -1285,9 +1370,17 @@ kcontext.setVariable("parentCrossIds", parentCrossIdsList);]]></drools:script>
         <di:waypoint xsi:type="dc:Point" x="434.0" y="228.0"/>
         <di:waypoint xsi:type="dc:Point" x="610.0" y="228.0"/>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="edge_shape__A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_to_shape__D2857D83-E930-475A-8E23-CDE506DE89AC" bpmnElement="flow_tmf_findservice">
+      <bpmndi:BPMNEdge id="edge_shape__A5BE9CA5-73C3-402B-B50E-31739BB0CA5A_to_shape__ADD2A001-4444-4444-8444-ADD2A0010001" bpmnElement="flow_tmf_findservice">
         <di:waypoint xsi:type="dc:Point" x="610.0" y="228.0"/>
+        <di:waypoint xsi:type="dc:Point" x="743.0" y="228.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__ADD2A001-4444-4444-8444-ADD2A0010001_to_shape__D2857D83-E930-475A-8E23-CDE506DE89AC" bpmnElement="flow_gwtmf_findproject">
+        <di:waypoint xsi:type="dc:Point" x="743.0" y="228.0"/>
         <di:waypoint xsi:type="dc:Point" x="849.0" y="228.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__ADD2A001-4444-4444-8444-ADD2A0010001_to_shape__ADD2A002-4444-4444-8444-ADD2A0020002" bpmnElement="flow_gwtmf_fail">
+        <di:waypoint xsi:type="dc:Point" x="743.0" y="228.0"/>
+        <di:waypoint xsi:type="dc:Point" x="768.0" y="115.0"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_shape__ADD1A001-3333-4333-8333-ADD1A0010001_to_shape__ADD1A002-3333-4333-8333-ADD1A0020002" bpmnElement="flow_findsacc_gwsacc">
         <di:waypoint xsi:type="dc:Point" x="1299.0" y="177.0"/>
@@ -1301,9 +1394,17 @@ kcontext.setVariable("parentCrossIds", parentCrossIdsList);]]></drools:script>
         <di:waypoint xsi:type="dc:Point" x="1301.0" y="115.0"/>
         <di:waypoint xsi:type="dc:Point" x="1521.0" y="228.0"/>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="edge_shape__C2586953-D211-4AEF-A761-82289F7B6FC6_to_shape__DE70A09C-D121-4102-BB26-7C89723EFE89" bpmnElement="flow_gw1_findnode">
+      <bpmndi:BPMNEdge id="edge_shape__C2586953-D211-4AEF-A761-82289F7B6FC6_to_shape__ADD2A003-4444-4444-8444-ADD2A0030003" bpmnElement="flow_gw1_findnode">
         <di:waypoint xsi:type="dc:Point" x="2197.0" y="115.0"/>
-        <di:waypoint xsi:type="dc:Point" x="2203.0" y="228.0"/>
+        <di:waypoint xsi:type="dc:Point" x="2288.0" y="168.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__ADD2A003-4444-4444-8444-ADD2A0030003_to_shape__DE70A09C-D121-4102-BB26-7C89723EFE89" bpmnElement="flow_gwroom_findroom">
+        <di:waypoint xsi:type="dc:Point" x="2288.0" y="168.0"/>
+        <di:waypoint xsi:type="dc:Point" x="2352.0" y="228.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__ADD2A003-4444-4444-8444-ADD2A0030003_to_shape__D95EE22A-59AD-49BB-B800-70B428BEFE43" bpmnElement="flow_gwroom_skiproom">
+        <di:waypoint xsi:type="dc:Point" x="2288.0" y="168.0"/>
+        <di:waypoint xsi:type="dc:Point" x="2604.0" y="228.0"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_shape__DE70A09C-D121-4102-BB26-7C89723EFE89_to_shape__B3621A74-EE43-47B3-81BD-697E1F6D9B24" bpmnElement="flow_findroom_gw2">
         <di:waypoint xsi:type="dc:Point" x="2429.0" y="228.0"/>
