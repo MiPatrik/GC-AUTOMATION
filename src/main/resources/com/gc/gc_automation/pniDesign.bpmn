@@ -32,6 +32,7 @@
   <bpmn2:itemDefinition id="_cageNameItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_addressLatitudeItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_addressLongitudeItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_smwCountryCodeItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_placeSmwIdItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_errorMessageItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__40B0CDA6-41E8-4634-9366-4BB47C6DE6E4_apiUrlInputXItem" structureRef="String"/>
@@ -102,6 +103,7 @@
   <bpmn2:itemDefinition id="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_crossProjectNameInputXItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_addressLatitudeInputXItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_addressLongitudeInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_smwCountryCodeInputXItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_placeCrossIdOutputXItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_placeSmwIdOutputXItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_errorMessageOutputXItem" structureRef="String"/>
@@ -185,6 +187,7 @@
     <bpmn2:property id="cageName" itemSubjectRef="_cageNameItem" name="cageName"/>
     <bpmn2:property id="addressLatitude" itemSubjectRef="_addressLatitudeItem" name="addressLatitude"/>
     <bpmn2:property id="addressLongitude" itemSubjectRef="_addressLongitudeItem" name="addressLongitude"/>
+    <bpmn2:property id="smwCountryCode" itemSubjectRef="_smwCountryCodeItem" name="smwCountryCode"/>
     <bpmn2:property id="placeSmwId" itemSubjectRef="_placeSmwIdItem" name="placeSmwId"/>
     <bpmn2:property id="errorMessage" itemSubjectRef="_errorMessageItem" name="errorMessage"/>
     <bpmn2:sequenceFlow id="_SF00001-FFFF-FFFF-FFFF-FFFFFFFFFFFF" sourceRef="_A8BB9DBD-1042-4D58-A632-2B701E74E4B3" targetRef="_E31191B7-13F1-4A4E-8BF2-531875B2A25D"/>
@@ -231,6 +234,16 @@ return result;]]></bpmn2:conditionExpression>
       <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_7n0yUqhIEfG7tdXwshgAXw" language="http://www.java.com/java"><![CDATA[boolean result = resultList != null && ((java.util.List<?>) resultList).size() > 1;
 System.out.println("VALIDATION: Address not unique: " + result);
 if (result) { kcontext.setVariable("errorMessage", "Address not unique"); }
+return result;]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_CSB_SF_COUNTRY_MISSING" name="Country missing" sourceRef="_656B29A3-1923-4888-BAE3-9F5D056DEF90" targetRef="_CSB_THROW_COUNTRY_MISSING">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Country missing]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_CSB_COND_COUNTRY_MISSING" language="http://www.java.com/java"><![CDATA[boolean result = errorMessage != null;
+System.out.println("VALIDATION: Address COUNTRY custom attribute missing: " + result);
 return result;]]></bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="_SF00008-FFFF-FFFF-FFFF-FFFFFFFFFFFF" sourceRef="_DF7DBE5F-DCB0-43F2-B5A0-D14E96F15DDF" targetRef="_EACD5634-2A8C-4C5C-A6FB-F0EEFDDB8CF4"/>
@@ -403,6 +416,17 @@ kcontext.setVariable("cageStatuses", java.util.Arrays.asList("ACTIVE", "DESIGNED
       </bpmn2:extensionElements>
       <bpmn2:incoming>_SF00007-FFFF-FFFF-FFFF-FFFFFFFFFFFF</bpmn2:incoming>
       <bpmn2:linkEventDefinition id="_7n0ya6hIEfG7tdXwshgAXw" name="Failed">
+        <bpmn2:target>_7n0ybKhIEfG7tdXwshgAXw</bpmn2:target>
+      </bpmn2:linkEventDefinition>
+    </bpmn2:intermediateThrowEvent>
+    <bpmn2:intermediateThrowEvent id="_CSB_THROW_COUNTRY_MISSING" name="Failed">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Failed]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_CSB_SF_COUNTRY_MISSING</bpmn2:incoming>
+      <bpmn2:linkEventDefinition id="_CSB_LINK_COUNTRY_MISSING" name="Failed">
         <bpmn2:target>_7n0ybKhIEfG7tdXwshgAXw</bpmn2:target>
       </bpmn2:linkEventDefinition>
     </bpmn2:intermediateThrowEvent>
@@ -808,6 +832,7 @@ kcontext.setVariable("errorMessage", null);]]></drools:script>
         <bpmn2:dataInput id="_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_crossProjectNameInputX" drools:dtype="String" itemSubjectRef="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_crossProjectNameInputXItem" name="crossProjectName"/>
         <bpmn2:dataInput id="_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_addressLatitudeInputX" drools:dtype="String" itemSubjectRef="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_addressLatitudeInputXItem" name="addressLatitude"/>
         <bpmn2:dataInput id="_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_addressLongitudeInputX" drools:dtype="String" itemSubjectRef="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_addressLongitudeInputXItem" name="addressLongitude"/>
+        <bpmn2:dataInput id="_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_smwCountryCodeInputX" drools:dtype="String" itemSubjectRef="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_smwCountryCodeInputXItem" name="smwCountryCode"/>
         <bpmn2:dataOutput id="_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_placeCrossIdOutputX" drools:dtype="String" itemSubjectRef="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_placeCrossIdOutputXItem" name="placeCrossId"/>
         <bpmn2:dataOutput id="_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_placeSmwIdOutputX" drools:dtype="String" itemSubjectRef="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_placeSmwIdOutputXItem" name="placeSmwId"/>
         <bpmn2:dataOutput id="_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_errorMessageOutputX" drools:dtype="String" itemSubjectRef="__ED6FD894-E488-4550-9DB1-80AFBD9C40F5_errorMessageOutputXItem" name="errorMessage"/>
@@ -817,6 +842,7 @@ kcontext.setVariable("errorMessage", null);]]></drools:script>
           <bpmn2:dataInputRefs>_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_crossProjectNameInputX</bpmn2:dataInputRefs>
           <bpmn2:dataInputRefs>_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_addressLatitudeInputX</bpmn2:dataInputRefs>
           <bpmn2:dataInputRefs>_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_addressLongitudeInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_smwCountryCodeInputX</bpmn2:dataInputRefs>
         </bpmn2:inputSet>
         <bpmn2:outputSet id="_7n1ZZqhIEfG7tdXwshgAXw">
           <bpmn2:dataOutputRefs>_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_placeCrossIdOutputX</bpmn2:dataOutputRefs>
@@ -844,6 +870,10 @@ kcontext.setVariable("errorMessage", null);]]></drools:script>
         <bpmn2:sourceRef>addressLongitude</bpmn2:sourceRef>
         <bpmn2:targetRef>_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_addressLongitudeInputX</bpmn2:targetRef>
       </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CSB_DIA_SMWCOUNTRYCODE">
+        <bpmn2:sourceRef>smwCountryCode</bpmn2:sourceRef>
+        <bpmn2:targetRef>_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_smwCountryCodeInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
       <bpmn2:dataOutputAssociation id="_7n1ZbKhIEfG7tdXwshgAXw">
         <bpmn2:sourceRef>_ED6FD894-E488-4550-9DB1-80AFBD9C40F5_placeCrossIdOutputX</bpmn2:sourceRef>
         <bpmn2:targetRef>placeCrossId</bpmn2:targetRef>
@@ -870,6 +900,7 @@ kcontext.setVariable("errorMessage", null);]]></drools:script>
       </bpmn2:extensionElements>
       <bpmn2:outgoing>_SF00023-FFFF-FFFF-FFFF-FFFFFFFFFFFF</bpmn2:outgoing>
       <bpmn2:linkEventDefinition id="_7n0ybKhIEfG7tdXwshgAXw" name="Failed">
+        <bpmn2:source>_CSB_LINK_COUNTRY_MISSING</bpmn2:source>
         <bpmn2:source>_7n1Zb6hIEfG7tdXwshgAXw</bpmn2:source>
         <bpmn2:source>_7n1ZcKhIEfG7tdXwshgAXw</bpmn2:source>
         <bpmn2:source>_7n1ZcahIEfG7tdXwshgAXw</bpmn2:source>
@@ -1205,6 +1236,7 @@ System.out.println("===========================================");]]></drools:sc
       <bpmn2:outgoing>_SF00005-FFFF-FFFF-FFFF-FFFFFFFFFFFF</bpmn2:outgoing>
       <bpmn2:outgoing>_SF00006-FFFF-FFFF-FFFF-FFFFFFFFFFFF</bpmn2:outgoing>
       <bpmn2:outgoing>_SF00007-FFFF-FFFF-FFFF-FFFFFFFFFFFF</bpmn2:outgoing>
+      <bpmn2:outgoing>_CSB_SF_COUNTRY_MISSING</bpmn2:outgoing>
     </bpmn2:exclusiveGateway>
     <bpmn2:task id="_DF7DBE5F-DCB0-43F2-B5A0-D14E96F15DDF" drools:taskName="SdcApiCall" name="REST_API_CALL:
 cross/findPlaceForAddress">
@@ -1407,6 +1439,16 @@ if (resultList != null) {
         kcontext.setVariable("addressLatitude", latitude == null ? null : String.valueOf(latitude));
         kcontext.setVariable("addressLongitude", longitude == null ? null : String.valueOf(longitude));
         System.out.println("addressLatitude=" + latitude + ", addressLongitude=" + longitude);
+
+        // Which Smallworld instance (DE/DK/...) owns this address - drives which smw/<country>/*
+        // sources "Create place" ends up calling (globalconnect#42). Read straight off the address's
+        // own COUNTRY custom attribute.
+        smwCountryCode = (String) firstRow.get("country");
+        kcontext.setVariable("smwCountryCode", smwCountryCode);
+        System.out.println("smwCountryCode=" + smwCountryCode);
+        if (smwCountryCode == null || smwCountryCode.isEmpty()) {
+            kcontext.setVariable("errorMessage", "Address '" + globalReferenceId + "' has no COUNTRY custom attribute - cannot pick a Smallworld instance");
+        }
     }
 }]]></drools:script>
         </drools:onExit-script>
@@ -1926,6 +1968,9 @@ System.out.println("=======================================================");]]
       <bpmndi:BPMNShape id="shape__D1B521D8-1022-48D8-AE12-935A940DDC11" bpmnElement="_D1B521D8-1022-48D8-AE12-935A940DDC11">
         <dc:Bounds height="56.0" width="56.0" x="993.0" y="395.0"/>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CSB_THROW_COUNTRY_MISSING" bpmnElement="_CSB_THROW_COUNTRY_MISSING">
+        <dc:Bounds height="56.0" width="56.0" x="883.0" y="505.0"/>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="shape__E31191B7-13F1-4A4E-8BF2-531875B2A25D" bpmnElement="_E31191B7-13F1-4A4E-8BF2-531875B2A25D">
         <dc:Bounds height="102.0" width="154.0" x="424.0" y="501.0"/>
       </bpmndi:BPMNShape>
@@ -2004,6 +2049,10 @@ System.out.println("=======================================================");]]
       <bpmndi:BPMNEdge id="edge_shape__656B29A3-1923-4888-BAE3-9F5D056DEF90_to_shape__D1B521D8-1022-48D8-AE12-935A940DDC11" bpmnElement="_SF00007-FFFF-FFFF-FFFF-FFFFFFFFFFFF">
         <di:waypoint xsi:type="dc:Point" x="911.0" y="423.0"/>
         <di:waypoint xsi:type="dc:Point" x="1021.0" y="423.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__656B29A3-1923-4888-BAE3-9F5D056DEF90_to_shape__CSB_THROW_COUNTRY_MISSING" bpmnElement="_CSB_SF_COUNTRY_MISSING">
+        <di:waypoint xsi:type="dc:Point" x="911.0" y="423.0"/>
+        <di:waypoint xsi:type="dc:Point" x="911.0" y="533.0"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_shape__E31191B7-13F1-4A4E-8BF2-531875B2A25D_to_shape__0C4B3FBF-E317-4861-82D4-D32F1C772445" bpmnElement="_B8EE72C7-FB9D-43B3-B35C-9CFCFDB0F29C">
         <di:waypoint xsi:type="dc:Point" x="501.0" y="552.0"/>

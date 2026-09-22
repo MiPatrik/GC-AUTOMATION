@@ -1,0 +1,1117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.omg.org/bpmn20" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_CSB_DEFINITIONS" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd http://www.omg.org/spec/DD/20100524/DC DC.xsd http://www.omg.org/spec/DD/20100524/DI DI.xsd " exporter="jBPM Process Modeler" exporterVersion="2.0" targetNamespace="http://www.omg.org/bpmn20">
+  <bpmn2:itemDefinition id="_apiCallUrlItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_globalReferenceIdItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_crossProjectNameItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_smwCountryCodeItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_smwSystemIdItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_smwGetTokenSourceItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_smwCheckAddressSourceItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_smwCreateProjectSourceItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_smwCreateBuildingSourceItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_smwPostProjectChangesSourceItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_smwCheckProjectStateSourceItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_smwAccessTokenItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_smwExistingBuildingIdItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_smwCheckAddressRequestStatusItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_smwDesignIdItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_smwCreateProjectRequestStatusItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_smwBuildingIdItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_smwBuildingNameItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_smwCreateBuildingRequestStatusItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_smwPostRequestStatusItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_smwProjectStatusItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_smwQueuedJobItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_smwCheckStateRequestStatusItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_placeSmwIdItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_errorMessageItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_TOKEN_apiUrlInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_TOKEN_routeMap.domainInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_TOKEN_routeMap.sourceInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_TOKEN_accessTokenOutputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_CHECKADDR_apiUrlInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_CHECKADDR_routeMap.domainInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_CHECKADDR_routeMap.sourceInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_CHECKADDR_dataMap.accessTokenInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_CHECKADDR_dataMap.addressIdInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_CHECKADDR_requestStatusOutputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_CHECKADDR_existingBuildingIdOutputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_CREATEPROJ_apiUrlInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_CREATEPROJ_routeMap.domainInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_CREATEPROJ_routeMap.sourceInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_CREATEPROJ_dataMap.accessTokenInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_CREATEPROJ_dataMap.projectNameInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_CREATEPROJ_dataMap.addressIdInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_CREATEPROJ_designIdOutputXItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="_smwDesignIdRawItem" structureRef="Object"/>
+  <bpmn2:itemDefinition id="__CSB_T_CREATEPROJ_requestStatusOutputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_CREATEBUILDING_apiUrlInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_CREATEBUILDING_routeMap.domainInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_CREATEBUILDING_routeMap.sourceInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_CREATEBUILDING_dataMap.accessTokenInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_CREATEBUILDING_dataMap.designIdInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_CREATEBUILDING_dataMap.addressIdInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_CREATEBUILDING_smwBuildingIdOutputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_CREATEBUILDING_smwBuildingNameOutputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_CREATEBUILDING_requestStatusOutputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_POSTCHANGES_apiUrlInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_POSTCHANGES_routeMap.domainInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_POSTCHANGES_routeMap.sourceInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_POSTCHANGES_dataMap.accessTokenInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_POSTCHANGES_dataMap.designIdInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_POSTCHANGES_requestStatusOutputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_CHECKSTATE_apiUrlInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_CHECKSTATE_routeMap.domainInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_CHECKSTATE_routeMap.sourceInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_CHECKSTATE_dataMap.accessTokenInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_CHECKSTATE_dataMap.designIdInputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_CHECKSTATE_statusOutputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_CHECKSTATE_queuedJobOutputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_CHECKSTATE_requestStatusOutputXItem" structureRef="String"/>
+  <bpmn2:process id="GC-AUTOMATION.pniDesign_createSmwBuilding" drools:packageName="com.gc.gc_automation" drools:version="1.0" drools:adHoc="false" name="pniDesign_createSmwBuilding" isExecutable="true" processType="Public">
+    <bpmn2:documentation id="_CSB_DOC_0001"><![CDATA[Sub-process of pniDesign_createPlace (globalconnect#42 rework). Performs the full, real PRM API integration flow: get token, check address, create project, create empty building with AP, post project changes, check project state - all against the smw/{country}/* runtime-config sources selected by smwCountryCode. Inputs: globalReferenceId, crossProjectName, smwCountryCode. Outputs: placeSmwId, smwBuildingName, smwSystemId, errorMessage (null on success).]]></bpmn2:documentation>
+    <bpmn2:extensionElements>
+      <drools:global identifier="_apiCallUrl" type="String"/>
+    </bpmn2:extensionElements>
+    <bpmn2:property id="_apiCallUrl" itemSubjectRef="_apiCallUrlItem" name="_apiCallUrl"/>
+    <bpmn2:property id="globalReferenceId" itemSubjectRef="_globalReferenceIdItem" name="globalReferenceId"/>
+    <bpmn2:property id="crossProjectName" itemSubjectRef="_crossProjectNameItem" name="crossProjectName"/>
+    <bpmn2:property id="smwCountryCode" itemSubjectRef="_smwCountryCodeItem" name="smwCountryCode"/>
+    <bpmn2:property id="smwSystemId" itemSubjectRef="_smwSystemIdItem" name="smwSystemId"/>
+    <bpmn2:property id="smwGetTokenSource" itemSubjectRef="_smwGetTokenSourceItem" name="smwGetTokenSource"/>
+    <bpmn2:property id="smwCheckAddressSource" itemSubjectRef="_smwCheckAddressSourceItem" name="smwCheckAddressSource"/>
+    <bpmn2:property id="smwCreateProjectSource" itemSubjectRef="_smwCreateProjectSourceItem" name="smwCreateProjectSource"/>
+    <bpmn2:property id="smwCreateBuildingSource" itemSubjectRef="_smwCreateBuildingSourceItem" name="smwCreateBuildingSource"/>
+    <bpmn2:property id="smwPostProjectChangesSource" itemSubjectRef="_smwPostProjectChangesSourceItem" name="smwPostProjectChangesSource"/>
+    <bpmn2:property id="smwCheckProjectStateSource" itemSubjectRef="_smwCheckProjectStateSourceItem" name="smwCheckProjectStateSource"/>
+    <bpmn2:property id="smwAccessToken" itemSubjectRef="_smwAccessTokenItem" name="smwAccessToken"/>
+    <bpmn2:property id="smwExistingBuildingId" itemSubjectRef="_smwExistingBuildingIdItem" name="smwExistingBuildingId"/>
+    <bpmn2:property id="smwCheckAddressRequestStatus" itemSubjectRef="_smwCheckAddressRequestStatusItem" name="smwCheckAddressRequestStatus"/>
+    <bpmn2:property id="smwDesignId" itemSubjectRef="_smwDesignIdItem" name="smwDesignId"/>
+    <bpmn2:property id="smwDesignIdRaw" itemSubjectRef="_smwDesignIdRawItem" name="smwDesignIdRaw"/>
+    <bpmn2:property id="smwCreateProjectRequestStatus" itemSubjectRef="_smwCreateProjectRequestStatusItem" name="smwCreateProjectRequestStatus"/>
+    <bpmn2:property id="smwBuildingId" itemSubjectRef="_smwBuildingIdItem" name="smwBuildingId"/>
+    <bpmn2:property id="smwBuildingName" itemSubjectRef="_smwBuildingNameItem" name="smwBuildingName"/>
+    <bpmn2:property id="smwCreateBuildingRequestStatus" itemSubjectRef="_smwCreateBuildingRequestStatusItem" name="smwCreateBuildingRequestStatus"/>
+    <bpmn2:property id="smwPostRequestStatus" itemSubjectRef="_smwPostRequestStatusItem" name="smwPostRequestStatus"/>
+    <bpmn2:property id="smwProjectStatus" itemSubjectRef="_smwProjectStatusItem" name="smwProjectStatus"/>
+    <bpmn2:property id="smwQueuedJob" itemSubjectRef="_smwQueuedJobItem" name="smwQueuedJob"/>
+    <bpmn2:property id="smwCheckStateRequestStatus" itemSubjectRef="_smwCheckStateRequestStatusItem" name="smwCheckStateRequestStatus"/>
+    <bpmn2:property id="placeSmwId" itemSubjectRef="_placeSmwIdItem" name="placeSmwId"/>
+    <bpmn2:property id="errorMessage" itemSubjectRef="_errorMessageItem" name="errorMessage"/>
+    <bpmn2:sequenceFlow id="_CSB_SF_01" sourceRef="_CSB_START" targetRef="_CSB_INIT"/>
+    <bpmn2:sequenceFlow id="_CSB_SF_02" sourceRef="_CSB_INIT" targetRef="_CSB_T_TOKEN"/>
+    <bpmn2:sequenceFlow id="_CSB_SF_03" sourceRef="_CSB_T_TOKEN" targetRef="_CSB_GW_T_TOKEN"/>
+    <bpmn2:sequenceFlow id="_CSB_SF_04" sourceRef="_CSB_GW_T_TOKEN" targetRef="_CSB_T_CHECKADDR"/>
+    <bpmn2:sequenceFlow id="_CSB_SF_05" name="T_TOKEN failed" sourceRef="_CSB_GW_T_TOKEN" targetRef="_CSB_THROW_FAILED_T_TOKEN">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[T_TOKEN failed]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_CSB_COND_0001" language="http://www.java.com/java"><![CDATA[return errorMessage != null;]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_CSB_SF_06" sourceRef="_CSB_T_CHECKADDR" targetRef="_CSB_GW_T_CHECKADDR"/>
+    <bpmn2:sequenceFlow id="_CSB_SF_07" sourceRef="_CSB_GW_T_CHECKADDR" targetRef="_CSB_T_CREATEPROJ"/>
+    <bpmn2:sequenceFlow id="_CSB_SF_08" name="T_CHECKADDR failed" sourceRef="_CSB_GW_T_CHECKADDR" targetRef="_CSB_THROW_FAILED_T_CHECKADDR">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[T_CHECKADDR failed]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_CSB_COND_0002" language="http://www.java.com/java"><![CDATA[return errorMessage != null;]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_CSB_SF_09" sourceRef="_CSB_T_CREATEPROJ" targetRef="_CSB_GW_T_CREATEPROJ"/>
+    <bpmn2:sequenceFlow id="_CSB_SF_10" sourceRef="_CSB_GW_T_CREATEPROJ" targetRef="_CSB_T_CREATEBUILDING"/>
+    <bpmn2:sequenceFlow id="_CSB_SF_11" name="T_CREATEPROJ failed" sourceRef="_CSB_GW_T_CREATEPROJ" targetRef="_CSB_THROW_FAILED_T_CREATEPROJ">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[T_CREATEPROJ failed]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_CSB_COND_0003" language="http://www.java.com/java"><![CDATA[return errorMessage != null;]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_CSB_SF_12" sourceRef="_CSB_T_CREATEBUILDING" targetRef="_CSB_GW_T_CREATEBUILDING"/>
+    <bpmn2:sequenceFlow id="_CSB_SF_13" sourceRef="_CSB_GW_T_CREATEBUILDING" targetRef="_CSB_T_POSTCHANGES"/>
+    <bpmn2:sequenceFlow id="_CSB_SF_14" name="T_CREATEBUILDING failed" sourceRef="_CSB_GW_T_CREATEBUILDING" targetRef="_CSB_THROW_FAILED_T_CREATEBUILDING">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[T_CREATEBUILDING failed]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_CSB_COND_0004" language="http://www.java.com/java"><![CDATA[return errorMessage != null;]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_CSB_SF_15" sourceRef="_CSB_T_POSTCHANGES" targetRef="_CSB_GW_T_POSTCHANGES"/>
+    <bpmn2:sequenceFlow id="_CSB_SF_16" sourceRef="_CSB_GW_T_POSTCHANGES" targetRef="_CSB_T_CHECKSTATE"/>
+    <bpmn2:sequenceFlow id="_CSB_SF_17" name="T_POSTCHANGES failed" sourceRef="_CSB_GW_T_POSTCHANGES" targetRef="_CSB_THROW_FAILED_T_POSTCHANGES">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[T_POSTCHANGES failed]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_CSB_COND_0005" language="http://www.java.com/java"><![CDATA[return errorMessage != null;]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_CSB_SF_18" sourceRef="_CSB_T_CHECKSTATE" targetRef="_CSB_GW_T_CHECKSTATE"/>
+    <bpmn2:sequenceFlow id="_CSB_SF_19" sourceRef="_CSB_GW_T_CHECKSTATE" targetRef="_CSB_THROW_COMPLETED"/>
+    <bpmn2:sequenceFlow id="_CSB_SF_20" name="T_CHECKSTATE failed" sourceRef="_CSB_GW_T_CHECKSTATE" targetRef="_CSB_THROW_FAILED_T_CHECKSTATE">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[T_CHECKSTATE failed]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_CSB_COND_0006" language="http://www.java.com/java"><![CDATA[return errorMessage != null;]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_CSB_SF_21" sourceRef="_CSB_CATCH_COMPLETED" targetRef="_CSB_RESULT_COMPLETED"/>
+    <bpmn2:sequenceFlow id="_CSB_SF_22" sourceRef="_CSB_RESULT_COMPLETED" targetRef="_CSB_END_COMPLETED"/>
+    <bpmn2:sequenceFlow id="_CSB_SF_23" sourceRef="_CSB_CATCH_FAILED" targetRef="_CSB_RESULT_FAILED"/>
+    <bpmn2:sequenceFlow id="_CSB_SF_24" sourceRef="_CSB_RESULT_FAILED" targetRef="_CSB_END_FAILED"/>
+    <bpmn2:startEvent id="_CSB_START">
+      <bpmn2:outgoing>_CSB_SF_01</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:endEvent id="_CSB_END_COMPLETED">
+      <bpmn2:incoming>_CSB_SF_22</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:endEvent id="_CSB_END_FAILED">
+      <bpmn2:incoming>_CSB_SF_24</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:intermediateThrowEvent id="_CSB_THROW_COMPLETED" name="Completed">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Completed]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_CSB_SF_19</bpmn2:incoming>
+      <bpmn2:linkEventDefinition id="_CSB_LINK_COMPLETED_THROW" name="Completed">
+        <bpmn2:target>_CSB_LINK_COMPLETED_CATCH</bpmn2:target>
+      </bpmn2:linkEventDefinition>
+    </bpmn2:intermediateThrowEvent>
+    <bpmn2:intermediateThrowEvent id="_CSB_THROW_FAILED_T_TOKEN" name="Failed">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Failed]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_CSB_SF_05</bpmn2:incoming>
+      <bpmn2:linkEventDefinition id="_CSB_LINK_FAILED_THROW_T_TOKEN" name="Failed">
+        <bpmn2:target>_CSB_LINK_FAILED_CATCH</bpmn2:target>
+      </bpmn2:linkEventDefinition>
+    </bpmn2:intermediateThrowEvent>
+    <bpmn2:intermediateThrowEvent id="_CSB_THROW_FAILED_T_CHECKADDR" name="Failed">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Failed]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_CSB_SF_08</bpmn2:incoming>
+      <bpmn2:linkEventDefinition id="_CSB_LINK_FAILED_THROW_T_CHECKADDR" name="Failed">
+        <bpmn2:target>_CSB_LINK_FAILED_CATCH</bpmn2:target>
+      </bpmn2:linkEventDefinition>
+    </bpmn2:intermediateThrowEvent>
+    <bpmn2:intermediateThrowEvent id="_CSB_THROW_FAILED_T_CREATEPROJ" name="Failed">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Failed]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_CSB_SF_11</bpmn2:incoming>
+      <bpmn2:linkEventDefinition id="_CSB_LINK_FAILED_THROW_T_CREATEPROJ" name="Failed">
+        <bpmn2:target>_CSB_LINK_FAILED_CATCH</bpmn2:target>
+      </bpmn2:linkEventDefinition>
+    </bpmn2:intermediateThrowEvent>
+    <bpmn2:intermediateThrowEvent id="_CSB_THROW_FAILED_T_CREATEBUILDING" name="Failed">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Failed]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_CSB_SF_14</bpmn2:incoming>
+      <bpmn2:linkEventDefinition id="_CSB_LINK_FAILED_THROW_T_CREATEBUILDING" name="Failed">
+        <bpmn2:target>_CSB_LINK_FAILED_CATCH</bpmn2:target>
+      </bpmn2:linkEventDefinition>
+    </bpmn2:intermediateThrowEvent>
+    <bpmn2:intermediateThrowEvent id="_CSB_THROW_FAILED_T_POSTCHANGES" name="Failed">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Failed]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_CSB_SF_17</bpmn2:incoming>
+      <bpmn2:linkEventDefinition id="_CSB_LINK_FAILED_THROW_T_POSTCHANGES" name="Failed">
+        <bpmn2:target>_CSB_LINK_FAILED_CATCH</bpmn2:target>
+      </bpmn2:linkEventDefinition>
+    </bpmn2:intermediateThrowEvent>
+    <bpmn2:intermediateThrowEvent id="_CSB_THROW_FAILED_T_CHECKSTATE" name="Failed">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Failed]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_CSB_SF_20</bpmn2:incoming>
+      <bpmn2:linkEventDefinition id="_CSB_LINK_FAILED_THROW_T_CHECKSTATE" name="Failed">
+        <bpmn2:target>_CSB_LINK_FAILED_CATCH</bpmn2:target>
+      </bpmn2:linkEventDefinition>
+    </bpmn2:intermediateThrowEvent>
+    <bpmn2:intermediateCatchEvent id="_CSB_CATCH_COMPLETED" name="Completed">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Completed]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:outgoing>_CSB_SF_21</bpmn2:outgoing>
+      <bpmn2:linkEventDefinition id="_CSB_LINK_COMPLETED_CATCH" name="Completed">
+        <bpmn2:source>_CSB_LINK_COMPLETED_THROW</bpmn2:source>
+      </bpmn2:linkEventDefinition>
+    </bpmn2:intermediateCatchEvent>
+    <bpmn2:intermediateCatchEvent id="_CSB_CATCH_FAILED" name="Failed">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Failed]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:outgoing>_CSB_SF_23</bpmn2:outgoing>
+      <bpmn2:linkEventDefinition id="_CSB_LINK_FAILED_CATCH" name="Failed">
+        <bpmn2:source>_CSB_LINK_FAILED_THROW_T_TOKEN</bpmn2:source>
+        <bpmn2:source>_CSB_LINK_FAILED_THROW_T_CHECKADDR</bpmn2:source>
+        <bpmn2:source>_CSB_LINK_FAILED_THROW_T_CREATEPROJ</bpmn2:source>
+        <bpmn2:source>_CSB_LINK_FAILED_THROW_T_CREATEBUILDING</bpmn2:source>
+        <bpmn2:source>_CSB_LINK_FAILED_THROW_T_POSTCHANGES</bpmn2:source>
+        <bpmn2:source>_CSB_LINK_FAILED_THROW_T_CHECKSTATE</bpmn2:source>
+      </bpmn2:linkEventDefinition>
+    </bpmn2:intermediateCatchEvent>
+    <bpmn2:scriptTask id="_CSB_INIT" name="Initialize" scriptFormat="http://www.java.com/java">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Initialize]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_CSB_SF_01</bpmn2:incoming>
+      <bpmn2:outgoing>_CSB_SF_02</bpmn2:outgoing>
+      <bpmn2:script><![CDATA[System.out.println("====================================================");
+System.out.println("=== pniDesign_createSmwBuilding - Initialize ===");
+System.out.println("====================================================");
+
+System.out.println(String.format("globalReferenceId=%s crossProjectName=%s smwCountryCode=%s",
+    globalReferenceId, crossProjectName, smwCountryCode));
+
+if (smwCountryCode == null || smwCountryCode.isEmpty()) {
+    throw new IllegalArgumentException("pniDesign_createSmwBuilding: smwCountryCode is required");
+}
+if (!"DE".equals(smwCountryCode) && !"DK".equals(smwCountryCode)) {
+    throw new IllegalArgumentException("pniDesign_createSmwBuilding: unsupported smwCountryCode '" + smwCountryCode + "' - only DE/DK are configured");
+}
+
+kcontext.setVariable("smwSystemId", "PNI_" + smwCountryCode);
+kcontext.setVariable("smwGetTokenSource", "smw/" + smwCountryCode + "/getToken");
+kcontext.setVariable("smwCheckAddressSource", "smw/" + smwCountryCode + "/checkAddress");
+kcontext.setVariable("smwCreateProjectSource", "smw/" + smwCountryCode + "/createProject");
+kcontext.setVariable("smwCreateBuildingSource", "smw/" + smwCountryCode + "/createBuilding");
+kcontext.setVariable("smwPostProjectChangesSource", "smw/" + smwCountryCode + "/postProjectChanges");
+kcontext.setVariable("smwCheckProjectStateSource", "smw/" + smwCountryCode + "/checkProjectState");
+
+kcontext.setVariable("errorMessage", null);
+kcontext.setVariable("placeSmwId", null);
+kcontext.setVariable("smwBuildingName", null);
+]]></bpmn2:script>
+    </bpmn2:scriptTask>
+    <bpmn2:task id="_CSB_T_TOKEN" drools:taskName="SdcApiCall" name="REST_API_CALL:
+smw/{country}/getToken">
+      <bpmn2:documentation id="_CSB_DOC_T_TOKEN"><![CDATA[Obtain an OAuth2 client-credentials token from the SMW/PRM UAA for the resolved country (source name from smwGetTokenSource). (CREATE_OR_UPDATE)]]></bpmn2:documentation>
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[REST_API_CALL:
+smw/{country}/getToken]]></drools:metaValue>
+        </drools:metaData>
+        <drools:onEntry-script scriptFormat="http://www.java.com/java">
+          <drools:script><![CDATA[System.out.println("===========================================================================");
+System.out.println("=== pniDesign_createSmwBuilding - REST_API_CALL: smw/{country}/getToken ===");
+System.out.println("===========================================================================");
+
+smwAccessToken = null;
+]]></drools:script>
+        </drools:onEntry-script>
+        <drools:onExit-script scriptFormat="http://www.java.com/java">
+          <drools:script><![CDATA[System.out.println("Data Outputs: " + "accessToken=" + smwAccessToken);
+
+if (smwAccessToken == null || smwAccessToken.isEmpty()) {
+    kcontext.setVariable("errorMessage", "SMW token endpoint returned no access_token");
+}
+]]></drools:script>
+        </drools:onExit-script>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_CSB_SF_02</bpmn2:incoming>
+      <bpmn2:outgoing>_CSB_SF_03</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="_CSB_IOSPEC_T_TOKEN">
+        <bpmn2:dataInput id="__CSB_T_TOKEN_apiUrlInputX" drools:dtype="String" itemSubjectRef="__CSB_T_TOKEN_apiUrlInputXItem" name="apiUrl"/>
+        <bpmn2:dataInput id="__CSB_T_TOKEN_routeMap.domainInputX" drools:dtype="String" itemSubjectRef="__CSB_T_TOKEN_routeMap.domainInputXItem" name="routeMap.domain"/>
+        <bpmn2:dataInput id="__CSB_T_TOKEN_routeMap.sourceInputX" drools:dtype="String" itemSubjectRef="__CSB_T_TOKEN_routeMap.sourceInputXItem" name="routeMap.source"/>
+        <bpmn2:dataInput id="__CSB_T_TOKEN_TaskNameInputX" drools:dtype="Object" name="TaskName"/>
+        <bpmn2:dataOutput id="__CSB_T_TOKEN_accessTokenOutputX" drools:dtype="String" itemSubjectRef="__CSB_T_TOKEN_accessTokenOutputXItem" name="accessToken"/>
+        <bpmn2:inputSet id="_CSB_INSET_T_TOKEN">
+          <bpmn2:dataInputRefs>__CSB_T_TOKEN_apiUrlInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>__CSB_T_TOKEN_routeMap.domainInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>__CSB_T_TOKEN_routeMap.sourceInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>__CSB_T_TOKEN_TaskNameInputX</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet id="_CSB_OUTSET_T_TOKEN">
+          <bpmn2:dataOutputRefs>__CSB_T_TOKEN_accessTokenOutputX</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation id="_CSB_DIA_0001">
+        <bpmn2:sourceRef>_apiCallUrl</bpmn2:sourceRef>
+        <bpmn2:targetRef>__CSB_T_TOKEN_apiUrlInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CSB_DIA_0002">
+        <bpmn2:targetRef>__CSB_T_TOKEN_routeMap.domainInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_CSB_ASG_0001">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_CSB_ASG_0001f"><![CDATA[REST_API_CALL]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_CSB_ASG_0001t">__CSB_T_TOKEN_routeMap.domainInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CSB_DIA_0003">
+        <bpmn2:sourceRef>smwGetTokenSource</bpmn2:sourceRef>
+        <bpmn2:targetRef>__CSB_T_TOKEN_routeMap.sourceInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CSB_DIA_0004">
+        <bpmn2:targetRef>__CSB_T_TOKEN_TaskNameInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_CSB_ASG_0002">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_CSB_ASG_0002f"><![CDATA[SdcApiCall]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_CSB_ASG_0002t">__CSB_T_TOKEN_TaskNameInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation id="_CSB_DOA_0001">
+        <bpmn2:sourceRef>__CSB_T_TOKEN_accessTokenOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>smwAccessToken</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:task id="_CSB_T_CHECKADDR" drools:taskName="SdcApiCall" name="REST_API_CALL:
+smw/{country}/checkAddress">
+      <bpmn2:documentation id="_CSB_DOC_T_CHECKADDR"><![CDATA[Read-only check whether globalReferenceId already has a building in SMW/PRM (glb_nig_prm_api_get_record_details). Guards against CROSS/SMW being out of sync. (FIND)]]></bpmn2:documentation>
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[REST_API_CALL:
+smw/{country}/checkAddress]]></drools:metaValue>
+        </drools:metaData>
+        <drools:onEntry-script scriptFormat="http://www.java.com/java">
+          <drools:script><![CDATA[System.out.println("===============================================================================");
+System.out.println("=== pniDesign_createSmwBuilding - REST_API_CALL: smw/{country}/checkAddress ===");
+System.out.println("===============================================================================");
+
+smwExistingBuildingId = null;
+]]></drools:script>
+        </drools:onEntry-script>
+        <drools:onExit-script scriptFormat="http://www.java.com/java">
+          <drools:script><![CDATA[System.out.println("Data Outputs: " + "requestStatus=" + smwCheckAddressRequestStatus + ", " + "existingBuildingId=" + smwExistingBuildingId);
+
+if (!"ok".equals(smwCheckAddressRequestStatus)) {
+    kcontext.setVariable("errorMessage", "SMW check address failed for '" + globalReferenceId + "': request_status=" + smwCheckAddressRequestStatus);
+} else if (smwExistingBuildingId != null && !smwExistingBuildingId.isEmpty()) {
+    kcontext.setVariable("errorMessage", "SMW already has a building (" + smwExistingBuildingId + ") for address '" + globalReferenceId + "' - CROSS/SMW out of sync");
+}
+]]></drools:script>
+        </drools:onExit-script>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_CSB_SF_04</bpmn2:incoming>
+      <bpmn2:outgoing>_CSB_SF_06</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="_CSB_IOSPEC_T_CHECKADDR">
+        <bpmn2:dataInput id="__CSB_T_CHECKADDR_apiUrlInputX" drools:dtype="String" itemSubjectRef="__CSB_T_CHECKADDR_apiUrlInputXItem" name="apiUrl"/>
+        <bpmn2:dataInput id="__CSB_T_CHECKADDR_routeMap.domainInputX" drools:dtype="String" itemSubjectRef="__CSB_T_CHECKADDR_routeMap.domainInputXItem" name="routeMap.domain"/>
+        <bpmn2:dataInput id="__CSB_T_CHECKADDR_routeMap.sourceInputX" drools:dtype="String" itemSubjectRef="__CSB_T_CHECKADDR_routeMap.sourceInputXItem" name="routeMap.source"/>
+        <bpmn2:dataInput id="__CSB_T_CHECKADDR_dataMap.accessTokenInputX" drools:dtype="String" itemSubjectRef="__CSB_T_CHECKADDR_dataMap.accessTokenInputXItem" name="dataMap.accessToken"/>
+        <bpmn2:dataInput id="__CSB_T_CHECKADDR_dataMap.addressIdInputX" drools:dtype="String" itemSubjectRef="__CSB_T_CHECKADDR_dataMap.addressIdInputXItem" name="dataMap.addressId"/>
+        <bpmn2:dataInput id="__CSB_T_CHECKADDR_TaskNameInputX" drools:dtype="Object" name="TaskName"/>
+        <bpmn2:dataOutput id="__CSB_T_CHECKADDR_requestStatusOutputX" drools:dtype="String" itemSubjectRef="__CSB_T_CHECKADDR_requestStatusOutputXItem" name="requestStatus"/>
+        <bpmn2:dataOutput id="__CSB_T_CHECKADDR_existingBuildingIdOutputX" drools:dtype="String" itemSubjectRef="__CSB_T_CHECKADDR_existingBuildingIdOutputXItem" name="existingBuildingId"/>
+        <bpmn2:inputSet id="_CSB_INSET_T_CHECKADDR">
+          <bpmn2:dataInputRefs>__CSB_T_CHECKADDR_apiUrlInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>__CSB_T_CHECKADDR_routeMap.domainInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>__CSB_T_CHECKADDR_routeMap.sourceInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>__CSB_T_CHECKADDR_dataMap.accessTokenInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>__CSB_T_CHECKADDR_dataMap.addressIdInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>__CSB_T_CHECKADDR_TaskNameInputX</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet id="_CSB_OUTSET_T_CHECKADDR">
+          <bpmn2:dataOutputRefs>__CSB_T_CHECKADDR_requestStatusOutputX</bpmn2:dataOutputRefs>
+          <bpmn2:dataOutputRefs>__CSB_T_CHECKADDR_existingBuildingIdOutputX</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation id="_CSB_DIA_0005">
+        <bpmn2:sourceRef>_apiCallUrl</bpmn2:sourceRef>
+        <bpmn2:targetRef>__CSB_T_CHECKADDR_apiUrlInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CSB_DIA_0006">
+        <bpmn2:targetRef>__CSB_T_CHECKADDR_routeMap.domainInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_CSB_ASG_0003">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_CSB_ASG_0003f"><![CDATA[REST_API_CALL]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_CSB_ASG_0003t">__CSB_T_CHECKADDR_routeMap.domainInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CSB_DIA_0007">
+        <bpmn2:sourceRef>smwCheckAddressSource</bpmn2:sourceRef>
+        <bpmn2:targetRef>__CSB_T_CHECKADDR_routeMap.sourceInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CSB_DIA_0008">
+        <bpmn2:sourceRef>smwAccessToken</bpmn2:sourceRef>
+        <bpmn2:targetRef>__CSB_T_CHECKADDR_dataMap.accessTokenInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CSB_DIA_0009">
+        <bpmn2:sourceRef>globalReferenceId</bpmn2:sourceRef>
+        <bpmn2:targetRef>__CSB_T_CHECKADDR_dataMap.addressIdInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CSB_DIA_0010">
+        <bpmn2:targetRef>__CSB_T_CHECKADDR_TaskNameInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_CSB_ASG_0004">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_CSB_ASG_0004f"><![CDATA[SdcApiCall]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_CSB_ASG_0004t">__CSB_T_CHECKADDR_TaskNameInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation id="_CSB_DOA_0002">
+        <bpmn2:sourceRef>__CSB_T_CHECKADDR_requestStatusOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>smwCheckAddressRequestStatus</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="_CSB_DOA_0003">
+        <bpmn2:sourceRef>__CSB_T_CHECKADDR_existingBuildingIdOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>smwExistingBuildingId</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:task id="_CSB_T_CREATEPROJ" drools:taskName="SdcApiCall" name="REST_API_CALL:
+smw/{country}/createProject">
+      <bpmn2:documentation id="_CSB_DOC_T_CREATEPROJ"><![CDATA[Create the SMW/PRM project + design (glb_nig_prm_api_create_project), naming it with project_name=crossProjectName. state=Planning Internal hardcoded. (CREATE_OR_UPDATE)]]></bpmn2:documentation>
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[REST_API_CALL:
+smw/{country}/createProject]]></drools:metaValue>
+        </drools:metaData>
+        <drools:onEntry-script scriptFormat="http://www.java.com/java">
+          <drools:script><![CDATA[System.out.println("================================================================================");
+System.out.println("=== pniDesign_createSmwBuilding - REST_API_CALL: smw/{country}/createProject ===");
+System.out.println("================================================================================");
+
+smwDesignId = null;
+smwDesignIdRaw = null;
+]]></drools:script>
+        </drools:onEntry-script>
+        <drools:onExit-script scriptFormat="http://www.java.com/java">
+          <drools:script><![CDATA[smwDesignId = (smwDesignIdRaw != null) ? String.valueOf(smwDesignIdRaw) : null;
+
+System.out.println("Data Outputs: " + "designId=" + smwDesignId + ", " + "requestStatus=" + smwCreateProjectRequestStatus);
+
+if (!"ok".equals(smwCreateProjectRequestStatus) || smwDesignId == null || smwDesignId.isEmpty()) {
+    kcontext.setVariable("errorMessage", "SMW create project failed for '" + crossProjectName + "': request_status=" + smwCreateProjectRequestStatus);
+}
+]]></drools:script>
+        </drools:onExit-script>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_CSB_SF_07</bpmn2:incoming>
+      <bpmn2:outgoing>_CSB_SF_09</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="_CSB_IOSPEC_T_CREATEPROJ">
+        <bpmn2:dataInput id="__CSB_T_CREATEPROJ_apiUrlInputX" drools:dtype="String" itemSubjectRef="__CSB_T_CREATEPROJ_apiUrlInputXItem" name="apiUrl"/>
+        <bpmn2:dataInput id="__CSB_T_CREATEPROJ_routeMap.domainInputX" drools:dtype="String" itemSubjectRef="__CSB_T_CREATEPROJ_routeMap.domainInputXItem" name="routeMap.domain"/>
+        <bpmn2:dataInput id="__CSB_T_CREATEPROJ_routeMap.sourceInputX" drools:dtype="String" itemSubjectRef="__CSB_T_CREATEPROJ_routeMap.sourceInputXItem" name="routeMap.source"/>
+        <bpmn2:dataInput id="__CSB_T_CREATEPROJ_dataMap.accessTokenInputX" drools:dtype="String" itemSubjectRef="__CSB_T_CREATEPROJ_dataMap.accessTokenInputXItem" name="dataMap.accessToken"/>
+        <bpmn2:dataInput id="__CSB_T_CREATEPROJ_dataMap.projectNameInputX" drools:dtype="String" itemSubjectRef="__CSB_T_CREATEPROJ_dataMap.projectNameInputXItem" name="dataMap.projectName"/>
+        <bpmn2:dataInput id="__CSB_T_CREATEPROJ_dataMap.addressIdInputX" drools:dtype="String" itemSubjectRef="__CSB_T_CREATEPROJ_dataMap.addressIdInputXItem" name="dataMap.addressId"/>
+        <bpmn2:dataInput id="__CSB_T_CREATEPROJ_TaskNameInputX" drools:dtype="Object" name="TaskName"/>
+        <bpmn2:dataOutput id="__CSB_T_CREATEPROJ_designIdOutputX" drools:dtype="Object" itemSubjectRef="__CSB_T_CREATEPROJ_designIdOutputXItem" name="designId"/>
+        <bpmn2:dataOutput id="__CSB_T_CREATEPROJ_requestStatusOutputX" drools:dtype="String" itemSubjectRef="__CSB_T_CREATEPROJ_requestStatusOutputXItem" name="requestStatus"/>
+        <bpmn2:inputSet id="_CSB_INSET_T_CREATEPROJ">
+          <bpmn2:dataInputRefs>__CSB_T_CREATEPROJ_apiUrlInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>__CSB_T_CREATEPROJ_routeMap.domainInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>__CSB_T_CREATEPROJ_routeMap.sourceInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>__CSB_T_CREATEPROJ_dataMap.accessTokenInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>__CSB_T_CREATEPROJ_dataMap.projectNameInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>__CSB_T_CREATEPROJ_dataMap.addressIdInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>__CSB_T_CREATEPROJ_TaskNameInputX</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet id="_CSB_OUTSET_T_CREATEPROJ">
+          <bpmn2:dataOutputRefs>__CSB_T_CREATEPROJ_designIdOutputX</bpmn2:dataOutputRefs>
+          <bpmn2:dataOutputRefs>__CSB_T_CREATEPROJ_requestStatusOutputX</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation id="_CSB_DIA_0011">
+        <bpmn2:sourceRef>_apiCallUrl</bpmn2:sourceRef>
+        <bpmn2:targetRef>__CSB_T_CREATEPROJ_apiUrlInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CSB_DIA_0012">
+        <bpmn2:targetRef>__CSB_T_CREATEPROJ_routeMap.domainInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_CSB_ASG_0005">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_CSB_ASG_0005f"><![CDATA[REST_API_CALL]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_CSB_ASG_0005t">__CSB_T_CREATEPROJ_routeMap.domainInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CSB_DIA_0013">
+        <bpmn2:sourceRef>smwCreateProjectSource</bpmn2:sourceRef>
+        <bpmn2:targetRef>__CSB_T_CREATEPROJ_routeMap.sourceInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CSB_DIA_0014">
+        <bpmn2:sourceRef>smwAccessToken</bpmn2:sourceRef>
+        <bpmn2:targetRef>__CSB_T_CREATEPROJ_dataMap.accessTokenInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CSB_DIA_0015">
+        <bpmn2:sourceRef>crossProjectName</bpmn2:sourceRef>
+        <bpmn2:targetRef>__CSB_T_CREATEPROJ_dataMap.projectNameInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CSB_DIA_0016">
+        <bpmn2:sourceRef>globalReferenceId</bpmn2:sourceRef>
+        <bpmn2:targetRef>__CSB_T_CREATEPROJ_dataMap.addressIdInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CSB_DIA_0017">
+        <bpmn2:targetRef>__CSB_T_CREATEPROJ_TaskNameInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_CSB_ASG_0006">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_CSB_ASG_0006f"><![CDATA[SdcApiCall]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_CSB_ASG_0006t">__CSB_T_CREATEPROJ_TaskNameInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation id="_CSB_DOA_0004">
+        <bpmn2:sourceRef>__CSB_T_CREATEPROJ_designIdOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>smwDesignIdRaw</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="_CSB_DOA_0005">
+        <bpmn2:sourceRef>__CSB_T_CREATEPROJ_requestStatusOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>smwCreateProjectRequestStatus</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:task id="_CSB_T_CREATEBUILDING" drools:taskName="SdcApiCall" name="REST_API_CALL:
+smw/{country}/createBuilding">
+      <bpmn2:documentation id="_CSB_DOC_T_CREATEBUILDING"><![CDATA[Create an EMPTY building with Access Point in SMW/PRM (glb_nig_prm_api_create_object), design_id from the create-project step above. (CREATE_OR_UPDATE)]]></bpmn2:documentation>
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[REST_API_CALL:
+smw/{country}/createBuilding]]></drools:metaValue>
+        </drools:metaData>
+        <drools:onEntry-script scriptFormat="http://www.java.com/java">
+          <drools:script><![CDATA[System.out.println("=================================================================================");
+System.out.println("=== pniDesign_createSmwBuilding - REST_API_CALL: smw/{country}/createBuilding ===");
+System.out.println("=================================================================================");
+
+smwBuildingId = null;
+smwBuildingName = null;
+]]></drools:script>
+        </drools:onEntry-script>
+        <drools:onExit-script scriptFormat="http://www.java.com/java">
+          <drools:script><![CDATA[System.out.println("Data Outputs: " + "smwBuildingId=" + smwBuildingId + ", " + "smwBuildingName=" + smwBuildingName + ", " + "requestStatus=" + smwCreateBuildingRequestStatus);
+
+if (!"ok".equals(smwCreateBuildingRequestStatus) || smwBuildingId == null || smwBuildingId.isEmpty()) {
+    kcontext.setVariable("errorMessage", "SMW create building failed for address '" + globalReferenceId + "' in design '" + smwDesignId + "': request_status=" + smwCreateBuildingRequestStatus);
+} else {
+    kcontext.setVariable("placeSmwId", "building:" + smwBuildingId);
+    if (smwBuildingName == null || smwBuildingName.isEmpty()) {
+        kcontext.setVariable("smwBuildingName", "building:" + smwBuildingId);
+    }
+}
+]]></drools:script>
+        </drools:onExit-script>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_CSB_SF_10</bpmn2:incoming>
+      <bpmn2:outgoing>_CSB_SF_12</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="_CSB_IOSPEC_T_CREATEBUILDING">
+        <bpmn2:dataInput id="__CSB_T_CREATEBUILDING_apiUrlInputX" drools:dtype="String" itemSubjectRef="__CSB_T_CREATEBUILDING_apiUrlInputXItem" name="apiUrl"/>
+        <bpmn2:dataInput id="__CSB_T_CREATEBUILDING_routeMap.domainInputX" drools:dtype="String" itemSubjectRef="__CSB_T_CREATEBUILDING_routeMap.domainInputXItem" name="routeMap.domain"/>
+        <bpmn2:dataInput id="__CSB_T_CREATEBUILDING_routeMap.sourceInputX" drools:dtype="String" itemSubjectRef="__CSB_T_CREATEBUILDING_routeMap.sourceInputXItem" name="routeMap.source"/>
+        <bpmn2:dataInput id="__CSB_T_CREATEBUILDING_dataMap.accessTokenInputX" drools:dtype="String" itemSubjectRef="__CSB_T_CREATEBUILDING_dataMap.accessTokenInputXItem" name="dataMap.accessToken"/>
+        <bpmn2:dataInput id="__CSB_T_CREATEBUILDING_dataMap.designIdInputX" drools:dtype="String" itemSubjectRef="__CSB_T_CREATEBUILDING_dataMap.designIdInputXItem" name="dataMap.designId"/>
+        <bpmn2:dataInput id="__CSB_T_CREATEBUILDING_dataMap.addressIdInputX" drools:dtype="String" itemSubjectRef="__CSB_T_CREATEBUILDING_dataMap.addressIdInputXItem" name="dataMap.addressId"/>
+        <bpmn2:dataInput id="__CSB_T_CREATEBUILDING_TaskNameInputX" drools:dtype="Object" name="TaskName"/>
+        <bpmn2:dataOutput id="__CSB_T_CREATEBUILDING_smwBuildingIdOutputX" drools:dtype="String" itemSubjectRef="__CSB_T_CREATEBUILDING_smwBuildingIdOutputXItem" name="smwBuildingId"/>
+        <bpmn2:dataOutput id="__CSB_T_CREATEBUILDING_smwBuildingNameOutputX" drools:dtype="String" itemSubjectRef="__CSB_T_CREATEBUILDING_smwBuildingNameOutputXItem" name="smwBuildingName"/>
+        <bpmn2:dataOutput id="__CSB_T_CREATEBUILDING_requestStatusOutputX" drools:dtype="String" itemSubjectRef="__CSB_T_CREATEBUILDING_requestStatusOutputXItem" name="requestStatus"/>
+        <bpmn2:inputSet id="_CSB_INSET_T_CREATEBUILDING">
+          <bpmn2:dataInputRefs>__CSB_T_CREATEBUILDING_apiUrlInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>__CSB_T_CREATEBUILDING_routeMap.domainInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>__CSB_T_CREATEBUILDING_routeMap.sourceInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>__CSB_T_CREATEBUILDING_dataMap.accessTokenInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>__CSB_T_CREATEBUILDING_dataMap.designIdInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>__CSB_T_CREATEBUILDING_dataMap.addressIdInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>__CSB_T_CREATEBUILDING_TaskNameInputX</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet id="_CSB_OUTSET_T_CREATEBUILDING">
+          <bpmn2:dataOutputRefs>__CSB_T_CREATEBUILDING_smwBuildingIdOutputX</bpmn2:dataOutputRefs>
+          <bpmn2:dataOutputRefs>__CSB_T_CREATEBUILDING_smwBuildingNameOutputX</bpmn2:dataOutputRefs>
+          <bpmn2:dataOutputRefs>__CSB_T_CREATEBUILDING_requestStatusOutputX</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation id="_CSB_DIA_0018">
+        <bpmn2:sourceRef>_apiCallUrl</bpmn2:sourceRef>
+        <bpmn2:targetRef>__CSB_T_CREATEBUILDING_apiUrlInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CSB_DIA_0019">
+        <bpmn2:targetRef>__CSB_T_CREATEBUILDING_routeMap.domainInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_CSB_ASG_0007">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_CSB_ASG_0007f"><![CDATA[REST_API_CALL]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_CSB_ASG_0007t">__CSB_T_CREATEBUILDING_routeMap.domainInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CSB_DIA_0020">
+        <bpmn2:sourceRef>smwCreateBuildingSource</bpmn2:sourceRef>
+        <bpmn2:targetRef>__CSB_T_CREATEBUILDING_routeMap.sourceInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CSB_DIA_0021">
+        <bpmn2:sourceRef>smwAccessToken</bpmn2:sourceRef>
+        <bpmn2:targetRef>__CSB_T_CREATEBUILDING_dataMap.accessTokenInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CSB_DIA_0022">
+        <bpmn2:sourceRef>smwDesignId</bpmn2:sourceRef>
+        <bpmn2:targetRef>__CSB_T_CREATEBUILDING_dataMap.designIdInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CSB_DIA_0023">
+        <bpmn2:sourceRef>globalReferenceId</bpmn2:sourceRef>
+        <bpmn2:targetRef>__CSB_T_CREATEBUILDING_dataMap.addressIdInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CSB_DIA_0024">
+        <bpmn2:targetRef>__CSB_T_CREATEBUILDING_TaskNameInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_CSB_ASG_0008">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_CSB_ASG_0008f"><![CDATA[SdcApiCall]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_CSB_ASG_0008t">__CSB_T_CREATEBUILDING_TaskNameInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation id="_CSB_DOA_0006">
+        <bpmn2:sourceRef>__CSB_T_CREATEBUILDING_smwBuildingIdOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>smwBuildingId</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="_CSB_DOA_0007">
+        <bpmn2:sourceRef>__CSB_T_CREATEBUILDING_smwBuildingNameOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>smwBuildingName</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="_CSB_DOA_0008">
+        <bpmn2:sourceRef>__CSB_T_CREATEBUILDING_requestStatusOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>smwCreateBuildingRequestStatus</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:task id="_CSB_T_POSTCHANGES" drools:taskName="SdcApiCall" name="REST_API_CALL:
+smw/{country}/postProjectChanges">
+      <bpmn2:documentation id="_CSB_DOC_T_POSTCHANGES"><![CDATA[Post the design's changes to engineering design (glb_nig_prm_api_post_project_changes) - required to actually apply the changes made above. (CREATE_OR_UPDATE)]]></bpmn2:documentation>
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[REST_API_CALL:
+smw/{country}/postProjectChanges]]></drools:metaValue>
+        </drools:metaData>
+        <drools:onEntry-script scriptFormat="http://www.java.com/java">
+          <drools:script><![CDATA[System.out.println("=====================================================================================");
+System.out.println("=== pniDesign_createSmwBuilding - REST_API_CALL: smw/{country}/postProjectChanges ===");
+System.out.println("=====================================================================================");
+
+smwPostRequestStatus = null;
+]]></drools:script>
+        </drools:onEntry-script>
+        <drools:onExit-script scriptFormat="http://www.java.com/java">
+          <drools:script><![CDATA[System.out.println("Data Outputs: " + "requestStatus=" + smwPostRequestStatus);
+
+if (!"ok".equals(smwPostRequestStatus)) {
+    kcontext.setVariable("errorMessage", "SMW post project changes failed for design '" + smwDesignId + "': request_status=" + smwPostRequestStatus);
+}
+]]></drools:script>
+        </drools:onExit-script>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_CSB_SF_13</bpmn2:incoming>
+      <bpmn2:outgoing>_CSB_SF_15</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="_CSB_IOSPEC_T_POSTCHANGES">
+        <bpmn2:dataInput id="__CSB_T_POSTCHANGES_apiUrlInputX" drools:dtype="String" itemSubjectRef="__CSB_T_POSTCHANGES_apiUrlInputXItem" name="apiUrl"/>
+        <bpmn2:dataInput id="__CSB_T_POSTCHANGES_routeMap.domainInputX" drools:dtype="String" itemSubjectRef="__CSB_T_POSTCHANGES_routeMap.domainInputXItem" name="routeMap.domain"/>
+        <bpmn2:dataInput id="__CSB_T_POSTCHANGES_routeMap.sourceInputX" drools:dtype="String" itemSubjectRef="__CSB_T_POSTCHANGES_routeMap.sourceInputXItem" name="routeMap.source"/>
+        <bpmn2:dataInput id="__CSB_T_POSTCHANGES_dataMap.accessTokenInputX" drools:dtype="String" itemSubjectRef="__CSB_T_POSTCHANGES_dataMap.accessTokenInputXItem" name="dataMap.accessToken"/>
+        <bpmn2:dataInput id="__CSB_T_POSTCHANGES_dataMap.designIdInputX" drools:dtype="String" itemSubjectRef="__CSB_T_POSTCHANGES_dataMap.designIdInputXItem" name="dataMap.designId"/>
+        <bpmn2:dataInput id="__CSB_T_POSTCHANGES_TaskNameInputX" drools:dtype="Object" name="TaskName"/>
+        <bpmn2:dataOutput id="__CSB_T_POSTCHANGES_requestStatusOutputX" drools:dtype="String" itemSubjectRef="__CSB_T_POSTCHANGES_requestStatusOutputXItem" name="requestStatus"/>
+        <bpmn2:inputSet id="_CSB_INSET_T_POSTCHANGES">
+          <bpmn2:dataInputRefs>__CSB_T_POSTCHANGES_apiUrlInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>__CSB_T_POSTCHANGES_routeMap.domainInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>__CSB_T_POSTCHANGES_routeMap.sourceInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>__CSB_T_POSTCHANGES_dataMap.accessTokenInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>__CSB_T_POSTCHANGES_dataMap.designIdInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>__CSB_T_POSTCHANGES_TaskNameInputX</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet id="_CSB_OUTSET_T_POSTCHANGES">
+          <bpmn2:dataOutputRefs>__CSB_T_POSTCHANGES_requestStatusOutputX</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation id="_CSB_DIA_0025">
+        <bpmn2:sourceRef>_apiCallUrl</bpmn2:sourceRef>
+        <bpmn2:targetRef>__CSB_T_POSTCHANGES_apiUrlInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CSB_DIA_0026">
+        <bpmn2:targetRef>__CSB_T_POSTCHANGES_routeMap.domainInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_CSB_ASG_0009">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_CSB_ASG_0009f"><![CDATA[REST_API_CALL]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_CSB_ASG_0009t">__CSB_T_POSTCHANGES_routeMap.domainInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CSB_DIA_0027">
+        <bpmn2:sourceRef>smwPostProjectChangesSource</bpmn2:sourceRef>
+        <bpmn2:targetRef>__CSB_T_POSTCHANGES_routeMap.sourceInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CSB_DIA_0028">
+        <bpmn2:sourceRef>smwAccessToken</bpmn2:sourceRef>
+        <bpmn2:targetRef>__CSB_T_POSTCHANGES_dataMap.accessTokenInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CSB_DIA_0029">
+        <bpmn2:sourceRef>smwDesignId</bpmn2:sourceRef>
+        <bpmn2:targetRef>__CSB_T_POSTCHANGES_dataMap.designIdInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CSB_DIA_0030">
+        <bpmn2:targetRef>__CSB_T_POSTCHANGES_TaskNameInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_CSB_ASG_0010">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_CSB_ASG_0010f"><![CDATA[SdcApiCall]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_CSB_ASG_0010t">__CSB_T_POSTCHANGES_TaskNameInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation id="_CSB_DOA_0009">
+        <bpmn2:sourceRef>__CSB_T_POSTCHANGES_requestStatusOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>smwPostRequestStatus</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:task id="_CSB_T_CHECKSTATE" drools:taskName="SdcApiCall" name="REST_API_CALL:
+smw/{country}/checkProjectState">
+      <bpmn2:documentation id="_CSB_DOC_T_CHECKSTATE"><![CDATA[Read back the design's current status and queued_job after posting (glb_nig_prm_api_check_project_state). Logged, not polled. (FIND)]]></bpmn2:documentation>
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[REST_API_CALL:
+smw/{country}/checkProjectState]]></drools:metaValue>
+        </drools:metaData>
+        <drools:onEntry-script scriptFormat="http://www.java.com/java">
+          <drools:script><![CDATA[System.out.println("====================================================================================");
+System.out.println("=== pniDesign_createSmwBuilding - REST_API_CALL: smw/{country}/checkProjectState ===");
+System.out.println("====================================================================================");
+
+smwProjectStatus = null;
+smwQueuedJob = null;
+]]></drools:script>
+        </drools:onEntry-script>
+        <drools:onExit-script scriptFormat="http://www.java.com/java">
+          <drools:script><![CDATA[System.out.println("Data Outputs: " + "status=" + smwProjectStatus + ", " + "queuedJob=" + smwQueuedJob + ", " + "requestStatus=" + smwCheckStateRequestStatus);
+
+System.out.println("SMW design " + smwDesignId + " status=" + smwProjectStatus + " queuedJob=" + smwQueuedJob);
+if (!"ok".equals(smwCheckStateRequestStatus)) {
+    kcontext.setVariable("errorMessage", "SMW check project state failed for design '" + smwDesignId + "': request_status=" + smwCheckStateRequestStatus);
+}
+]]></drools:script>
+        </drools:onExit-script>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_CSB_SF_16</bpmn2:incoming>
+      <bpmn2:outgoing>_CSB_SF_18</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="_CSB_IOSPEC_T_CHECKSTATE">
+        <bpmn2:dataInput id="__CSB_T_CHECKSTATE_apiUrlInputX" drools:dtype="String" itemSubjectRef="__CSB_T_CHECKSTATE_apiUrlInputXItem" name="apiUrl"/>
+        <bpmn2:dataInput id="__CSB_T_CHECKSTATE_routeMap.domainInputX" drools:dtype="String" itemSubjectRef="__CSB_T_CHECKSTATE_routeMap.domainInputXItem" name="routeMap.domain"/>
+        <bpmn2:dataInput id="__CSB_T_CHECKSTATE_routeMap.sourceInputX" drools:dtype="String" itemSubjectRef="__CSB_T_CHECKSTATE_routeMap.sourceInputXItem" name="routeMap.source"/>
+        <bpmn2:dataInput id="__CSB_T_CHECKSTATE_dataMap.accessTokenInputX" drools:dtype="String" itemSubjectRef="__CSB_T_CHECKSTATE_dataMap.accessTokenInputXItem" name="dataMap.accessToken"/>
+        <bpmn2:dataInput id="__CSB_T_CHECKSTATE_dataMap.designIdInputX" drools:dtype="String" itemSubjectRef="__CSB_T_CHECKSTATE_dataMap.designIdInputXItem" name="dataMap.designId"/>
+        <bpmn2:dataInput id="__CSB_T_CHECKSTATE_TaskNameInputX" drools:dtype="Object" name="TaskName"/>
+        <bpmn2:dataOutput id="__CSB_T_CHECKSTATE_statusOutputX" drools:dtype="String" itemSubjectRef="__CSB_T_CHECKSTATE_statusOutputXItem" name="status"/>
+        <bpmn2:dataOutput id="__CSB_T_CHECKSTATE_queuedJobOutputX" drools:dtype="String" itemSubjectRef="__CSB_T_CHECKSTATE_queuedJobOutputXItem" name="queuedJob"/>
+        <bpmn2:dataOutput id="__CSB_T_CHECKSTATE_requestStatusOutputX" drools:dtype="String" itemSubjectRef="__CSB_T_CHECKSTATE_requestStatusOutputXItem" name="requestStatus"/>
+        <bpmn2:inputSet id="_CSB_INSET_T_CHECKSTATE">
+          <bpmn2:dataInputRefs>__CSB_T_CHECKSTATE_apiUrlInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>__CSB_T_CHECKSTATE_routeMap.domainInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>__CSB_T_CHECKSTATE_routeMap.sourceInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>__CSB_T_CHECKSTATE_dataMap.accessTokenInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>__CSB_T_CHECKSTATE_dataMap.designIdInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>__CSB_T_CHECKSTATE_TaskNameInputX</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet id="_CSB_OUTSET_T_CHECKSTATE">
+          <bpmn2:dataOutputRefs>__CSB_T_CHECKSTATE_statusOutputX</bpmn2:dataOutputRefs>
+          <bpmn2:dataOutputRefs>__CSB_T_CHECKSTATE_queuedJobOutputX</bpmn2:dataOutputRefs>
+          <bpmn2:dataOutputRefs>__CSB_T_CHECKSTATE_requestStatusOutputX</bpmn2:dataOutputRefs>
+        </bpmn2:outputSet>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation id="_CSB_DIA_0031">
+        <bpmn2:sourceRef>_apiCallUrl</bpmn2:sourceRef>
+        <bpmn2:targetRef>__CSB_T_CHECKSTATE_apiUrlInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CSB_DIA_0032">
+        <bpmn2:targetRef>__CSB_T_CHECKSTATE_routeMap.domainInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_CSB_ASG_0011">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_CSB_ASG_0011f"><![CDATA[REST_API_CALL]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_CSB_ASG_0011t">__CSB_T_CHECKSTATE_routeMap.domainInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CSB_DIA_0033">
+        <bpmn2:sourceRef>smwCheckProjectStateSource</bpmn2:sourceRef>
+        <bpmn2:targetRef>__CSB_T_CHECKSTATE_routeMap.sourceInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CSB_DIA_0034">
+        <bpmn2:sourceRef>smwAccessToken</bpmn2:sourceRef>
+        <bpmn2:targetRef>__CSB_T_CHECKSTATE_dataMap.accessTokenInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CSB_DIA_0035">
+        <bpmn2:sourceRef>smwDesignId</bpmn2:sourceRef>
+        <bpmn2:targetRef>__CSB_T_CHECKSTATE_dataMap.designIdInputX</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="_CSB_DIA_0036">
+        <bpmn2:targetRef>__CSB_T_CHECKSTATE_TaskNameInputX</bpmn2:targetRef>
+        <bpmn2:assignment id="_CSB_ASG_0012">
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_CSB_ASG_0012f"><![CDATA[SdcApiCall]]></bpmn2:from>
+          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_CSB_ASG_0012t">__CSB_T_CHECKSTATE_TaskNameInputX</bpmn2:to>
+        </bpmn2:assignment>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataOutputAssociation id="_CSB_DOA_0010">
+        <bpmn2:sourceRef>__CSB_T_CHECKSTATE_statusOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>smwProjectStatus</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="_CSB_DOA_0011">
+        <bpmn2:sourceRef>__CSB_T_CHECKSTATE_queuedJobOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>smwQueuedJob</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="_CSB_DOA_0012">
+        <bpmn2:sourceRef>__CSB_T_CHECKSTATE_requestStatusOutputX</bpmn2:sourceRef>
+        <bpmn2:targetRef>smwCheckStateRequestStatus</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+    </bpmn2:task>
+    <bpmn2:exclusiveGateway id="_CSB_GW_T_TOKEN" drools:dg="_CSB_SF_04" gatewayDirection="Diverging" default="_CSB_SF_04">
+      <bpmn2:incoming>_CSB_SF_03</bpmn2:incoming>
+      <bpmn2:outgoing>_CSB_SF_04</bpmn2:outgoing>
+      <bpmn2:outgoing>_CSB_SF_05</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:exclusiveGateway id="_CSB_GW_T_CHECKADDR" drools:dg="_CSB_SF_07" gatewayDirection="Diverging" default="_CSB_SF_07">
+      <bpmn2:incoming>_CSB_SF_06</bpmn2:incoming>
+      <bpmn2:outgoing>_CSB_SF_07</bpmn2:outgoing>
+      <bpmn2:outgoing>_CSB_SF_08</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:exclusiveGateway id="_CSB_GW_T_CREATEPROJ" drools:dg="_CSB_SF_10" gatewayDirection="Diverging" default="_CSB_SF_10">
+      <bpmn2:incoming>_CSB_SF_09</bpmn2:incoming>
+      <bpmn2:outgoing>_CSB_SF_10</bpmn2:outgoing>
+      <bpmn2:outgoing>_CSB_SF_11</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:exclusiveGateway id="_CSB_GW_T_CREATEBUILDING" drools:dg="_CSB_SF_13" gatewayDirection="Diverging" default="_CSB_SF_13">
+      <bpmn2:incoming>_CSB_SF_12</bpmn2:incoming>
+      <bpmn2:outgoing>_CSB_SF_13</bpmn2:outgoing>
+      <bpmn2:outgoing>_CSB_SF_14</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:exclusiveGateway id="_CSB_GW_T_POSTCHANGES" drools:dg="_CSB_SF_16" gatewayDirection="Diverging" default="_CSB_SF_16">
+      <bpmn2:incoming>_CSB_SF_15</bpmn2:incoming>
+      <bpmn2:outgoing>_CSB_SF_16</bpmn2:outgoing>
+      <bpmn2:outgoing>_CSB_SF_17</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:exclusiveGateway id="_CSB_GW_T_CHECKSTATE" drools:dg="_CSB_SF_19" gatewayDirection="Diverging" default="_CSB_SF_19">
+      <bpmn2:incoming>_CSB_SF_18</bpmn2:incoming>
+      <bpmn2:outgoing>_CSB_SF_19</bpmn2:outgoing>
+      <bpmn2:outgoing>_CSB_SF_20</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:scriptTask id="_CSB_RESULT_COMPLETED" name="Create result:
+COMPLETED" scriptFormat="http://www.java.com/java">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Create result:
+COMPLETED]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_CSB_SF_21</bpmn2:incoming>
+      <bpmn2:outgoing>_CSB_SF_22</bpmn2:outgoing>
+      <bpmn2:script><![CDATA[System.out.println("=====================================================");
+System.out.println("=== pniDesign_createSmwBuilding - Create result: COMPLETED ===");
+System.out.println("=====================================================");
+
+System.out.println("placeSmwId=" + placeSmwId + ", smwBuildingName=" + smwBuildingName + ", smwSystemId=" + smwSystemId);
+]]></bpmn2:script>
+    </bpmn2:scriptTask>
+    <bpmn2:scriptTask id="_CSB_RESULT_FAILED" name="Create result:
+FAILED" scriptFormat="http://www.java.com/java">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Create result:
+FAILED]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_CSB_SF_23</bpmn2:incoming>
+      <bpmn2:outgoing>_CSB_SF_24</bpmn2:outgoing>
+      <bpmn2:script><![CDATA[System.out.println("==================================================");
+System.out.println("=== pniDesign_createSmwBuilding - Create result: FAILED ===");
+System.out.println("==================================================");
+
+if (errorMessage == null) {
+    throw new IllegalArgumentException("errorMessage cannot be null. Set it by: kcontext.setVariable(\"errorMessage\", \"MESSAGE\");");
+}
+System.out.println("errorMessage=" + errorMessage);
+]]></bpmn2:script>
+    </bpmn2:scriptTask>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="_CSB_DIAGRAM">
+    <bpmndi:BPMNPlane id="_CSB_PLANE" bpmnElement="GC-AUTOMATION.pniDesign_createSmwBuilding">
+      <bpmndi:BPMNShape id="shape__CSB_START" bpmnElement="_CSB_START">
+        <dc:Bounds height="56.0" width="56.0" x="100.0" y="203.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CSB_INIT" bpmnElement="_CSB_INIT">
+        <dc:Bounds height="102.0" width="154.0" x="200.0" y="180.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CSB_T_TOKEN" bpmnElement="_CSB_T_TOKEN">
+        <dc:Bounds height="102.0" width="154.0" x="400.0" y="180.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CSB_GW_T_TOKEN" bpmnElement="_CSB_GW_T_TOKEN">
+        <dc:Bounds height="56.0" width="56.0" x="600.0" y="203.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CSB_T_CHECKADDR" bpmnElement="_CSB_T_CHECKADDR">
+        <dc:Bounds height="102.0" width="154.0" x="700.0" y="180.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CSB_GW_T_CHECKADDR" bpmnElement="_CSB_GW_T_CHECKADDR">
+        <dc:Bounds height="56.0" width="56.0" x="900.0" y="203.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CSB_T_CREATEPROJ" bpmnElement="_CSB_T_CREATEPROJ">
+        <dc:Bounds height="102.0" width="154.0" x="1000.0" y="180.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CSB_GW_T_CREATEPROJ" bpmnElement="_CSB_GW_T_CREATEPROJ">
+        <dc:Bounds height="56.0" width="56.0" x="1200.0" y="203.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CSB_T_CREATEBUILDING" bpmnElement="_CSB_T_CREATEBUILDING">
+        <dc:Bounds height="102.0" width="154.0" x="1300.0" y="180.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CSB_GW_T_CREATEBUILDING" bpmnElement="_CSB_GW_T_CREATEBUILDING">
+        <dc:Bounds height="56.0" width="56.0" x="1500.0" y="203.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CSB_T_POSTCHANGES" bpmnElement="_CSB_T_POSTCHANGES">
+        <dc:Bounds height="102.0" width="154.0" x="1600.0" y="180.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CSB_GW_T_POSTCHANGES" bpmnElement="_CSB_GW_T_POSTCHANGES">
+        <dc:Bounds height="56.0" width="56.0" x="1800.0" y="203.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CSB_T_CHECKSTATE" bpmnElement="_CSB_T_CHECKSTATE">
+        <dc:Bounds height="102.0" width="154.0" x="1900.0" y="180.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CSB_GW_T_CHECKSTATE" bpmnElement="_CSB_GW_T_CHECKSTATE">
+        <dc:Bounds height="56.0" width="56.0" x="2100.0" y="203.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CSB_THROW_COMPLETED" bpmnElement="_CSB_THROW_COMPLETED">
+        <dc:Bounds height="56.0" width="56.0" x="2200.0" y="203.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CSB_THROW_FAILED_T_TOKEN" bpmnElement="_CSB_THROW_FAILED_T_TOKEN">
+        <dc:Bounds height="56.0" width="56.0" x="600.0" y="330.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CSB_THROW_FAILED_T_CHECKADDR" bpmnElement="_CSB_THROW_FAILED_T_CHECKADDR">
+        <dc:Bounds height="56.0" width="56.0" x="900.0" y="330.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CSB_THROW_FAILED_T_CREATEPROJ" bpmnElement="_CSB_THROW_FAILED_T_CREATEPROJ">
+        <dc:Bounds height="56.0" width="56.0" x="1200.0" y="330.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CSB_THROW_FAILED_T_CREATEBUILDING" bpmnElement="_CSB_THROW_FAILED_T_CREATEBUILDING">
+        <dc:Bounds height="56.0" width="56.0" x="1500.0" y="330.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CSB_THROW_FAILED_T_POSTCHANGES" bpmnElement="_CSB_THROW_FAILED_T_POSTCHANGES">
+        <dc:Bounds height="56.0" width="56.0" x="1800.0" y="330.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CSB_THROW_FAILED_T_CHECKSTATE" bpmnElement="_CSB_THROW_FAILED_T_CHECKSTATE">
+        <dc:Bounds height="56.0" width="56.0" x="2100.0" y="330.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CSB_CATCH_COMPLETED" bpmnElement="_CSB_CATCH_COMPLETED">
+        <dc:Bounds height="56.0" width="56.0" x="100.0" y="460.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CSB_RESULT_COMPLETED" bpmnElement="_CSB_RESULT_COMPLETED">
+        <dc:Bounds height="102.0" width="154.0" x="200.0" y="437.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CSB_END_COMPLETED" bpmnElement="_CSB_END_COMPLETED">
+        <dc:Bounds height="56.0" width="56.0" x="400.0" y="460.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CSB_CATCH_FAILED" bpmnElement="_CSB_CATCH_FAILED">
+        <dc:Bounds height="56.0" width="56.0" x="100.0" y="660.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CSB_RESULT_FAILED" bpmnElement="_CSB_RESULT_FAILED">
+        <dc:Bounds height="102.0" width="154.0" x="200.0" y="637.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CSB_END_FAILED" bpmnElement="_CSB_END_FAILED">
+        <dc:Bounds height="56.0" width="56.0" x="400.0" y="660.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge__CSB_SF_01" bpmnElement="_CSB_SF_01">
+        <di:waypoint xsi:type="dc:Point" x="156.0" y="231.0"/>
+        <di:waypoint xsi:type="dc:Point" x="200.0" y="231.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge__CSB_SF_02" bpmnElement="_CSB_SF_02">
+        <di:waypoint xsi:type="dc:Point" x="354.0" y="231.0"/>
+        <di:waypoint xsi:type="dc:Point" x="400.0" y="231.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge__CSB_SF_03" bpmnElement="_CSB_SF_03">
+        <di:waypoint xsi:type="dc:Point" x="554.0" y="231.0"/>
+        <di:waypoint xsi:type="dc:Point" x="600.0" y="231.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge__CSB_SF_04" bpmnElement="_CSB_SF_04">
+        <di:waypoint xsi:type="dc:Point" x="656.0" y="231.0"/>
+        <di:waypoint xsi:type="dc:Point" x="700.0" y="231.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge__CSB_SF_05" bpmnElement="_CSB_SF_05">
+        <di:waypoint xsi:type="dc:Point" x="628.0" y="259.0"/>
+        <di:waypoint xsi:type="dc:Point" x="628.0" y="330.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge__CSB_SF_06" bpmnElement="_CSB_SF_06">
+        <di:waypoint xsi:type="dc:Point" x="854.0" y="231.0"/>
+        <di:waypoint xsi:type="dc:Point" x="900.0" y="231.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge__CSB_SF_07" bpmnElement="_CSB_SF_07">
+        <di:waypoint xsi:type="dc:Point" x="956.0" y="231.0"/>
+        <di:waypoint xsi:type="dc:Point" x="1000.0" y="231.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge__CSB_SF_08" bpmnElement="_CSB_SF_08">
+        <di:waypoint xsi:type="dc:Point" x="928.0" y="259.0"/>
+        <di:waypoint xsi:type="dc:Point" x="928.0" y="330.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge__CSB_SF_09" bpmnElement="_CSB_SF_09">
+        <di:waypoint xsi:type="dc:Point" x="1154.0" y="231.0"/>
+        <di:waypoint xsi:type="dc:Point" x="1200.0" y="231.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge__CSB_SF_10" bpmnElement="_CSB_SF_10">
+        <di:waypoint xsi:type="dc:Point" x="1256.0" y="231.0"/>
+        <di:waypoint xsi:type="dc:Point" x="1300.0" y="231.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge__CSB_SF_11" bpmnElement="_CSB_SF_11">
+        <di:waypoint xsi:type="dc:Point" x="1228.0" y="259.0"/>
+        <di:waypoint xsi:type="dc:Point" x="1228.0" y="330.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge__CSB_SF_12" bpmnElement="_CSB_SF_12">
+        <di:waypoint xsi:type="dc:Point" x="1454.0" y="231.0"/>
+        <di:waypoint xsi:type="dc:Point" x="1500.0" y="231.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge__CSB_SF_13" bpmnElement="_CSB_SF_13">
+        <di:waypoint xsi:type="dc:Point" x="1556.0" y="231.0"/>
+        <di:waypoint xsi:type="dc:Point" x="1600.0" y="231.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge__CSB_SF_14" bpmnElement="_CSB_SF_14">
+        <di:waypoint xsi:type="dc:Point" x="1528.0" y="259.0"/>
+        <di:waypoint xsi:type="dc:Point" x="1528.0" y="330.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge__CSB_SF_15" bpmnElement="_CSB_SF_15">
+        <di:waypoint xsi:type="dc:Point" x="1754.0" y="231.0"/>
+        <di:waypoint xsi:type="dc:Point" x="1800.0" y="231.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge__CSB_SF_16" bpmnElement="_CSB_SF_16">
+        <di:waypoint xsi:type="dc:Point" x="1856.0" y="231.0"/>
+        <di:waypoint xsi:type="dc:Point" x="1900.0" y="231.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge__CSB_SF_17" bpmnElement="_CSB_SF_17">
+        <di:waypoint xsi:type="dc:Point" x="1828.0" y="259.0"/>
+        <di:waypoint xsi:type="dc:Point" x="1828.0" y="330.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge__CSB_SF_18" bpmnElement="_CSB_SF_18">
+        <di:waypoint xsi:type="dc:Point" x="2054.0" y="231.0"/>
+        <di:waypoint xsi:type="dc:Point" x="2100.0" y="231.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge__CSB_SF_19" bpmnElement="_CSB_SF_19">
+        <di:waypoint xsi:type="dc:Point" x="2156.0" y="231.0"/>
+        <di:waypoint xsi:type="dc:Point" x="2200.0" y="231.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge__CSB_SF_20" bpmnElement="_CSB_SF_20">
+        <di:waypoint xsi:type="dc:Point" x="2128.0" y="259.0"/>
+        <di:waypoint xsi:type="dc:Point" x="2128.0" y="330.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge__CSB_SF_21" bpmnElement="_CSB_SF_21">
+        <di:waypoint xsi:type="dc:Point" x="128.0" y="488.0"/>
+        <di:waypoint xsi:type="dc:Point" x="200.0" y="488.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge__CSB_SF_22" bpmnElement="_CSB_SF_22">
+        <di:waypoint xsi:type="dc:Point" x="354.0" y="488.0"/>
+        <di:waypoint xsi:type="dc:Point" x="400.0" y="488.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge__CSB_SF_23" bpmnElement="_CSB_SF_23">
+        <di:waypoint xsi:type="dc:Point" x="128.0" y="688.0"/>
+        <di:waypoint xsi:type="dc:Point" x="200.0" y="688.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge__CSB_SF_24" bpmnElement="_CSB_SF_24">
+        <di:waypoint xsi:type="dc:Point" x="354.0" y="688.0"/>
+        <di:waypoint xsi:type="dc:Point" x="400.0" y="688.0"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+  <bpmn2:relationship id="_CSB_RELATIONSHIP" type="BPSimData">
+    <bpmn2:extensionElements>
+      <bpsim:BPSimData>
+        <bpsim:Scenario xsi:type="bpsim:Scenario" id="default" name="Simulationscenario">
+          <bpsim:ScenarioParameters xsi:type="bpsim:ScenarioParameters"/>
+        </bpsim:Scenario>
+      </bpsim:BPSimData>
+    </bpmn2:extensionElements>
+    <bpmn2:source>_CSB_DEFINITIONS</bpmn2:source>
+    <bpmn2:target>_CSB_DEFINITIONS</bpmn2:target>
+  </bpmn2:relationship>
+</bpmn2:definitions>
