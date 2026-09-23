@@ -649,7 +649,7 @@ if (!"ok".equals(smwCreateBuildingRequestStatus) || smwBuildingId == null || smw
         <bpmn2:targetRef>__CSB_T_CREATEBUILDING_dataMap.accessTokenInputX</bpmn2:targetRef>
       </bpmn2:dataInputAssociation>
       <bpmn2:dataInputAssociation id="_CSB_DIA_0022">
-        <bpmn2:sourceRef>smwDesignId</bpmn2:sourceRef>
+        <bpmn2:sourceRef>smwDesignIdRaw</bpmn2:sourceRef>
         <bpmn2:targetRef>__CSB_T_CREATEBUILDING_dataMap.designIdInputX</bpmn2:targetRef>
       </bpmn2:dataInputAssociation>
       <bpmn2:dataInputAssociation id="_CSB_DIA_0023">
@@ -743,7 +743,7 @@ if (!"ok".equals(smwPostRequestStatus)) {
         <bpmn2:targetRef>__CSB_T_POSTCHANGES_dataMap.accessTokenInputX</bpmn2:targetRef>
       </bpmn2:dataInputAssociation>
       <bpmn2:dataInputAssociation id="_CSB_DIA_0029">
-        <bpmn2:sourceRef>smwDesignId</bpmn2:sourceRef>
+        <bpmn2:sourceRef>smwDesignIdRaw</bpmn2:sourceRef>
         <bpmn2:targetRef>__CSB_T_POSTCHANGES_dataMap.designIdInputX</bpmn2:targetRef>
       </bpmn2:dataInputAssociation>
       <bpmn2:dataInputAssociation id="_CSB_DIA_0030">
@@ -831,7 +831,7 @@ if (!"ok".equals(smwCheckStateRequestStatus)) {
         <bpmn2:targetRef>__CSB_T_CHECKSTATE_dataMap.accessTokenInputX</bpmn2:targetRef>
       </bpmn2:dataInputAssociation>
       <bpmn2:dataInputAssociation id="_CSB_DIA_0035">
-        <bpmn2:sourceRef>smwDesignId</bpmn2:sourceRef>
+        <bpmn2:sourceRef>smwDesignIdRaw</bpmn2:sourceRef>
         <bpmn2:targetRef>__CSB_T_CHECKSTATE_dataMap.designIdInputX</bpmn2:targetRef>
       </bpmn2:dataInputAssociation>
       <bpmn2:dataInputAssociation id="_CSB_DIA_0036">
