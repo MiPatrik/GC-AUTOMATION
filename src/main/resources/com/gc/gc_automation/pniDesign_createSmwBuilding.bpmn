@@ -21,7 +21,7 @@
   <bpmn2:itemDefinition id="_smwCreateBuildingRequestStatusItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_smwPostRequestStatusItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_smwProjectStatusItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="_smwQueuedJobItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="_smwQueuedJobItem" structureRef="Boolean"/>
   <bpmn2:itemDefinition id="_smwCheckStateRequestStatusItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_placeSmwIdItem" structureRef="String"/>
   <bpmn2:itemDefinition id="_errorMessageItem" structureRef="String"/>
@@ -66,7 +66,7 @@
   <bpmn2:itemDefinition id="__CSB_T_CHECKSTATE_dataMap.accessTokenInputXItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__CSB_T_CHECKSTATE_dataMap.designIdInputXItem" structureRef="String"/>
   <bpmn2:itemDefinition id="__CSB_T_CHECKSTATE_statusOutputXItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="__CSB_T_CHECKSTATE_queuedJobOutputXItem" structureRef="String"/>
+  <bpmn2:itemDefinition id="__CSB_T_CHECKSTATE_queuedJobOutputXItem" structureRef="Boolean"/>
   <bpmn2:itemDefinition id="__CSB_T_CHECKSTATE_requestStatusOutputXItem" structureRef="String"/>
   <bpmn2:process id="GC-AUTOMATION.pniDesign_createSmwBuilding" drools:packageName="com.gc.gc_automation" drools:version="1.0" drools:adHoc="false" name="pniDesign_createSmwBuilding" isExecutable="true" processType="Public">
     <bpmn2:documentation id="_CSB_DOC_0001"><![CDATA[Sub-process of pniDesign_createPlace (globalconnect#42 rework). Performs the full, real PRM API integration flow: get token, check address, create project, create empty building with AP, post project changes, check project state - all against the smw/{country}/* runtime-config sources selected by smwCountryCode. Inputs: globalReferenceId, crossProjectName, smwCountryCode. Outputs: placeSmwId, smwBuildingName, smwSystemId, errorMessage (null on success).]]></bpmn2:documentation>
@@ -795,7 +795,7 @@ if (!"ok".equals(smwCheckStateRequestStatus)) {
         <bpmn2:dataInput id="__CSB_T_CHECKSTATE_dataMap.designIdInputX" drools:dtype="String" itemSubjectRef="__CSB_T_CHECKSTATE_dataMap.designIdInputXItem" name="dataMap.designId"/>
         <bpmn2:dataInput id="__CSB_T_CHECKSTATE_TaskNameInputX" drools:dtype="Object" name="TaskName"/>
         <bpmn2:dataOutput id="__CSB_T_CHECKSTATE_statusOutputX" drools:dtype="String" itemSubjectRef="__CSB_T_CHECKSTATE_statusOutputXItem" name="status"/>
-        <bpmn2:dataOutput id="__CSB_T_CHECKSTATE_queuedJobOutputX" drools:dtype="String" itemSubjectRef="__CSB_T_CHECKSTATE_queuedJobOutputXItem" name="queuedJob"/>
+        <bpmn2:dataOutput id="__CSB_T_CHECKSTATE_queuedJobOutputX" drools:dtype="Boolean" itemSubjectRef="__CSB_T_CHECKSTATE_queuedJobOutputXItem" name="queuedJob"/>
         <bpmn2:dataOutput id="__CSB_T_CHECKSTATE_requestStatusOutputX" drools:dtype="String" itemSubjectRef="__CSB_T_CHECKSTATE_requestStatusOutputXItem" name="requestStatus"/>
         <bpmn2:inputSet id="_CSB_INSET_T_CHECKSTATE">
           <bpmn2:dataInputRefs>__CSB_T_CHECKSTATE_apiUrlInputX</bpmn2:dataInputRefs>
