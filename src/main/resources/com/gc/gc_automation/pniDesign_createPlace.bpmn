@@ -70,7 +70,8 @@
       </bpmn2:extensionElements>
       <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_CPL_COND_0002" language="http://www.java.com/java"><![CDATA[return errorMessage != null;]]></bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
-    <bpmn2:sequenceFlow id="_CPL_SF_CSB_BE" sourceRef="_CPL_CALL_CSB_BE" targetRef="_CPL_THROW_FAILED_CSB_BE"/>
+    <bpmn2:sequenceFlow id="_CPL_SF_CSB_BE" sourceRef="_CPL_CALL_CSB_BE" targetRef="_CPL_SCRIPT_CSB_BE_ERROR"/>
+    <bpmn2:sequenceFlow id="_CPL_SF_CSB_BE_TO_THROW" sourceRef="_CPL_SCRIPT_CSB_BE_ERROR" targetRef="_CPL_THROW_FAILED_CSB_BE"/>
     <bpmn2:sequenceFlow id="_CPL_SF_09" sourceRef="_CPL_T_CROSS" targetRef="_CPL_GW_CROSS"/>
     <bpmn2:sequenceFlow id="_CPL_SF_10" sourceRef="_CPL_GW_CROSS" targetRef="_CPL_THROW_COMPLETED"/>
     <bpmn2:sequenceFlow id="_CPL_SF_11" name="CROSS failed" sourceRef="_CPL_GW_CROSS" targetRef="_CPL_THROW_FAILED_CROSS">
@@ -122,11 +123,45 @@
           <drools:metaValue><![CDATA[Failed]]></drools:metaValue>
         </drools:metaData>
       </bpmn2:extensionElements>
-      <bpmn2:incoming>_CPL_SF_CSB_BE</bpmn2:incoming>
+      <bpmn2:incoming>_CPL_SF_CSB_BE_TO_THROW</bpmn2:incoming>
       <bpmn2:linkEventDefinition id="_CPL_LINK_FAILED_THROW_CSB_BE" name="Failed">
         <bpmn2:target>_CPL_LINK_FAILED_CATCH</bpmn2:target>
       </bpmn2:linkEventDefinition>
     </bpmn2:intermediateThrowEvent>
+    <bpmn2:scriptTask id="_CPL_SCRIPT_CSB_BE_ERROR" name="Extract SMW building error" scriptFormat="http://www.java.com/java">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[Extract SMW building error]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>_CPL_SF_CSB_BE</bpmn2:incoming>
+      <bpmn2:outgoing>_CPL_SF_CSB_BE_TO_THROW</bpmn2:outgoing>
+      <bpmn2:script><![CDATA[System.out.println("=== pniDesign_createPlace - Create SMW building failed, extracting real error ===");
+System.out.println("caughtException class: " + (caughtException != null ? caughtException.getClass().getName() : "null"));
+
+String detail = null;
+if (caughtException != null) {
+    Throwable t = caughtException;
+    int depth = 0;
+    while (t != null) {
+        System.out.println("Cause chain [" + depth + "]: " + t.getClass().getName() + " - " + t.getMessage());
+        if (t.getCause() == null || t.getCause() == t) {
+            break;
+        }
+        t = t.getCause();
+        depth++;
+    }
+    detail = t.getMessage();
+    if (detail == null) {
+        detail = t.toString();
+    }
+}
+
+System.out.println("Extracted error detail: " + detail);
+
+kcontext.setVariable("errorMessage", "SMW create building failed: " + (detail != null ? detail : "unknown error (caughtException was null)"));
+]]></bpmn2:script>
+    </bpmn2:scriptTask>
     <bpmn2:intermediateThrowEvent id="_CPL_THROW_FAILED_CROSS" name="Failed">
       <bpmn2:extensionElements>
         <drools:metaData name="elementname">
@@ -500,6 +535,9 @@ System.out.println("errorMessage=" + errorMessage);
       <bpmndi:BPMNShape id="shape__CPL_THROW_FAILED_CSB_BE" bpmnElement="_CPL_THROW_FAILED_CSB_BE">
         <dc:Bounds height="56.0" width="56.0" x="500.0" y="330.0"/>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape__CPL_SCRIPT_CSB_BE_ERROR" bpmnElement="_CPL_SCRIPT_CSB_BE_ERROR">
+        <dc:Bounds height="102.0" width="154.0" x="650.0" y="330.0"/>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="shape__CPL_THROW_FAILED_CROSS" bpmnElement="_CPL_THROW_FAILED_CROSS">
         <dc:Bounds height="56.0" width="56.0" x="1200.0" y="330.0"/>
       </bpmndi:BPMNShape>
@@ -541,8 +579,12 @@ System.out.println("errorMessage=" + errorMessage);
         <di:waypoint xsi:type="dc:Point" x="628.0" y="231.0"/>
         <di:waypoint xsi:type="dc:Point" x="628.0" y="358.0"/>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="edge_shape__CPL_CALL_CSB_BE_to_shape__CPL_THROW_FAILED_CSB_BE" bpmnElement="_CPL_SF_CSB_BE">
+      <bpmndi:BPMNEdge id="edge_shape__CPL_CALL_CSB_BE_to_shape__CPL_SCRIPT_CSB_BE_ERROR" bpmnElement="_CPL_SF_CSB_BE">
         <di:waypoint xsi:type="dc:Point" x="554.0" y="282.0"/>
+        <di:waypoint xsi:type="dc:Point" x="650.0" y="381.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_shape__CPL_SCRIPT_CSB_BE_ERROR_to_shape__CPL_THROW_FAILED_CSB_BE" bpmnElement="_CPL_SF_CSB_BE_TO_THROW">
+        <di:waypoint xsi:type="dc:Point" x="650.0" y="381.0"/>
         <di:waypoint xsi:type="dc:Point" x="528.0" y="358.0"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_shape__CPL_T_CROSS_to_shape__CPL_GW_CROSS" bpmnElement="_CPL_SF_09">
