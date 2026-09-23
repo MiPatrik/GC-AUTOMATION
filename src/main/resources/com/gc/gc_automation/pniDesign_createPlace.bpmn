@@ -152,6 +152,32 @@ if (caughtException != null) {
         depth++;
     }
     detail = t.getMessage();
+
+    // SdcApiWorkItemHandler throws a plain RuntimeException with no cause chain; the real downstream
+    // error is embedded as JSON-in-JSON-in-JSON inside its own message text, e.g.:
+    // "REST call failed with code 500 and body: {"message":"{\"message\":\"REAL TEXT\",...}",...}"
+    // No JSON library is on this kjar's classpath, so unwrap it manually: unescape once, then take the
+    // innermost "message" field.
+    if (detail != null) {
+        int bodyIdx = detail.lastIndexOf("body: ");
+        if (bodyIdx >= 0) {
+            String raw = detail.substring(bodyIdx + 6);
+            String unescaped = raw.replace("\\\"", "\"").replace("\\n", "\n").replace("\\\\", "\\");
+            String key = "\"message\":\"";
+            int msgIdx = unescaped.lastIndexOf(key);
+            if (msgIdx >= 0) {
+                int valueStart = msgIdx + key.length();
+                int valueEnd = unescaped.indexOf("\",\"", valueStart);
+                if (valueEnd < 0) {
+                    valueEnd = unescaped.indexOf("\"}", valueStart);
+                }
+                if (valueEnd > valueStart) {
+                    detail = unescaped.substring(valueStart, valueEnd);
+                }
+            }
+        }
+    }
+
     if (detail == null) {
         detail = t.toString();
     }
@@ -160,6 +186,12 @@ if (caughtException != null) {
 System.out.println("Extracted error detail: " + detail);
 
 kcontext.setVariable("errorMessage", "SMW create building failed: " + (detail != null ? detail : "unknown error (caughtException was null)"));
+
+// Do not let the raw exception (with its full stack trace / cause chain) linger as a process
+// variable - jBPM/KIE Server serializing it back in the process instance response can blow past
+// Automaton's WebClient 256KB buffer limit (DataBufferLimitException). errorMessage above already
+// carries the useful part.
+kcontext.setVariable("caughtException", null);
 ]]></bpmn2:script>
     </bpmn2:scriptTask>
     <bpmn2:intermediateThrowEvent id="_CPL_THROW_FAILED_CROSS" name="Failed">
